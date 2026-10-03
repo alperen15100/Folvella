@@ -1,0 +1,31 @@
+{
+  "slug": "example-story",
+  "status": "draft",
+  "featured": false,
+  "heroLabel": "EDITOR'S PICK",
+  "title": "Example Long-Form Visual Guide",
+  "category": "Home & Decor",
+  "excerpt": "A short search-friendly summary of the story.",
+  "cover": "https://example.com/landscape-cover.jpg",
+  "coverAlt": "Accurate image description",
+  "pinCover": "https://example.com/1000x1500-pinterest-cover.jpg",
+  "pinDescription": "Pinterest-ready description with natural keywords.",
+  "dateLabel": "Updated October 2026",
+  "readMinutes": 10,
+  "intro": [
+    "First substantial introductory paragraph.",
+    "Second substantial introductory paragraph."
+  ],
+  "sections": [
+    {
+      "heading": "1. First visual idea",
+      "paragraphs": [
+        "Long explanatory paragraph with practical, useful detail.",
+        "A second paragraph that adds context rather than repeating the first."
+      ],
+      "image": "https://example.com/section-1.jpg",
+      "alt": "Descriptive alt text",
+      "caption": "Optional caption."
+    }
+  ]
+}
