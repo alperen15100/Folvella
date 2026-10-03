@@ -117,3 +117,9 @@
 .heroPin,.articlePin,.sidePin{display:flex;align-items:center;justify-content:center;gap:8px}
 .heroPin .pinterestSvg,.articlePin .pinterestSvg,.sidePin .pinterestSvg{width:20px;height:20px}
 .sidePin span,.heroPin span,.articlePin span{line-height:1}
+
+/* Performance and long-form SEO rendering */
+.longSection{content-visibility:auto;contain-intrinsic-size:900px}
+.articleFigure img{aspect-ratio:4/3;object-fit:cover;background:#eee8df}
+.leadImg{background:#eee8df}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
