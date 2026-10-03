@@ -613,3 +613,18 @@
 .heroSlider .heroSlide:not(.active) .heroContent{
   display:none!important;
 }
+
+
+/* AI article sprite tiles */
+.articleFigure .articleSprite{
+  width:100%;
+  aspect-ratio:4/3;
+  background-repeat:no-repeat;
+  background-size:400% 300%;
+  border-radius:16px;
+  overflow:hidden;
+  display:block;
+}
+@media(max-width:650px){
+  .articleFigure .articleSprite{border-radius:14px}
+}
