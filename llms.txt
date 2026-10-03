@@ -1,0 +1,15 @@
+# Trendora
+
+Trendora is an English-language visual lifestyle publication focused on useful, image-led guides for home, beauty, food, fashion, DIY and seasonal living.
+
+## Primary pages
+- https://alperen15100.github.io/Trendora/
+- https://alperen15100.github.io/Trendora/about.html
+- https://alperen15100.github.io/Trendora/editorial-policy.html
+
+## Current guides
+- 17 Kitchen Witch & Herbal Apothecary Ideas That Make a Kitchen Feel Magical: https://alperen15100.github.io/Trendora/kitchen-witch-herbal-apothecary/
+- 21 Milky Lilac Nail Ideas That Look Soft, Glossy and Expensive: https://alperen15100.github.io/Trendora/milky-lilac-nails/
+
+## Editorial notes
+Trendora may use AI-assisted drafting and research. Published guides are reviewed for clarity, image-to-text relevance, internal consistency and obvious safety issues. Commercial relationships are disclosed.
