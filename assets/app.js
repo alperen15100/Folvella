@@ -64,7 +64,7 @@ function renderCards(){
  const draw=(list)=>{
    grid.innerHTML=list.map(slug=>{const a=ARTICLES[slug];return '<a class="ideaCard" data-cat="'+esc(a.category.split(" ")[0])+'" data-title="'+esc(a.title.toLowerCase())+'" href="'+articleUrl(slug)+'"><img loading="lazy" src="'+a.image+'" alt="'+esc(a.title)+'"><div class="cardText"><small>'+esc(a.category)+'</small><h3>'+esc(a.title)+'</h3><span>Read ideas →</span></div></a>'}).join("");
  };
- draw(order);
+ draw(order.slice(0,5));
  if(latest) latest.innerHTML=order.map(slug=>{const a=ARTICLES[slug];return '<a class="latestCard" href="'+articleUrl(slug)+'"><img loading="lazy" src="'+a.image+'" alt="'+esc(a.title)+'"><div><small>'+esc(a.category.toUpperCase())+'</small><h3>'+esc(a.title)+'</h3><p>5–7 min read</p></div></a>'}).join("");
  const buttons=[...document.querySelectorAll("[data-filter]")];
  function filter(){
