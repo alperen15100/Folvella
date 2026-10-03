@@ -149,3 +149,208 @@
 @media(prefers-reduced-motion:reduce){
   .heroSlider .heroSlide,.heroSlider .heroSlide>img{transition:none!important}
 }
+
+
+/* Mobile minimalist pass — desktop intentionally unchanged */
+@media(max-width:650px){
+  body{background:#fbfaf7}
+
+  .shell{width:calc(100% - 28px)}
+  .topbar{background:#0d100f}
+  .nav{height:64px;grid-template-columns:1fr auto;gap:14px}
+  .brand{font-size:25px;gap:7px}
+  .brand span{font-size:21px}
+  .nav nav{gap:16px}
+  .nav nav a{font-size:13px}
+  .brandBlock small{display:none}
+
+  .heroSlider,.hero{height:430px!important}
+  .heroSlider .heroSlide{height:430px!important}
+  .heroContent{
+    justify-content:flex-end!important;
+    padding-bottom:58px;
+    padding-top:28px;
+  }
+  .hero>img{object-position:center!important}
+  .heroShade{
+    background:linear-gradient(180deg,rgba(0,0,0,.05) 10%,rgba(0,0,0,.24) 38%,rgba(0,0,0,.82) 100%)!important;
+  }
+  .eyebrow{
+    padding:6px 10px;
+    font-size:10px;
+    letter-spacing:.03em;
+  }
+  .hero h1{
+    font-size:32px!important;
+    line-height:.96!important;
+    letter-spacing:-.025em;
+    margin:9px 0 8px!important;
+    max-width:94%!important;
+  }
+  .hero p{
+    font-size:14px!important;
+    line-height:1.35!important;
+    margin:0 0 14px!important;
+    max-width:92%!important;
+    display:-webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+  }
+  .heroActions{gap:9px}
+  .cta{
+    padding:11px 16px!important;
+    font-size:14px!important;
+    min-height:42px;
+  }
+  .heroPin{
+    width:42px;
+    height:42px;
+    padding:0!important;
+    border-radius:50%;
+    flex:0 0 42px;
+  }
+  .heroPin span{display:none}
+  .heroPin .pinterestSvg{width:21px;height:21px}
+  .heroArrow{display:none!important}
+  .heroDots{
+    left:14px!important;
+    bottom:18px!important;
+    gap:6px!important;
+  }
+  .heroDots button{
+    width:6px!important;
+    height:6px!important;
+    opacity:.8;
+  }
+  .heroDots button.active{width:18px!important}
+
+  .categoryStrip{border-bottom:1px solid #eee9e2}
+  .categoryRow{
+    gap:20px!important;
+    padding:14px 0 15px!important;
+  }
+  .categoryRow a{
+    min-width:72px!important;
+    font-size:10px!important;
+  }
+  .categoryRow img{
+    width:48px!important;
+    height:48px!important;
+    margin-bottom:7px!important;
+    box-shadow:none!important;
+  }
+
+  .section{padding:28px 0!important}
+  .sectionHead{margin-bottom:16px}
+  .sectionHead h2{
+    font-size:29px!important;
+    margin-bottom:5px!important;
+  }
+  .sectionHead p{
+    font-size:13px!important;
+    line-height:1.35;
+  }
+
+  .filters{
+    margin-top:13px!important;
+    gap:6px!important;
+    padding-bottom:3px!important;
+  }
+  .filters button{
+    padding:8px 12px!important;
+    font-size:12px;
+  }
+
+  .ideaGrid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:10px!important;
+  }
+  .ideaCard{
+    height:285px!important;
+    border-radius:12px!important;
+    box-shadow:0 8px 22px rgba(28,22,15,.08)!important;
+  }
+  .ideaCard .cardText{
+    left:12px!important;
+    right:10px!important;
+    bottom:12px!important;
+  }
+  .ideaCard .cardText small{font-size:9px!important}
+  .ideaCard h3{
+    font-size:18px!important;
+    line-height:1!important;
+    margin:6px 0 10px!important;
+    display:-webkit-box;
+    -webkit-line-clamp:5;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+  }
+  .ideaCard .cardText span{font-size:13px!important}
+  .pinBubble{
+    width:34px!important;
+    height:34px!important;
+    top:8px!important;
+    right:8px!important;
+    box-shadow:0 5px 16px rgba(140,0,20,.22)!important;
+  }
+  .pinBubble .pinterestSvg{width:18px!important;height:18px!important}
+
+  .wideTiles{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:9px!important;
+  }
+  .wideTiles a{
+    height:104px!important;
+    border-radius:10px!important;
+  }
+  .wideTiles b{
+    font-size:15px!important;
+    left:11px!important;
+    right:8px;
+    bottom:10px!important;
+    line-height:1.05;
+  }
+
+  .latestGrid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:10px!important;
+  }
+  .latestCard{box-shadow:none!important}
+  .latestCard img{height:108px!important}
+  .latestCard div{padding:10px!important}
+  .latestCard small{font-size:8px!important}
+  .latestCard h3{
+    font-size:14px!important;
+    line-height:1.12!important;
+    margin:5px 0!important;
+  }
+  .latestCard p{font-size:10px!important}
+  .pinMini{width:29px;height:29px;top:6px;right:6px}
+  .pinMini .pinterestSvg{width:15px;height:15px}
+
+  .newsletter{padding:26px 0!important}
+  .newsletter h2{font-size:24px!important}
+  .newsletter p{font-size:13px}
+  .newsletter form{margin-top:14px!important}
+  .newsletter input,.newsletter button{height:43px!important}
+  .newsletter input{font-size:13px;padding-left:14px}
+  .newsletter button{font-size:13px;padding:0 15px}
+
+  .footGrid{
+    grid-template-columns:1fr 1fr!important;
+    gap:24px 28px!important;
+    padding:30px 0!important;
+  }
+  .footGrid>div:first-child{grid-column:1/-1}
+  .footGrid .brand{font-size:24px}
+  .footGrid p,.footGrid a:not(.brand){font-size:12px!important}
+  .copyright{padding:14px 0 22px!important;font-size:11px!important}
+}
+
+@media(max-width:380px){
+  .heroSlider,.hero,.heroSlider .heroSlide{height:410px!important}
+  .hero h1{font-size:29px!important}
+  .ideaCard{height:265px!important}
+  .ideaCard h3{font-size:17px!important}
+}
