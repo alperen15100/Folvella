@@ -568,3 +568,30 @@
 @media(max-width:380px){
   .articlePage .articleHero h1{font-size:29px!important}
 }
+
+
+/* Desktop Fresh Ideas filter layout */
+@media(min-width:951px){
+  #fresh{padding-top:54px}
+  #fresh .sectionHead{
+    display:block;
+    margin-bottom:24px;
+  }
+  #fresh .sectionHead>div:first-child{
+    margin-bottom:18px;
+  }
+  #fresh .filters{
+    display:flex;
+    width:100%;
+    gap:10px;
+    flex-wrap:nowrap;
+    margin:0;
+  }
+  #fresh .filters button{
+    flex:1 1 0;
+    min-width:0;
+    padding:11px 14px;
+    text-align:center;
+    white-space:nowrap;
+  }
+}
