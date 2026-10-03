@@ -8,6 +8,7 @@ Trendora is an English-language visual lifestyle publication focused on useful, 
 - https://alperen15100.github.io/Trendora/editorial-policy.html
 
 ## Current guides
+- 21 Home Café Ideas & Coffee Recipes That Make Mornings Feel Like a Coffee Shop: https://alperen15100.github.io/Trendora/home-cafe-coffee-ideas/
 - 19 Perfume Layering Ideas That Smell Expensive and Completely Unique: https://alperen15100.github.io/Trendora/perfume-layering-ideas/
 - 17 Kitchen Witch & Herbal Apothecary Ideas That Make a Kitchen Feel Magical: https://alperen15100.github.io/Trendora/kitchen-witch-herbal-apothecary/
 - 21 Milky Lilac Nail Ideas That Look Soft, Glossy and Expensive: https://alperen15100.github.io/Trendora/milky-lilac-nails/
