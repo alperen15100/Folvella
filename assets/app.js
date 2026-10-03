@@ -154,15 +154,6 @@ function renderArticle(post,posts){
   document.getElementById("sidePin")?.addEventListener("click",()=>pinPost(post));
 }
 
-async function renderStudio(){
-  const q=document.getElementById("studioQueue");if(!q)return;
-  const ops=await loadJSON("data/ops.json",[]);
-  const posts=await getPosts();
-  document.getElementById("studioPublished").textContent=posts.filter(p=>p.status!=="draft").length;
-  document.getElementById("studioQueueCount").textContent=ops.length;
-  q.innerHTML=ops.length?ops.map((o,i)=>'<section class="brief"><div class="briefTop"><div><span class="stage">#'+(i+1)+' · '+esc(o.stage||"RESEARCHED")+'</span><h2>'+esc(o.title)+'</h2><small>'+esc(o.category||"")+'</small></div><span class="score">'+esc(o.score||"—")+'/100</span></div><div class="briefGrid"><div class="field"><small>PIN HOOK</small><code>'+esc(o.hook||"")+'</code></div><div class="field"><small>ARTICLE ANGLE</small><code>'+esc(o.angle||"")+'</code></div><div class="field"><small>BOARD</small><code>'+esc(o.board||"")+'</code></div><div class="field"><small>STATUS</small><code>'+esc(o.stage||"")+'</code></div></div></section>').join(""):'<div class="brief"><h2>No researched topics in the queue.</h2></div>';
-}
-
 document.getElementById("newsletterForm")?.addEventListener("submit",e=>{e.preventDefault();document.getElementById("newsletterMsg").textContent="Thanks — you’re on the list.";e.currentTarget.reset()});
 
 (async()=>{
@@ -174,5 +165,4 @@ document.getElementById("newsletterForm")?.addEventListener("submit",e=>{e.preve
     const post=posts.find(p=>p.slug===slug&&p.status!=="draft");
     post?renderArticle(post,posts):renderMissingArticle();
   }
-  if(page==="studio")renderStudio();
 })();
