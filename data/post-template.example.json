@@ -26,6 +26,16 @@
       "image": "https://example.com/section-1.jpg",
       "alt": "Descriptive alt text",
       "caption": "Optional caption."
+    },
+    {
+      "heading": "2. Second visual idea",
+      "paragraphs": [
+        "Each numbered idea gets its own section and its own distinct explanation."
+      ],
+      "image": "",
+      "alt": "",
+      "caption": ""
     }
-  ]
+  ],
+  "contentRule": "Use one numbered idea per section. Never group multiple idea numbers into a single heading."
 }
