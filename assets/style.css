@@ -540,3 +540,31 @@
   .articlePage .articleMain .leadImg{height:225px!important}
   .articlePage .longSection h2{font-size:24px!important}
 }
+
+
+/* Final mobile article polish */
+@media(max-width:650px){
+  .articlePage .articleHero{padding:20px 0 13px!important}
+  .articlePage .articleHero h1{
+    font-size:31px!important;
+    line-height:1!important;
+    letter-spacing:-.02em!important;
+    margin-bottom:9px!important;
+  }
+  .articlePage .articleDek{
+    font-size:14px!important;
+    line-height:1.45!important;
+    margin-bottom:8px!important;
+  }
+  .articlePage .meta{font-size:9.5px!important;margin-top:6px!important}
+  .articlePage .disclosure{
+    font-size:10px!important;
+    line-height:1.42!important;
+    padding:8px 10px!important;
+    margin-bottom:16px!important;
+    background:#f7f3ee!important;
+  }
+}
+@media(max-width:380px){
+  .articlePage .articleHero h1{font-size:29px!important}
+}
