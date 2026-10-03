@@ -3,12 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Trendora — Beautiful Ideas for Everyday Living</title>
-<meta name="description" content="Fresh recipes, cozy homes, effortless style, beauty inspiration and creative seasonal ideas for everyday living.">
+<title>Trendora — Beautiful Ideas Worth Saving</title>
+<meta name="description" content="Fresh visual guides for food, home, beauty, fashion, DIY and seasonal living.">
 <link rel="canonical" href="https://alperen15100.github.io/Trendora/">
 <meta name="theme-color" content="#0d0f0e">
-<meta property="og:title" content="Trendora — Beautiful Ideas for Everyday Living">
-<meta property="og:description" content="Recipes, decor, fashion, beauty and seasonal inspiration worth saving.">
 <link rel="stylesheet" href="assets/style.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Trendora","url":"https://alperen15100.github.io/Trendora/"}</script>
 </head>
@@ -16,75 +14,53 @@
 <header class="topbar">
   <div class="shell nav">
     <div class="brandBlock"><a class="brand" href="index.html"><span>🍁</span><b>Trendora</b></a><small>Beautiful ideas worth saving.</small></div>
-    <form class="search" id="siteSearch"><span>⌕</span><input id="searchInput" type="search" placeholder="Search recipes, rooms, outfits…"></form>
+    <form class="search" id="siteSearch"><span>⌕</span><input id="searchInput" type="search" placeholder="Search ideas…"></form>
     <nav><a href="#fresh">Ideas</a><a href="#categories">Categories</a><a href="about.html">About</a></nav>
   </div>
 </header>
 
 <main>
-<section class="hero">
-  <img src="https://images.unsplash.com/photo-1766186930306-ec2c3f7dbf5f?auto=format&fit=crop&w=1800&q=84" alt="Halloween cupcakes decorated as ghosts">
-  <div class="heroShade"></div>
-  <div class="shell heroContent">
-    <span class="eyebrow">SEASONAL FAVORITE</span>
-    <h1>21 Easy<br>Halloween Treats<br><em>That Look Expensive</em></h1>
-    <p>Spooky, delicious and surprisingly easy to make.</p>
-    <a class="cta" href="article.html?slug=halloween-treats">View Ideas <span>→</span></a>
-  </div>
-</section>
+  <div id="heroMount"></div>
 
-<section class="categoryStrip" id="categories">
-  <div class="shell categoryRow">
-    <a href="article.html?slug=fall-coffee"><img src="https://images.unsplash.com/photo-1727911583368-39ce974c566a?auto=format&fit=crop&w=300&q=80"><span>Food & Drinks</span></a>
-    <a href="article.html?slug=small-bedroom"><img src="https://images.unsplash.com/photo-1776482128010-a3626efb82f7?auto=format&fit=crop&w=300&q=80"><span>Home & Decor</span></a>
-    <a href="article.html?slug=fall-outfits"><img src="https://images.unsplash.com/photo-1583002084130-39730178e1ad?auto=format&fit=crop&w=300&q=80"><span>Fashion</span></a>
-    <a href="article.html?slug=fall-nails"><img src="https://images.unsplash.com/photo-1655720348723-c16f0519249d?auto=format&fit=crop&w=300&q=80"><span>Beauty & Nails</span></a>
-    <a href="article.html?slug=bag-charms"><img src="https://images.unsplash.com/photo-1763056531605-4e75d78e5016?auto=format&fit=crop&w=300&q=80"><span>DIY & Crafts</span></a>
-    <a href="article.html?slug=halloween-treats"><img src="https://images.unsplash.com/photo-1766186930306-ec2c3f7dbf5f?auto=format&fit=crop&w=300&q=80"><span>Holidays</span></a>
-    <a href="article.html?slug=bag-charms"><img src="https://images.unsplash.com/photo-1763056531605-4e75d78e5016?auto=format&fit=crop&w=300&q=80"><span>Gifts</span></a>
-    <a href="article.html?slug=fall-outfits"><img src="https://images.unsplash.com/photo-1583002084130-39730178e1ad?auto=format&fit=crop&w=300&q=80"><span>Weddings</span></a>
-    <a href="article.html?slug=small-bedroom"><img src="https://images.unsplash.com/photo-1776482128010-a3626efb82f7?auto=format&fit=crop&w=300&q=80"><span>Travel</span></a>
-    <a href="article.html?slug=fall-coffee"><img src="https://images.unsplash.com/photo-1727911583368-39ce974c566a?auto=format&fit=crop&w=300&q=80"><span>Lifestyle</span></a>
-  </div>
-</section>
+  <section class="categoryStrip" id="categories">
+    <div class="shell categoryRow" id="categoryRow"></div>
+  </section>
 
-<section class="section" id="fresh">
-  <div class="shell">
-    <div class="sectionHead">
-      <div><h2>Fresh Ideas</h2><p>Beautiful things worth trying, making and saving.</p></div>
-      <div class="filters" id="filters"><button class="active" data-filter="all">All</button><button data-filter="Food">Food</button><button data-filter="Home">Home</button><button data-filter="Fashion">Fashion</button><button data-filter="Beauty">Beauty</button><button data-filter="DIY">DIY</button></div>
+  <section class="section" id="fresh">
+    <div class="shell">
+      <div class="sectionHead">
+        <div><h2>Fresh Ideas</h2><p>Useful, visual guides worth reading and saving.</p></div>
+        <div class="filters" id="filters"></div>
+      </div>
+      <div class="ideaGrid" id="ideaGrid"></div>
+      <div class="emptyState" id="emptyState">
+        <span>🍁</span>
+        <h2>Fresh stories are being prepared.</h2>
+        <p>Trendora is ready. New visual guides will appear here as they are published.</p>
+      </div>
     </div>
-    <div class="ideaGrid" id="ideaGrid"></div>
-  </div>
-</section>
+  </section>
 
-<section class="section soft">
-  <div class="shell">
-    <div class="sectionHead"><div><h2>Popular Categories</h2><p>Start with what you love.</p></div></div>
-    <div class="wideTiles">
-      <a href="article.html?slug=fall-coffee"><img src="https://images.unsplash.com/photo-1727911583368-39ce974c566a?auto=format&fit=crop&w=900&q=80"><b>Fall Recipes & Drinks</b></a>
-      <a href="article.html?slug=small-bedroom"><img src="https://images.unsplash.com/photo-1776482128010-a3626efb82f7?auto=format&fit=crop&w=900&q=80"><b>Bedroom Makeovers</b></a>
-      <a href="article.html?slug=fall-outfits"><img src="https://images.unsplash.com/photo-1583002084130-39730178e1ad?auto=format&fit=crop&w=900&q=80"><b>Fall Outfits & Fashion</b></a>
-      <a href="article.html?slug=fall-nails"><img src="https://images.unsplash.com/photo-1655720348723-c16f0519249d?auto=format&fit=crop&w=900&q=80"><b>Nail Ideas & Beauty</b></a>
-      <a href="article.html?slug=bag-charms"><img src="https://images.unsplash.com/photo-1763056531605-4e75d78e5016?auto=format&fit=crop&w=900&q=80"><b>DIY & Crafts</b></a>
-      <a href="article.html?slug=halloween-treats"><img src="https://images.unsplash.com/photo-1766186930306-ec2c3f7dbf5f?auto=format&fit=crop&w=900&q=80"><b>Halloween Ideas</b></a>
+  <section class="section soft" id="popularSection" hidden>
+    <div class="shell">
+      <div class="sectionHead"><div><h2>Popular Categories</h2><p>Start with what you love.</p></div></div>
+      <div class="wideTiles" id="popularCategories"></div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="section">
-  <div class="shell">
-    <div class="sectionHead"><div><h2>Latest Ideas</h2><p>Fresh inspiration for the season.</p></div><a class="viewAll" href="#fresh">View all →</a></div>
-    <div class="latestGrid" id="latestGrid"></div>
-  </div>
-</section>
+  <section class="section" id="latestSection" hidden>
+    <div class="shell">
+      <div class="sectionHead"><div><h2>Latest Ideas</h2><p>Recently published guides.</p></div></div>
+      <div class="latestGrid" id="latestGrid"></div>
+    </div>
+  </section>
 
-<section class="newsletter">
-  <div class="shell newsletterIn">
-    <div><h2>Get the Best Ideas<br>in Your Inbox</h2><p>Recipes, decor, fashion, DIY and more. Updated weekly.</p></div>
-    <form id="newsletterForm"><input type="email" required placeholder="Enter your email address…"><button>Subscribe</button><small id="newsletterMsg"></small></form>
-  </div>
-</section>
+  <section class="newsletter">
+    <div class="shell newsletterIn">
+      <div><h2>Get the Best Ideas<br>in Your Inbox</h2><p>Recipes, decor, fashion, DIY and more.</p></div>
+      <form id="newsletterForm"><input type="email" required placeholder="Enter your email address…"><button>Subscribe</button><small id="newsletterMsg"></small></form>
+    </div>
+  </section>
 </main>
 
 <footer>
@@ -95,6 +71,8 @@
 </div>
 <div class="shell copyright">© 2026 Trendora. All rights reserved.</div>
 </footer>
+
+<script async defer src="https://assets.pinterest.com/js/pinit.js"></script>
 <script src="assets/app.js"></script>
 </body>
 </html>
