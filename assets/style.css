@@ -595,3 +595,21 @@
     white-space:nowrap;
   }
 }
+
+
+/* Hero carousel anti-ghosting fix */
+.heroSlider .heroSlide{
+  opacity:0!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+  transition:none!important;
+}
+.heroSlider .heroSlide.active{
+  opacity:1!important;
+  visibility:visible!important;
+  pointer-events:auto!important;
+  z-index:2!important;
+}
+.heroSlider .heroSlide:not(.active) .heroContent{
+  display:none!important;
+}
