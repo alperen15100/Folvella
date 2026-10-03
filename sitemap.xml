@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url><loc>https://alperen15100.github.io/Trendora/</loc><lastmod>2026-10-03</lastmod></url>
   <url><loc>https://alperen15100.github.io/Trendora/about.html</loc><lastmod>2026-10-03</lastmod></url>
   <url><loc>https://alperen15100.github.io/Trendora/editorial-policy.html</loc><lastmod>2026-10-03</lastmod></url>
   <url><loc>https://alperen15100.github.io/Trendora/privacy.html</loc><lastmod>2026-10-03</lastmod></url>
   <url><loc>https://alperen15100.github.io/Trendora/affiliate-disclosure.html</loc><lastmod>2026-10-03</lastmod></url>
   <url><loc>https://alperen15100.github.io/Trendora/contact.html</loc><lastmod>2026-10-03</lastmod></url>
-  <url><loc>https://alperen15100.github.io/Trendora/kitchen-witch-herbal-apothecary/</loc><lastmod>2026-10-03</lastmod></url>
-  <url><loc>https://alperen15100.github.io/Trendora/milky-lilac-nails/</loc><lastmod>2026-10-03</lastmod></url>
-  <url><loc>https://alperen15100.github.io/Trendora/perfume-layering-ideas/</loc><lastmod>2026-10-03</lastmod></url>
-  <url><loc>https://alperen15100.github.io/Trendora/home-cafe-coffee-ideas/</loc><lastmod>2026-10-03</lastmod></url>
-  <url><loc>https://alperen15100.github.io/Trendora/soft-wolf-cut-men/</loc><lastmod>2026-10-03</lastmod></url>
+  <url><loc>https://alperen15100.github.io/Trendora/kitchen-witch-herbal-apothecary/</loc><lastmod>2026-10-03</lastmod><image:image><image:loc>https://images.pexels.com/photos/29746445/pexels-photo-29746445.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1400</image:loc><image:title>17 Kitchen Witch &amp; Herbal Apothecary Ideas That Make a Kitchen Feel Magical</image:title></image:image></url>
+  <url><loc>https://alperen15100.github.io/Trendora/milky-lilac-nails/</loc><lastmod>2026-10-03</lastmod><image:image><image:loc>https://images.pexels.com/photos/1839711/pexels-photo-1839711.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1400</image:loc><image:title>21 Milky Lilac Nail Ideas That Look Soft, Glossy and Expensive</image:title></image:image></url>
+  <url><loc>https://alperen15100.github.io/Trendora/perfume-layering-ideas/</loc><lastmod>2026-10-03</lastmod><image:image><image:loc>https://images.pexels.com/photos/9944432/pexels-photo-9944432.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1400</image:loc><image:title>19 Perfume Layering Ideas That Smell Expensive and Completely Unique</image:title></image:image></url>
+  <url><loc>https://alperen15100.github.io/Trendora/home-cafe-coffee-ideas/</loc><lastmod>2026-10-03</lastmod><image:image><image:loc>https://images.pexels.com/photos/36038129/pexels-photo-36038129.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1400</image:loc><image:title>21 Home Café Ideas &amp; Coffee Recipes That Make Mornings Feel Like a Coffee Shop</image:title></image:image></url>
+  <url><loc>https://alperen15100.github.io/Trendora/soft-wolf-cut-men/</loc><lastmod>2026-10-03</lastmod><image:image><image:loc>https://images.pexels.com/photos/5690493/pexels-photo-5690493.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1400</image:loc><image:title>23 Soft Wolf Cut Ideas for Men That Look Modern, Textured and Easy to Style</image:title></image:image></url>
 </urlset>
