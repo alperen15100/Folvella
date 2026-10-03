@@ -354,3 +354,189 @@
   .ideaCard{height:265px!important}
   .ideaCard h3{font-size:17px!important}
 }
+
+
+/* Article-page mobile redesign — desktop unchanged */
+@media(max-width:650px){
+  .articlePage .topbar{
+    position:sticky;
+    top:0;
+    z-index:60;
+    background:#0d100f;
+  }
+  .articlePage .nav{
+    height:56px!important;
+    display:flex!important;
+    align-items:center;
+    justify-content:flex-start;
+    gap:0!important;
+  }
+  .articlePage .nav nav,
+  .articlePage .search,
+  .articlePage .brandBlock small{
+    display:none!important;
+  }
+  .articlePage .brand{
+    font-size:24px!important;
+    gap:7px!important;
+  }
+  .articlePage .brand span{font-size:20px!important}
+
+  .articlePage .articleHero{
+    padding:24px 0 15px!important;
+  }
+  .articlePage .crumb{
+    font-size:9px!important;
+    line-height:1.4;
+    letter-spacing:.04em;
+    margin-bottom:8px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .articlePage .articleHero h1{
+    font-size:34px!important;
+    line-height:.98!important;
+    letter-spacing:-.025em!important;
+    margin:0 0 10px!important;
+    max-width:100%!important;
+  }
+  .articlePage .articleDek{
+    font-size:15px!important;
+    line-height:1.5!important;
+    margin:0 0 10px!important;
+    color:#68615a!important;
+  }
+  .articlePage .meta{
+    font-size:10px!important;
+    margin-top:8px!important;
+    color:#938a80!important;
+  }
+
+  .articlePage .articleLayout{
+    display:block!important;
+    padding-bottom:36px!important;
+  }
+  .articlePage .articleMain{
+    width:100%;
+    min-width:0;
+  }
+  .articlePage .articleCoverWrap{
+    margin:0 0 14px;
+  }
+  .articlePage .articleMain .leadImg{
+    width:100%!important;
+    height:250px!important;
+    aspect-ratio:auto!important;
+    object-fit:cover!important;
+    border-radius:12px!important;
+  }
+  .articlePage .articlePin{
+    width:40px!important;
+    height:40px!important;
+    padding:0!important;
+    top:10px!important;
+    right:10px!important;
+    border-radius:50%!important;
+  }
+  .articlePage .articlePin span{display:none!important}
+  .articlePage .articlePin .pinterestSvg{width:20px!important;height:20px!important}
+
+  .articlePage .disclosure{
+    font-size:10.5px!important;
+    line-height:1.5!important;
+    padding:10px 11px!important;
+    margin:0 0 18px!important;
+    border-radius:8px!important;
+  }
+  .articlePage .articleMain>p:not(.disclosure){
+    font-size:16px!important;
+    line-height:1.72!important;
+    margin:0 0 15px!important;
+    color:#403d39!important;
+  }
+
+  .articlePage .adbox{
+    padding:20px 8px!important;
+    margin:22px 0!important;
+    font-size:9px!important;
+    border-radius:8px!important;
+  }
+
+  .articlePage .longSection{
+    margin:30px 0!important;
+    contain-intrinsic-size:680px!important;
+  }
+  .articlePage .longSection h2{
+    font-size:26px!important;
+    line-height:1.06!important;
+    letter-spacing:-.015em;
+    margin:0 0 10px!important;
+  }
+  .articlePage .longSection h3{
+    font-size:20px!important;
+    line-height:1.15!important;
+    margin:22px 0 8px!important;
+  }
+  .articlePage .longSection p{
+    font-size:16px!important;
+    line-height:1.72!important;
+    margin:0 0 14px!important;
+    color:#403d39!important;
+  }
+
+  .articlePage .articleFigure{
+    margin:17px 0 22px!important;
+  }
+  .articlePage .articleFigure img{
+    width:100%!important;
+    aspect-ratio:4/3!important;
+    max-height:none!important;
+    object-fit:cover!important;
+    border-radius:12px!important;
+  }
+  .articlePage .articleFigure figcaption{
+    font-size:10px!important;
+    line-height:1.35!important;
+    margin-top:6px!important;
+  }
+
+  .articlePage .articleAside{display:none!important}
+
+  .articlePage .related{
+    padding:28px 0!important;
+  }
+  .articlePage .related .sectionHead h2{
+    font-size:27px!important;
+  }
+  .articlePage .relatedGrid{
+    grid-template-columns:1fr!important;
+    gap:10px!important;
+  }
+  .articlePage .relatedGrid a{
+    display:grid;
+    grid-template-columns:105px 1fr;
+    align-items:center;
+    min-height:88px;
+  }
+  .articlePage .relatedGrid img{
+    width:105px!important;
+    height:88px!important;
+    border-radius:0!important;
+  }
+  .articlePage .relatedGrid b{
+    font-size:16px!important;
+    line-height:1.15!important;
+    padding:12px!important;
+  }
+
+  .articlePage .footGrid{
+    padding-top:26px!important;
+  }
+}
+
+@media(max-width:380px){
+  .articlePage .articleHero h1{font-size:31px!important}
+  .articlePage .articleMain .leadImg{height:225px!important}
+  .articlePage .longSection h2{font-size:24px!important}
+}
