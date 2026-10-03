@@ -50,11 +50,77 @@ function renderEmptyHero(){
   mount.innerHTML='<section class="emptyHero"><div class="shell emptyHeroIn"><span class="eyebrow">TRENDORA</span><h1>Beautiful ideas.<br><em>Worth saving.</em></h1><p>Visual guides for the things people actually want to make, wear, decorate and try.</p></div></section>';
 }
 
-function renderHero(post){
+function renderHeroSlider(posts){
   const mount=document.getElementById("heroMount");
   if(!mount)return;
-  mount.innerHTML='<section class="hero"><img src="'+esc(post.cover)+'" alt="'+esc(post.coverAlt||post.title)+'"><div class="heroShade"></div><div class="shell heroContent"><span class="eyebrow">'+esc(post.heroLabel||"EDITOR'S PICK")+'</span><h1>'+esc(post.title)+'</h1><p>'+esc(post.excerpt||"")+'</p><div class="heroActions"><a class="cta" href="'+articleUrl(post.slug)+'">View Ideas <span>→</span></a><button class="heroPin" id="heroPin" type="button" aria-label="Save to Pinterest">'+PINTEREST_ICON+'<span>Save</span></button></div></div></section>';
-  document.getElementById("heroPin")?.addEventListener("click",()=>pinPost(post));
+  const slides=posts.slice(0,5);
+  if(!slides.length){renderEmptyHero();return}
+
+  mount.innerHTML='<div class="heroSlider" aria-roledescription="carousel">'
+    +slides.map((post,i)=>'<section class="hero heroSlide'+(i===0?' active':'')+'" data-hero-index="'+i+'" aria-hidden="'+(i===0?'false':'true')+'">'
+      +'<img '+(i===0?'fetchpriority="high"':'loading="lazy"')+' src="'+esc(post.cover)+'" alt="'+esc(post.coverAlt||post.title)+'">'
+      +'<div class="heroShade"></div>'
+      +'<div class="shell heroContent">'
+        +'<span class="eyebrow">'+esc(post.heroLabel||"EDITOR'S PICK")+'</span>'
+        +'<h1>'+esc(post.title)+'</h1>'
+        +'<p>'+esc(post.excerpt||"")+'</p>'
+        +'<div class="heroActions">'
+          +'<a class="cta" href="'+articleUrl(post.slug)+'">View Ideas <span>→</span></a>'
+          +'<button class="heroPin" type="button" data-hero-pin="'+i+'" aria-label="Save '+esc(post.title)+' to Pinterest">'+PINTEREST_ICON+'<span>Save</span></button>'
+        +'</div>'
+      +'</div>'
+    +'</section>').join("")
+    +'<button class="heroArrow heroPrev" type="button" aria-label="Previous story">‹</button>'
+    +'<button class="heroArrow heroNext" type="button" aria-label="Next story">›</button>'
+    +'<div class="heroDots" role="tablist" aria-label="Latest stories">'
+      +slides.map((_,i)=>'<button class="'+(i===0?'active':'')+'" type="button" data-hero-dot="'+i+'" aria-label="Show story '+(i+1)+'"></button>').join("")
+    +'</div>'
+  +'</div>';
+
+  let current=0;
+  let timer=null;
+  const prefersReduced=window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+
+  function show(next){
+    current=(next+slides.length)%slides.length;
+    mount.querySelectorAll(".heroSlide").forEach((el,i)=>{
+      const active=i===current;
+      el.classList.toggle("active",active);
+      el.setAttribute("aria-hidden",active?"false":"true");
+    });
+    mount.querySelectorAll("[data-hero-dot]").forEach((el,i)=>el.classList.toggle("active",i===current));
+  }
+
+  function start(){
+    if(prefersReduced||slides.length<2)return;
+    clearInterval(timer);
+    timer=setInterval(()=>show(current+1),5000);
+  }
+
+  function restart(){show(current);start()}
+
+  mount.querySelectorAll("[data-hero-pin]").forEach(btn=>{
+    btn.addEventListener("click",()=>pinPost(slides[Number(btn.dataset.heroPin)]));
+  });
+  mount.querySelector(".heroPrev")?.addEventListener("click",()=>{show(current-1);start()});
+  mount.querySelector(".heroNext")?.addEventListener("click",()=>{show(current+1);start()});
+  mount.querySelectorAll("[data-hero-dot]").forEach(btn=>{
+    btn.addEventListener("click",()=>{show(Number(btn.dataset.heroDot));start()});
+  });
+
+  let touchX=null;
+  mount.addEventListener("touchstart",e=>{touchX=e.changedTouches[0]?.clientX??null},{passive:true});
+  mount.addEventListener("touchend",e=>{
+    if(touchX===null)return;
+    const dx=(e.changedTouches[0]?.clientX??touchX)-touchX;
+    if(Math.abs(dx)>45){show(current+(dx<0?1:-1));start()}
+    touchX=null;
+  },{passive:true});
+
+  mount.addEventListener("mouseenter",()=>clearInterval(timer));
+  mount.addEventListener("mouseleave",start);
+  document.addEventListener("visibilitychange",()=>{if(document.hidden)clearInterval(timer);else start()});
+  start();
 }
 
 function renderHome(posts){
@@ -71,7 +137,7 @@ function renderHome(posts){
   const published=posts.filter(p=>p.status!=="draft");
   if(!published.length){renderEmptyHero();return}
 
-  renderHero(published.find(p=>p.featured)||published[0]);
+  renderHeroSlider(published);
   document.getElementById("emptyState").hidden=true;
 
   const categories=[...new Set(published.map(p=>p.category).filter(Boolean))];
