@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /studio.html
 
 Sitemap: https://alperen15100.github.io/Trendora/sitemap.xml
