@@ -1,8 +1,236 @@
 [
   {
-    "slug": "perfume-layering-ideas",
+    "slug": "home-cafe-coffee-ideas",
     "status": "published",
     "featured": true,
+    "heroLabel": "HOME CAFÉ",
+    "title": "21 Home Café Ideas & Coffee Recipes That Make Mornings Feel Like a Coffee Shop",
+    "category": "Food & Drinks",
+    "excerpt": "From banana syrup coffee and blueberry lattes to a compact espresso corner, these home café ideas make everyday coffee feel more personal, organized and fun.",
+    "cover": "https://images.pexels.com/photos/27677794/pexels-photo-27677794.jpeg?auto=compress&cs=tinysrgb&w=1400",
+    "coverAlt": "Cozy home-style coffee station with grinder, mugs and brewing tools on a kitchen counter",
+    "pinCover": "https://images.pexels.com/photos/27677794/pexels-photo-27677794.jpeg?auto=compress&cs=tinysrgb&w=1000&h=1500&fit=crop",
+    "pinDescription": "21 home café ideas and coffee recipes to save: banana syrup coffee, blueberry latte, Biscoff latte, cold foam, cinnamon drinks, coffee station ideas and small-space coffee bar inspiration.",
+    "dateLabel": "Updated October 2026",
+    "readMinutes": 16,
+    "intro": [
+      "A good home café does not need to copy a commercial coffee shop. The most useful setups are small, repeatable and built around drinks you genuinely make. One shelf for mugs, a compact syrup lineup, a grinder or espresso machine and two or three house-special recipes can change the feel of a morning routine without turning the kitchen into a themed set.",
+      "The easiest way to make the space feel personal is to combine recipes with setup ideas. A banana syrup latte or blueberry iced coffee gives you something fun to make, while a tidy espresso corner and a simple menu card make the whole routine easier to repeat. The result is a home coffee station that looks good because it works well, not because every surface is covered with props.",
+      "Below are 21 separate ideas. The first half focuses on drinks and flavor combinations; the second half turns the same ingredients and tools into a practical home café setup. Start with one recipe and one organization idea, then build from there."
+    ],
+    "sections": [
+      {
+        "heading": "1. Make a banana syrup latte your house special",
+        "paragraphs": [
+          "Banana works best in coffee when the syrup tastes like ripe fruit rather than candy. Start with a small amount of banana syrup in the glass, add espresso, then finish with milk or cold milk over ice. A pinch of cinnamon or a little vanilla can make the fruit feel warmer and more café-like without covering the coffee.",
+          "Keep the syrup light enough that espresso is still obvious in the first sip. If you are making homemade banana syrup, cool it completely before refrigerating and use a clean container. The easiest version to repeat is one measured spoonful of syrup per drink rather than free-pouring every time."
+        ],
+        "image": "https://images.pexels.com/photos/34644108/pexels-photo-34644108.jpeg?auto=compress&cs=tinysrgb&w=1400",
+        "alt": "Latte art coffee served beside banana bread on a sunny café table",
+        "caption": "Banana flavors pair naturally with creamy coffee; keep the fruit note subtle enough that espresso still leads."
+      },
+      {
+        "heading": "2. Try a blueberry iced latte",
+        "paragraphs": [
+          "Blueberry coffee works best as a bright accent rather than a heavy fruit layer. Add a small spoonful of blueberry syrup or compote to the bottom of a glass, pour in milk and ice, then float espresso on top. Stir before drinking so the berry flavor stays balanced instead of collecting at the bottom."
+        ],
+        "image": "https://images.pexels.com/photos/4880055/pexels-photo-4880055.jpeg?auto=compress&cs=tinysrgb&w=1400",
+        "alt": "Latte art coffee served with a blueberry-topped dessert",
+        "caption": "Blueberry gives creamy coffee a bright fruit contrast without needing a complicated recipe."
+      },
+      {
+        "heading": "3. Build a Biscoff-style latte with cookie spice",
+        "paragraphs": [
+          "For a cookie-inspired latte, use a spoonful of Biscoff-style spread or cookie butter melted into hot espresso, then add steamed milk. The flavor already carries caramelized sugar and warm spice, so extra syrup is usually unnecessary. A light dusting of crushed cookie on top gives the drink the café-dessert look without making it overly sweet."
+        ],
+        "image": "https://images.pexels.com/photos/12181613/pexels-photo-12181613.jpeg?auto=compress&cs=tinysrgb&w=1400",
+        "alt": "Cozy latte served with cookies and coffee beans in a rustic setting",
+        "caption": "Cookie spice and coffee naturally create a warm dessert-style latte."
+      },
+      {
+        "heading": "4. Add marshmallow cold foam to iced coffee",
+        "paragraphs": [
+          "Cold foam changes the texture of an iced drink without adding a full layer of whipped cream. Froth cold milk or cream with a small amount of marshmallow-flavored syrup until it thickens, then spoon it over iced coffee. Keep the foam mildly sweet so the drink still tastes like coffee once the layers mix."
+        ],
+        "image": "https://images.pexels.com/photos/28901484/pexels-photo-28901484.jpeg?auto=compress&cs=tinysrgb&w=1400",
+        "alt": "Refreshing iced coffee topped with thick creamy foam",
+        "caption": "A thick cold-foam layer gives iced coffee a café-style finish without hiding the espresso."
+      },
+      {
+        "heading": "5. Serve coffee jelly in a clear bottle or glass",
+        "paragraphs": [
+          "Coffee jelly turns brewed coffee into texture rather than just flavor. Cut chilled coffee jelly into small cubes and add them to a clear glass with milk, cold brew or a lightly sweetened latte base. The drink looks most intentional when the jelly pieces are small enough to move through the glass rather than forming one solid layer."
+        ],
+        "image": "https://images.pexels.com/photos/27166417/pexels-photo-27166417.jpeg?auto=compress&cs=tinysrgb&w=1400",
+        "alt": "Creamy cold coffee with frothy foam served in a clear glass",
+        "caption": "Clear glassware makes layered coffee textures part of the visual appeal."
+      },
+      {
+        "heading": "6. Make a cinnamon-roll-inspired latte",
+        "paragraphs": [
+          "A cinnamon-roll latte should taste like cinnamon first and frosting second. Combine espresso with cinnamon syrup or a small amount of brown sugar and ground cinnamon, then add steamed milk. Finish with a tiny vanilla note if you want the iced-frosting effect without making the whole drink sugary."
+        ],
+        "image": "https://images.pexels.com/photos/16147918/pexels-photo-16147918.jpeg?auto=compress&cs=tinysrgb&w=1400",
+        "alt": "Layered latte topped with cinnamon sticks and served with coffee beans",
+        "caption": "Cinnamon and a restrained vanilla finish create the warm bakery-style profile."
+      },
+      {
+        "heading": "7. Keep one almond syrup for an easy nutty coffee",
+        "paragraphs": [
+          "Almond syrup is useful because it works in both hot and iced drinks and needs very little supporting flavor. Pair it with espresso and milk, then add cinnamon if you want extra warmth. A measured pump or teaspoon keeps the almond note aromatic instead of turning bitter or artificial."
+        ],
+        "image": "https://images.pexels.com/photos/11048259/pexels-photo-11048259.jpeg?auto=compress&cs=tinysrgb&w=1400",
+        "alt": "Warm latte in a glass cup topped with cinnamon",
+        "caption": "A simple syrup-and-spice formula is easier to repeat than a long ingredient list."
+      },
+      {
+        "heading": "8. Try a layered mango coffee over ice",
+        "paragraphs": [
+          "Mango and coffee sound unusual, but the combination works better when the fruit stays bright and the coffee stays concentrated. Use a lightly sweet mango layer at the bottom of the glass, plenty of ice and a short espresso layer on top. Stir gradually so you can control how much fruit enters each sip."
+        ],
+        "image": "https://images.pexels.com/photos/12540653/pexels-photo-12540653.jpeg?auto=compress&cs=tinysrgb&w=1400",
+        "alt": "Tall layered iced mango and coffee drink served outdoors",
+        "caption": "A layered build keeps mango and espresso visually distinct until you stir the drink."
+      },
+      {
+        "heading": "9. Use cranberry as a tart seasonal coffee accent",
+        "paragraphs": [
+          "Cranberry works best when treated like a tart accent rather than the main flavor. A small amount of cranberry syrup can lift a darker iced coffee, especially when paired with orange peel, vanilla or a softer milk base. Keep the fruit layer small; too much acidity can dominate the drink quickly."
+        ]
+      },
+      {
+        "heading": "10. Turn carrot-cake spice into a latte profile",
+        "paragraphs": [
+          "You do not need carrot juice to make a carrot-cake-inspired latte. The recognizable flavor mostly comes from cinnamon, nutmeg, ginger, brown sugar and vanilla. Add those warm spice notes to espresso and milk, then keep the sweetness moderate so the result feels like coffee with bakery spice rather than liquid cake."
+        ],
+        "image": "https://images.pexels.com/photos/9928286/pexels-photo-9928286.jpeg?auto=compress&cs=tinysrgb&w=1400",
+        "alt": "Warm spiced latte with cinnamon froth art on a wooden table",
+        "caption": "Warm spice creates a bakery-style latte profile without requiring a long recipe."
+      },
+      {
+        "heading": "11. Make a cookies-and-cream coffee without overloading it",
+        "paragraphs": [
+          "Use a creamy latte or mocha base, then add a small amount of crushed chocolate cookie or cookie syrup. The drink looks richer when the cookie element stays visible on top instead of disappearing into a heavy blended mixture. Keep one strong coffee shot underneath so the flavor still has contrast."
+        ],
+        "image": "https://images.pexels.com/photos/6166472/pexels-photo-6166472.jpeg?auto=compress&cs=tinysrgb&w=1400",
+        "alt": "Latte and chocolate cookies arranged on a wooden board",
+        "caption": "Keeping the cookie element separate makes the drink feel more like a café special than a milkshake."
+      },
+      {
+        "heading": "12. Use toasted marshmallow syrup for a smoky-sweet latte",
+        "paragraphs": [
+          "Toasted marshmallow flavor works best with darker coffee because the roasted note has something to push against. Add a small amount to espresso, then choose milk or cold foam depending on whether you want a hot or iced drink. A touch of cocoa can deepen the toasted effect without requiring more syrup."
+        ],
+        "image": "https://images.pexels.com/photos/6006665/pexels-photo-6006665.jpeg?auto=compress&cs=tinysrgb&w=1400",
+        "alt": "Coffee topped with whipped cream surrounded by coffee beans and cookies",
+        "caption": "A darker coffee base keeps marshmallow sweetness from taking over."
+      },
+      {
+        "heading": "13. Build a vintage coffee corner instead of a full coffee bar",
+        "paragraphs": [
+          "A compact corner can create more atmosphere than a large station if the objects are chosen carefully. Use one tray, a mug rack or shelf, a grinder and a small jar of beans. Warm wood, ceramic cups and a slightly retro machine or kettle give the area a collected look without filling the entire counter."
+        ],
+        "image": "https://images.pexels.com/photos/10774216/pexels-photo-10774216.jpeg?auto=compress&cs=tinysrgb&w=1400",
+        "alt": "Coffee machine, cups and wooden shelves arranged as a cozy coffee station",
+        "caption": "A small organized corner is enough to create the home-café feeling."
+      },
+      {
+        "heading": "14. Design a coffee bar for a small kitchen",
+        "paragraphs": [
+          "In a small kitchen, vertical storage matters more than countertop width. Put mugs and beans on a narrow shelf, keep the machine below and store syrups in one line rather than spreading them across the counter. Leave enough open surface for actually preparing the drink; the station should never make the kitchen harder to use."
+        ],
+        "image": "https://images.pexels.com/photos/13328498/pexels-photo-13328498.jpeg?auto=compress&cs=tinysrgb&w=1400",
+        "alt": "Organized coffee counter with espresso machine, shelves and jars",
+        "caption": "Vertical storage gives a small coffee station more function without using extra counter depth."
+      },
+      {
+        "heading": "15. Give the espresso machine its own clean corner",
+        "paragraphs": [
+          "If you use espresso most days, build the setup around the machine rather than around decorative objects. Keep the grinder, tamper and cup in the same zone so the process becomes automatic. Store rarely used tools elsewhere; the best espresso corner is the one you can reset in less than a minute."
+        ],
+        "image": "https://images.pexels.com/photos/36990038/pexels-photo-36990038.jpeg?auto=compress&cs=tinysrgb&w=1400",
+        "alt": "Espresso machine brewing coffee with milk frother in a modern kitchen",
+        "caption": "A focused espresso corner keeps the daily workflow fast and uncluttered."
+      },
+      {
+        "heading": "16. Create a luxury coffee station with fewer, better pieces",
+        "paragraphs": [
+          "A luxury-looking setup usually has less on display, not more. Choose one good machine, matching cups, a neat grinder and one tray for syrups or beans. Repeating materials—such as stainless steel, dark wood or clear glass—makes the station feel intentional without relying on expensive accessories."
+        ],
+        "image": "https://images.pexels.com/photos/32805937/pexels-photo-32805937.jpeg?auto=compress&cs=tinysrgb&w=1400",
+        "alt": "Warm elegant coffee station with grinder and espresso machine",
+        "caption": "Repeating materials and limiting clutter makes a coffee station feel more polished."
+      },
+      {
+        "heading": "17. Set up a coffee station for guests or brunch",
+        "paragraphs": [
+          "For guests, move the choices out of cupboards and into one obvious zone. Put cups first, coffee next, then milk, sweeteners and flavor options in the order people will use them. A small sign or menu card helps guests serve themselves without asking where everything is."
+        ],
+        "image": "https://images.pexels.com/photos/35882687/pexels-photo-35882687.jpeg?auto=compress&cs=tinysrgb&w=1400",
+        "alt": "Cozy coffee station with espresso machine and grinder in warm lighting",
+        "caption": "A guest-ready station works best when the order of items matches the order people use them."
+      },
+      {
+        "heading": "18. Write a tiny home café menu",
+        "paragraphs": [
+          "A simple menu turns a few repeatable drinks into a home café without adding more equipment. List three to five options you can make reliably—for example banana latte, blueberry iced coffee, cinnamon latte and plain espresso. Keep the names short and the ingredients familiar so the menu feels useful rather than decorative."
+        ],
+        "image": "https://images.pexels.com/photos/27349262/pexels-photo-27349262.jpeg?auto=compress&cs=tinysrgb&w=1400",
+        "alt": "Coffee shop counter with drinks and menu display",
+        "caption": "A short menu makes a small set of repeatable drinks feel intentional."
+      },
+      {
+        "heading": "19. Keep syrups in one clean lineup",
+        "paragraphs": [
+          "If you use flavored syrups, store them together instead of scattering bottles around the kitchen. Limit the visible lineup to the flavors you actually reach for, and use labels or pump tops consistently. This makes the station faster to use and keeps the visual clutter under control."
+        ],
+        "image": "https://images.pexels.com/photos/34164443/pexels-photo-34164443.jpeg?auto=compress&cs=tinysrgb&w=1400",
+        "alt": "Row of coffee flavor syrup bottles with pumps on a café counter",
+        "caption": "One consistent syrup lineup looks cleaner and makes drink-making faster."
+      },
+      {
+        "heading": "20. Make the brewing process part of the aesthetic",
+        "paragraphs": [
+          "A home café feels more convincing when the process is visible: whole beans, a grinder, a kettle or espresso machine and one clear working area. The setup does not need to be staged all day, but keeping the core tools together turns the routine itself into part of the atmosphere."
+        ],
+        "image": "https://images.pexels.com/photos/38795009/pexels-photo-38795009.jpeg?auto=compress&cs=tinysrgb&w=1400",
+        "alt": "Espresso machine and grinder arranged in a cozy coffee setup",
+        "caption": "The tools you actually use can become the strongest visual part of the station."
+      },
+      {
+        "heading": "21. Build a home-barista workflow you can reset every morning",
+        "paragraphs": [
+          "The final step is making the station easy to restore. Keep cups in one place, wipe the machine after use, return syrups to the same tray and refill beans before they run out. A beautiful coffee corner only stays beautiful when resetting it takes less effort than leaving it messy.",
+          "Once the routine is automatic, experiment with one new drink at a time. That keeps the station practical while still giving you the fun of a changing café menu."
+        ],
+        "image": "https://images.pexels.com/photos/32159170/pexels-photo-32159170.jpeg?auto=compress&cs=tinysrgb&w=1400",
+        "alt": "Modern espresso machine setup with cup and barista tools on counter",
+        "caption": "A repeatable workflow keeps the station looking good after the novelty wears off."
+      }
+    ],
+    "faq": [
+      {
+        "q": "What do you need for a simple home café?",
+        "a": "Start with the coffee method you already use, two or three favorite mugs, one milk option, one or two syrups or spices and a small area where everything can stay together. Add equipment only when it solves a real problem in your routine."
+      },
+      {
+        "q": "How many coffee syrups should you keep at home?",
+        "a": "A small rotating lineup is easier to use than a large collection. Two to four flavors that work across several drinks is usually enough for a compact home café."
+      },
+      {
+        "q": "How do you make a small coffee station look organized?",
+        "a": "Use vertical storage, keep only daily-use tools on the counter, group syrups together and leave a clear preparation area beside the machine or brewer."
+      },
+      {
+        "q": "Can fruit syrups work with coffee?",
+        "a": "Yes, but they usually work best in small amounts. Banana, blueberry, mango and cranberry flavors are easier to balance when espresso remains the strongest flavor and the fruit acts as an accent."
+      }
+    ]
+  },
+  {
+    "slug": "perfume-layering-ideas",
+    "status": "published",
+    "featured": false,
     "heroLabel": "FRAGRANCE EDIT",
     "title": "19 Perfume Layering Ideas That Smell Expensive and Completely Unique",
     "category": "Beauty & Fragrance",
