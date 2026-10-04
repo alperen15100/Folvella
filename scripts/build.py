@@ -32,6 +32,8 @@ for p in posts:
  catpath='category/'+cat_slug(p['category'])+'/'
  faq=p.get('faq',[])
  article={'@context':'https://schema.org','@type':'BlogPosting','@id':BASE+path+'#article','headline':p['title'],'description':p['excerpt'],'image':[absurl(p['cover'])],'mainEntityOfPage':BASE+path,'datePublished':p['datePublished'],'dateModified':p['dateModified'],'author':{'@type':'Organization','name':'Folvella Editorial','url':BASE+'about.html'},'publisher':{'@type':'Organization','name':'Folvella','url':BASE},'inLanguage':'en','articleSection':p['category']}
+ article['image']=[{'@type':'ImageObject','url':absurl(src),'width':image_dimensions[src][0],'height':image_dimensions[src][1]} for src in dict.fromkeys([p['cover']]+[s['image'] for s in p['sections'] if s.get('image')])]
+ article['wordCount']=len(re.findall(r'\S+',' '.join(p.get('intro',[])+[t for s in p['sections'] for t in s.get('paragraphs',[])])))
  breadcrumb={'@context':'https://schema.org','@type':'BreadcrumbList','itemListElement':[{'@type':'ListItem','position':1,'name':'Home','item':BASE},{'@type':'ListItem','position':2,'name':p['category'],'item':BASE+catpath},{'@type':'ListItem','position':3,'name':p['title'],'item':BASE+path}]}
  schemas=[article,breadcrumb]
  if faq:schemas.append({'@context':'https://schema.org','@type':'FAQPage','mainEntity':[{'@type':'Question','name':q['q'],'acceptedAnswer':{'@type':'Answer','text':q['a']}} for q in faq]})
@@ -46,8 +48,6 @@ for p in posts:
   if s.get('image'):body+='<figure class="articleFigure">'+img(s['image'],s.get('alt',s['heading']))+'<figcaption>'+e(s.get('caption',''))+' <a class="figurePin" href="'+e(pin_url(p,s['image'],s['heading']+'. '+p['excerpt']))+'" target="_blank" rel="noopener noreferrer" aria-label="Save '+e(s['heading'])+' to Pinterest">Save this idea to Pinterest ↗</a></figcaption></figure>'
   body+='</section>'
  if faq:body+='<section class="longSection"><h2>Frequently asked questions</h2>'+''.join('<h3>'+e(q['q'])+'</h3><p>'+e(q['a'])+'</p>' for q in faq)+'</section>'
- if p.get('sources'):body+='<section class="longSection"><h2>Sources and further reading</h2><ul>'+''.join('<li><a href="'+e(s['url'])+'" rel="noopener noreferrer">'+e(s['title'])+'</a> · Checked '+e(s['accessed'])+'</li>' for s in p['sources'])+'</ul></section>'
- if p.get('technicalReferences'):body+='<section class="longSection"><h2>Practical references</h2><ul>'+''.join('<li><a href="'+e(s['url'])+'" rel="noopener noreferrer">'+e(s['title'])+'</a> · Checked '+e(s['accessed'])+'</li>' for s in p['technicalReferences'])+'</ul></section>'
  body+='</article><aside class="articleAside"><div class="sideCard"><h3>More to explore</h3><div class="sideLinks">'+''.join('<a href="'+BASE+x['slug']+'/">'+e(x['title'])+'</a>' for x in related)+'<a href="'+BASE+catpath+'">All '+e(p['category'])+' guides</a></div></div></aside></section><section class="section shell"><h2>You may also like</h2><div class="ideaGrid">'+cards(related)+'</div></section></main>'+footer()
  body=body.replace('<button id="articlePin" class="articlePin" type="button">Save to Pinterest</button>','<a class="articlePin" href="'+e(pin_url(p))+'" target="_blank" rel="noopener noreferrer">Save to Pinterest</a>')
  body+='</body></html>'

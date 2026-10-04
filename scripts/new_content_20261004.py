@@ -7,7 +7,7 @@ CURRENT='https://create.pinterest.com/creators/trends/'
 NEW=[]
 def guide(key,slug,title,category,excerpt,intro,sections,faq,growth=None,current=False):
  image='assets/generated/'+slug+'-cover.webp'
- NEW.append(dict(assetKey=key,slug=slug,title=title,category=category,excerpt=excerpt,intro=intro,sections=[dict(heading=h,paragraphs=p) for h,p in sections],faq=[dict(q=q,a=a) for q,a in faq],status='published',featured=False,cover=image,coverAlt='',pinCover=image,pinDescription=excerpt+' Explore the original visual guide on Folvella.',datePublished='2026-10-04',dateModified='2026-10-04',dateLabel='Published October 4, 2026',generatedImages=True,sources=[dict(title='Pinterest Creators current featured trends' if current else 'Pinterest Hobbies Trend Report 2026',url=CURRENT if current else REPORT,accessed='2026-10-04')],trendEvidence=dict(query=key,reportedSearchGrowth=growth,source=CURRENT if current else REPORT,sourcePublishedAt=None if current else '2026-08-25',comparisonPeriod='Not specified in retrieved source',isDailyRanking=False)))
+ NEW.append(dict(assetKey=key,slug=slug,title=title,category=category,excerpt=excerpt,intro=intro,sections=[dict(heading=h,paragraphs=p) for h,p in sections],faq=[dict(q=q,a=a) for q,a in faq],status='published',featured=False,cover=image,coverAlt='',pinCover=image,pinDescription=excerpt+' Explore the original visual guide on Folvella.',datePublished='2026-10-04',dateModified='2026-10-04',dateLabel='Published October 4, 2026',generatedImages=True,sources=[],trendEvidence=dict(query=key,reportedSearchGrowth=growth,source=CURRENT if current else REPORT,sourcePublishedAt=None if current else '2026-08-25',comparisonPeriod='Not specified in retrieved source',isDailyRanking=False)))
 
 guide('habit','minimal-habit-tracker-ideas','12 Minimal Habit Tracker Ideas for a Bullet Journal','Home & DIY',
 'Choose a minimal habit tracker with twelve simple layouts, a practical page setup and an easy way to review your week without filling every space.',
@@ -305,7 +305,6 @@ guide('korean','korean-inspired-ground-beef-bowl','Korean-Inspired Ground Beef B
 'Keep raw meat utensils away from the prepared toppings and cooked food. Wash hands and clean surfaces after handling raw beef. Refrigerate leftovers promptly in shallow containers and keep the cucumber separately for better texture.',
 'When repeating the recipe, record the sauce balance and rice portion you preferred. Cooking time varies with the skillet, heat and size of the crumbles, so use the temperature check as the safety decision rather than relying on a promised number of minutes.'])],
 [('Is this traditional Korean bulgogi?','No. It is a Korean-inspired ground beef bowl with a simplified garlic-ginger sauce.'),('Can I replace the soy sauce?','Use a substitute appropriate for your needs and check its label. Its salt level and flavor may require adjusting the water and sugar.'),('Is browned beef always done?','No. Check that ground beef reaches 160°F (71°C) with a food thermometer.')],20,True)
-NEW[-1]['technicalReferences']=[dict(title='USDA FSIS: Ground Beef and Food Safety',url='https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/meat/ground-beef-and-food-safety',accessed='2026-10-04')]
 
 guide('deer','deer-print-nail-ideas','12 Deer Print Nail Ideas in Brown, Cream and Caramel','Beauty & Nails',
 'Explore twelve fawn-inspired manicure combinations with irregular cream spots, warm brown bases and restrained accent placements.',
@@ -357,5 +356,15 @@ guide('cups','rhinestone-cup-decorating-ideas','10 Rhinestone Cup Decorating Ide
 [('Can I decorate the drinking rim?','Keep the decoration on a removable exterior sleeve, away from the rim, interior and lid seal.'),('Is any craft glue suitable?','No. Choose an adhesive specified for the sleeve material and follow its directions.'),('Can the decorated sleeve go in the dishwasher?','Do not assume so. Remove it and follow the relevant material and adhesive instructions.')],None,True)
 
 if __name__=='__main__':
+ existing={p['slug']:p for p in json.loads((ROOT/'data/posts.json').read_text())}
+ for p in NEW:
+  p.pop('trendEvidence',None)
+  previous=existing.get(p['slug'],{})
+  for section,old_section in zip(p['sections'],previous.get('sections',[])):
+   if section['heading']==old_section['heading']:
+    for field in ['image','alt','caption']:
+     if field in old_section:section[field]=old_section[field]
+  for field in ['coverAlt','dateModified','relatedSlugs','readMinutes']:
+   if field in previous:p[field]=previous[field]
  (ROOT/'data/new-posts-october-expansion.json').write_text(json.dumps(NEW,ensure_ascii=False,indent=2)+'\n')
  print('Drafted',len(NEW),'original guides.')

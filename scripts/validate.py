@@ -35,6 +35,15 @@ for batch_file in root.glob('data/asset-batch-*.json'):
  assert len({x['sha256'] for x in records})==len(records),'Repeated batch image bytes'
  for record in records:
   assert hashlib.sha256((root/record['path']).read_bytes()).hexdigest()==record['sha256'],'Changed batch artwork'
+section_batch=root/'data/asset-batch-section-photos-2026-10-04.json'
+if section_batch.exists():
+ batch=json.loads(section_batch.read_text());affected={r['slug'] for r in batch['images']}
+ assert len(affected)==15 and batch['imageCount']==49,'Incomplete October photo update'
+ for p in [p for p in posts if p['slug'] in affected]:
+  assert all(s.get('image') for s in p['sections']),('Missing section photo',p['slug'])
+  page=(root/p['slug']/'index.html').read_text()
+  assert page.count('class="articleFigure"')==len(p['sections']),('Missing rendered figure',p['slug'])
+  assert not re.search(r'Pinterest Hobbies Trend Report|Sources and further reading|Practical references|newsroom\.pinterest\.com|fsis\.usda\.gov',page),('Reference section returned',p['slug'])
 for p in posts:
  assert p.get('generatedImages'),('Original imagery required',p['slug'])
  assert p['cover'].startswith('assets/generated/'),('Nonlocal cover',p['slug'])
