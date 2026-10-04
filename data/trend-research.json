@@ -74,5 +74,59 @@
       "source": "https://trends.pinterest.com/",
       "publishedSlug": "90s-hair-accessory-looks"
     }
+  ],
+  "publicationBatches": [
+    {
+      "checkedAt": "2026-10-04",
+      "source": "https://create.pinterest.com/creators/trends/",
+      "evidenceType": "Official Pinterest Creators featured trends and Fall 2026 report",
+      "region": "Not specified on the retrieved page",
+      "comparisonPeriod": "Not specified on the retrieved page",
+      "note": "Reported search increases, not impressions or saves; no verified million-view Pin claim. All seven topics published at user request.",
+      "candidates": [
+        {
+          "query": "banana syrup recipe for coffee",
+          "reportedGrowth": "916%",
+          "metric": "search growth as reported by Pinterest",
+          "publishedSlug": "banana-syrup-for-coffee"
+        },
+        {
+          "query": "coffee station ideas party",
+          "reportedGrowth": "624%",
+          "metric": "search growth as reported by Pinterest",
+          "publishedSlug": "coffee-station-party-ideas"
+        },
+        {
+          "query": "blueberry coffee recipe",
+          "reportedGrowth": "384%",
+          "metric": "search growth as reported by Pinterest",
+          "publishedSlug": "blueberry-latte-recipe"
+        },
+        {
+          "query": "biscoff latte recipe",
+          "reportedGrowth": "359%",
+          "metric": "search growth as reported by Pinterest",
+          "publishedSlug": "biscoff-latte-recipe"
+        },
+        {
+          "query": "coffee jelly in a bottle",
+          "reportedGrowth": "191%",
+          "metric": "search growth as reported by Pinterest",
+          "publishedSlug": "coffee-jelly-drink-recipe"
+        },
+        {
+          "query": "stuffed peppers with ground beef",
+          "reportedGrowth": "70%",
+          "metric": "search growth as reported by Pinterest",
+          "publishedSlug": "ground-beef-stuffed-peppers"
+        },
+        {
+          "query": "burger bowls recipe",
+          "reportedGrowth": "30%",
+          "metric": "search growth as reported by Pinterest",
+          "publishedSlug": "burger-bowl-recipes"
+        }
+      ]
+    }
   ]
 }
