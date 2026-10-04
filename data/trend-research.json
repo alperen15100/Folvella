@@ -127,6 +127,113 @@
           "publishedSlug": "burger-bowl-recipes"
         }
       ]
+    },
+    {
+      "checkedAt": "2026-10-04",
+      "source": "https://newsroom.pinterest.com/news/2026-pinterest-hobbies-trend-report/",
+      "sourcePublishedAt": "2026-08-25",
+      "evidenceType": "Official Pinterest Hobbies Trend Report 2026 reported search growth",
+      "region": "Not specified on the retrieved official page",
+      "comparisonPeriod": "Not specified on the retrieved official page",
+      "note": "Search increases, not impressions, saves or verified million-view Pins. A report published August 25 is not a live daily trend measurement. All 16 distinct article intents selected and published at user request; the one-or-two article guideline is overridden by that explicit request.",
+      "candidates": [
+        {
+          "query": "crochet parandi",
+          "reportedGrowth": "5265%",
+          "metric": "search growth as reported by Pinterest",
+          "publishedSlug": "crochet-parandi-hair-accessory"
+        },
+        {
+          "query": "rosette ribbon",
+          "reportedGrowth": "3816%",
+          "metric": "search growth as reported by Pinterest",
+          "publishedSlug": "ribbon-rosette-diy"
+        },
+        {
+          "query": "birthday magazine template",
+          "reportedGrowth": "1713%",
+          "metric": "search growth as reported by Pinterest",
+          "publishedSlug": "birthday-magazine-ideas"
+        },
+        {
+          "query": "sashiko ideas",
+          "reportedGrowth": "1509%",
+          "metric": "search growth as reported by Pinterest",
+          "publishedSlug": "sashiko-denim-mending"
+        },
+        {
+          "query": "clay bag charms",
+          "reportedGrowth": "1499%",
+          "metric": "search growth as reported by Pinterest",
+          "publishedSlug": "clay-bag-charms-diy"
+        },
+        {
+          "query": "hand embroidery art",
+          "reportedGrowth": "1351%",
+          "metric": "search growth as reported by Pinterest",
+          "publishedSlug": "beginner-hand-embroidery-motifs"
+        },
+        {
+          "query": "bedazzle headphones",
+          "reportedGrowth": "1233%",
+          "metric": "search growth as reported by Pinterest",
+          "publishedSlug": "bedazzled-headphones-diy"
+        },
+        {
+          "query": "barn jacket outfit women",
+          "reportedGrowth": "1109%",
+          "metric": "search growth as reported by Pinterest",
+          "publishedSlug": "barn-jacket-outfits-women"
+        },
+        {
+          "query": "beaded bag charms diy",
+          "reportedGrowth": "965%",
+          "metric": "search growth as reported by Pinterest",
+          "publishedSlug": "beaded-bag-charms-diy"
+        },
+        {
+          "query": "trinket shelf ideas",
+          "reportedGrowth": "852%",
+          "metric": "search growth as reported by Pinterest",
+          "publishedSlug": "trinket-shelf-styling-ideas"
+        },
+        {
+          "query": "easy air dry clay crafts",
+          "reportedGrowth": "624%",
+          "metric": "search growth as reported by Pinterest",
+          "publishedSlug": "easy-air-dry-clay-crafts"
+        },
+        {
+          "query": "dried and pressed flowers",
+          "reportedGrowth": "457%",
+          "metric": "search growth as reported by Pinterest",
+          "publishedSlug": "pressed-flower-frame-diy"
+        },
+        {
+          "query": "marshmallow cold foam",
+          "reportedGrowth": "250%",
+          "metric": "search growth as reported by Pinterest",
+          "publishedSlug": "marshmallow-cold-foam"
+        },
+        {
+          "query": "cookies and cream latte",
+          "reportedGrowth": "186%",
+          "metric": "search growth as reported by Pinterest",
+          "publishedSlug": "cookies-and-cream-latte"
+        },
+        {
+          "query": "carrot cake latte",
+          "reportedGrowth": "177%",
+          "metric": "search growth as reported by Pinterest",
+          "publishedSlug": "carrot-cake-latte"
+        },
+        {
+          "query": "mango coffee recipe",
+          "reportedGrowth": "166%",
+          "metric": "search growth as reported by Pinterest",
+          "publishedSlug": "mango-iced-coffee"
+        }
+      ]
     }
   ]
 }
