@@ -17,7 +17,7 @@ async function getPosts(){return await loadJSON("data/posts.json",[])}
 function pinPost(post){
   const payload={
     url:absoluteArticleUrl(post.slug),
-    media:post.pinCover||post.cover,
+    media:new URL(post.pinCover||post.cover,SITE_ORIGIN).href,
     description:post.pinDescription||post.excerpt||post.title
   };
   if(window.PinUtils&&typeof window.PinUtils.pinOne==="function"){
@@ -57,12 +57,12 @@ function renderHeroSlider(posts){
   if(!slides.length){renderEmptyHero();return}
 
   mount.innerHTML='<div class="heroSlider" aria-roledescription="carousel">'
-    +slides.map((post,i)=>'<section class="hero heroSlide'+(i===0?' active':'')+'" data-hero-index="'+i+'" aria-hidden="'+(i===0?'false':'true')+'">'
+    +slides.map((post,i)=>'<section class="hero heroSlide'+(i===0?' active':'')+'" data-hero-index="'+i+'" '+(i===0?'':'inert')+' aria-hidden="'+(i===0?'false':'true')+'">'
       +'<img '+(i===0?'fetchpriority="high"':'loading="lazy"')+' src="'+esc(post.cover)+'" alt="'+esc(post.coverAlt||post.title)+'">'
       +'<div class="heroShade"></div>'
       +'<div class="shell heroContent">'
         +'<span class="eyebrow">'+esc(post.heroLabel||"EDITOR'S PICK")+'</span>'
-        +'<h1>'+esc(post.title)+'</h1>'
+        +'<'+(i===0?'h1':'h2')+'>'+esc(post.title)+'</'+(i===0?'h1':'h2')+'>'
         +'<p>'+esc(post.excerpt||"")+'</p>'
         +'<div class="heroActions">'
           +'<a class="cta" href="'+articleUrl(post.slug)+'">View Ideas <span>→</span></a>'
@@ -86,7 +86,7 @@ function renderHeroSlider(posts){
     mount.querySelectorAll(".heroSlide").forEach((el,i)=>{
       const active=i===current;
       el.classList.toggle("active",active);
-      el.setAttribute("aria-hidden",active?"false":"true");
+      el.setAttribute("aria-hidden",active?"false":"true");el.inert=!active;
     });
     mount.querySelectorAll("[data-hero-dot]").forEach((el,i)=>el.classList.toggle("active",i===current));
   }
@@ -221,11 +221,11 @@ function renderArticle(post,posts){
   document.getElementById("sidePin")?.addEventListener("click",()=>pinPost(post));
 }
 
-document.getElementById("newsletterForm")?.addEventListener("submit",e=>{e.preventDefault();document.getElementById("newsletterMsg").textContent="Thanks — you’re on the list.";e.currentTarget.reset()});
+
 
 (async()=>{
   const page=document.body.dataset.page;
-  if(page==="home")renderHome(await getPosts());
+  if(page==="home"){const posts=await getPosts();if(posts.length)renderHome(posts);}
   if(page==="article"){
     const posts=await getPosts();
     const slug=new URLSearchParams(location.search).get("slug");

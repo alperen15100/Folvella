@@ -1,0 +1,29 @@
+{
+  "checkedAt": "2026-10-04",
+  "region": "Region not specified by secondary sources",
+  "directPinterestTrendsAvailable": false,
+  "candidates": [
+    {
+      "query": "warm lighting",
+      "reportedGrowth": "+66%",
+      "period": "previous month, as reported by Ideal Home",
+      "evidenceType": "secondary reporting; not independently measured",
+      "source": "https://www.idealhome.co.uk/all-rooms/burrowcore-lighting-microtrend",
+      "publishedSlug": "warm-lighting-burrowcore-ideas"
+    },
+    {
+      "query": "milky lilac nails",
+      "reportedGrowth": "+425%",
+      "period": "August\u2013September 2026 vs same period 2025",
+      "evidenceType": "Allure reporting attributed to Pinterest",
+      "source": "https://www.allure.com/story/lilac-nail-trend-2026",
+      "publishedSlug": "milky-lilac-nails"
+    },
+    {
+      "query": "short fall nail colors",
+      "evidenceType": "seasonal editorial opportunity, no verified Pinterest growth",
+      "source": "https://www.instyle.com/october-cozy-nail-colors-12126408",
+      "publishedSlug": "short-fall-nail-colors"
+    }
+  ]
+}

@@ -1,18 +1,15 @@
 # Trendora
 
-Trendora is an English-language visual lifestyle publication focused on useful, image-led guides for home, beauty, food, fashion, DIY and seasonal living.
+Practical lifestyle guides. AI-generated illustration use is disclosed on applicable pages.
 
-## Primary pages
-- https://alperen15100.github.io/Trendora/
-- https://alperen15100.github.io/Trendora/about.html
-- https://alperen15100.github.io/Trendora/editorial-policy.html
+## Guides
+- [Warm Lighting Ideas for a Cozy Burrowcore Home](https://alperen15100.github.io/Trendora/warm-lighting-burrowcore-ideas/): Create a cozy reading corner, calmer bedroom and welcoming kitchen with shaded lamps, layered light and a practical room-by-room plan.
+- [3 Short Fall Nail Colors to Try: Chocolate, Cherry and Olive](https://alperen15100.github.io/Trendora/short-fall-nail-colors/): Three wearable autumn manicure ideas with original visual references, finish comparisons and a simple checklist for your next salon appointment.
+- [23 Soft Wolf Cut Ideas for Men That Look Modern, Textured and Easy to Style](https://alperen15100.github.io/Trendora/soft-wolf-cut-men/): From soft waves and curtain fringe to subtle mullet length and cleaner tapered sides, these wolf cut ideas keep the shape modern without making it look overdone.
+- [21 Home Café Ideas & Coffee Recipes That Make Mornings Feel Like a Coffee Shop](https://alperen15100.github.io/Trendora/home-cafe-coffee-ideas/): From banana syrup coffee and blueberry lattes to a compact espresso corner, these home café ideas make everyday coffee feel more personal, organized and fun.
+- [19 Perfume Layering Ideas That Smell Expensive and Completely Unique](https://alperen15100.github.io/Trendora/perfume-layering-ideas/): From vanilla and amber to fig and woods, these easy fragrance pairings show how to build a more personal scent without turning your perfume routine into guesswork.
+- [17 Kitchen Witch & Herbal Apothecary Ideas That Make a Kitchen Feel Magical](https://alperen15100.github.io/Trendora/kitchen-witch-herbal-apothecary/): Amber bottles, labeled herb jars, loose-leaf tea, dried botanicals and warm wooden shelves can turn an ordinary kitchen corner into a practical apothecary-inspired space.
+- [21 Milky Lilac Nail Ideas That Look Soft, Glossy and Expensive](https://alperen15100.github.io/Trendora/milky-lilac-nails/): From sheer lavender milk to glazed lilac chrome, these soft manicure ideas make purple feel polished, wearable and surprisingly luxe.
 
-## Current guides
-- 23 Soft Wolf Cut Ideas for Men That Look Modern, Textured and Easy to Style: https://alperen15100.github.io/Trendora/soft-wolf-cut-men/
-- 21 Home Café Ideas & Coffee Recipes That Make Mornings Feel Like a Coffee Shop: https://alperen15100.github.io/Trendora/home-cafe-coffee-ideas/
-- 19 Perfume Layering Ideas That Smell Expensive and Completely Unique: https://alperen15100.github.io/Trendora/perfume-layering-ideas/
-- 17 Kitchen Witch & Herbal Apothecary Ideas That Make a Kitchen Feel Magical: https://alperen15100.github.io/Trendora/kitchen-witch-herbal-apothecary/
-- 21 Milky Lilac Nail Ideas That Look Soft, Glossy and Expensive: https://alperen15100.github.io/Trendora/milky-lilac-nails/
-
-## Editorial notes
-Trendora may use AI-assisted drafting and research. Published guides are reviewed for clarity, image-to-text relevance, internal consistency and obvious safety issues. Commercial relationships are disclosed.
+## Editorial standards
+- [Editorial policy](https://alperen15100.github.io/Trendora/editorial-policy.html)
