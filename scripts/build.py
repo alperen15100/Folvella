@@ -1,5 +1,6 @@
 """Rebuild crawlable Folvella pages using the checked-in editorial source."""
 import json,re,html,xml.etree.ElementTree as ET
+from home_design import render_home, pin_link
 from pathlib import Path
 from datetime import datetime,timezone
 from email.utils import format_datetime
@@ -15,7 +16,7 @@ def js(x):return json.dumps(x,ensure_ascii=False).replace('<','\\u003c')
 def schema(x):return '<script type="application/ld+json">'+js(x)+'</script>'
 def head(title,description,path,image=None,schemas=[]):
  url=BASE+path
- return '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+e(title)+' — Folvella</title><meta name="description" content="'+e(description)+'"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="'+url+'"><link rel="alternate" type="application/rss+xml" title="Folvella RSS" href="'+BASE+'feed.xml"><meta property="og:type" content="'+('article' if any(path==p['slug']+'/' for p in posts) else 'website')+'"><meta property="og:title" content="'+e(title)+'"><meta property="og:description" content="'+e(description)+'"><meta property="og:url" content="'+url+'"><meta property="og:site_name" content="Folvella"><meta name="twitter:card" content="summary_large_image">'+ ('<meta property="og:image" content="'+e(absurl(image))+'"><meta name="twitter:image" content="'+e(absurl(image))+'">' if image else '')+'<meta name="twitter:title" content="'+e(title)+'"><meta name="twitter:description" content="'+e(description)+'"><link rel="icon" type="image/svg+xml" href="'+BASE+'assets/favicon.svg"><link rel="stylesheet" href="'+BASE+'assets/style.css?v=20261004-folvella">'+''.join(schema(s) for s in schemas)+'</head>'
+ return '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+e(title)+' — Folvella</title><meta name="description" content="'+e(description)+'"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="'+url+'"><link rel="alternate" type="application/rss+xml" title="Folvella RSS" href="'+BASE+'feed.xml"><meta property="og:type" content="'+('article' if any(path==p['slug']+'/' for p in posts) else 'website')+'"><meta property="og:title" content="'+e(title)+'"><meta property="og:description" content="'+e(description)+'"><meta property="og:url" content="'+url+'"><meta property="og:site_name" content="Folvella"><meta name="twitter:card" content="summary_large_image">'+ ('<meta property="og:image" content="'+e(absurl(image))+'"><meta name="twitter:image" content="'+e(absurl(image))+'">' if image else '')+'<meta name="twitter:title" content="'+e(title)+'"><meta name="twitter:description" content="'+e(description)+'"><link rel="icon" type="image/svg+xml" href="'+BASE+'assets/favicon.svg"><link rel="stylesheet" href="'+BASE+'assets/style.css?v=20261004-discovery">'+''.join(schema(s) for s in schemas)+'</head>'
 def nav():return '<header class="topbar"><div class="shell nav"><a class="brand" href="'+BASE+'"><span aria-hidden="true">F</span><b>Folvella</b></a><div></div><nav><a href="'+BASE+'#fresh">Ideas</a><a href="'+BASE+'categories/">Categories</a><a href="'+BASE+'about.html">About</a></nav></div></header>'
 def footer():return '<footer><div class="shell footGrid"><div><a class="brand" href="'+BASE+'">Folvella</a><p>Beautiful ideas for everyday living.</p></div><div><b>Explore</b>'+''.join('<a href="'+BASE+'category/'+cat_slug(c)+'/">'+e(c)+'</a>' for c in categories)+'</div><div><b>Trust & Legal</b>'+''.join('<a href="'+BASE+f+'.html">'+t+'</a>' for f,t in [('editorial-policy','Editorial Policy'),('about','About'),('privacy','Privacy'),('affiliate-disclosure','Affiliate Disclosure'),('contact','Contact')])+'</div></div><div class="shell copyright">© 2026 Folvella</div></footer>'
 def img(src,alt,lead=False):
@@ -23,7 +24,7 @@ def img(src,alt,lead=False):
  size=image_dimensions.get(src)
  dimensions=(' width="'+str(size[0])+'" height="'+str(size[1])+'"') if size else ''
  return '<img src="'+e(absurl(src))+'" alt="'+e(alt)+'" decoding="async"'+dimensions+(' fetchpriority="high"' if lead else ' loading="lazy"')+'>'
-def cards(items):return ''.join('<article class="ideaCardWrap" data-cat="'+e(p['category'])+'" data-title="'+e(p['title'].lower())+'"><a class="ideaCard" href="'+BASE+p['slug']+'/">'+img(p['cover'],p['coverAlt'])+'<div class="cardText"><small>'+e(p['category'])+'</small><h3>'+e(p['title'])+'</h3><span>Read ideas</span></div></a></article>' for p in items)
+def cards(items):return ''.join('<article class="ideaCardWrap" data-cat="'+e(p['category'])+'" data-title="'+e(p['title'].lower())+'"><a class="ideaCard" href="'+BASE+p['slug']+'/">'+img(p['cover'],p['coverAlt'])+'<div class="cardText"><small>'+e(p['category'])+'</small><h3>'+e(p['title'])+'</h3><span>Read ideas</span></div></a>'+ (pin_link(p) if not p['slug'].startswith('category/') else '')+'</article>' for p in items)
 def write(path,text):
  f=ROOT/path;f.parent.mkdir(parents=True,exist_ok=True);f.write_text(text,encoding='utf-8')
 for p in posts:
@@ -71,21 +72,7 @@ home=(ROOT/'index.html').read_text()
 home=re.sub(r'<script type="application/ld\+json">.*?</script>','',home,flags=re.S)
 home=re.sub(r'<meta property="og:image"[^>]*>|<meta name="twitter:(?:card|image)"[^>]*>','',home)
 home=home.replace('</head>','<meta property="og:image" content="'+absurl(posts[0]['cover'])+'"><meta name="twitter:image" content="'+absurl(posts[0]['cover'])+'"><meta name="twitter:card" content="summary_large_image">'+schema({'@context':'https://schema.org','@type':'WebSite','name':'Folvella','url':BASE})+schema({'@context':'https://schema.org','@type':'ItemList','itemListElement':[{'@type':'ListItem','position':i+1,'name':p['title'],'url':BASE+p['slug']+'/'} for i,p in enumerate(posts)]})+'</head>')
-hero='<section class="hero">'+img(posts[0]['cover'],posts[0]['coverAlt'],True)+'<div class="heroShade"></div><div class="shell heroContent"><span class="eyebrow">'+e(posts[0]['category'])+'</span><h1>'+e(posts[0]['title'])+'</h1><p>'+e(posts[0]['excerpt'])+'</p><a class="cta" href="'+posts[0]['slug']+'/">Read the guide</a></div></section>'
-home=re.sub(r'<div id="heroMount">.*?</div>\s*(?=<section class="categoryStrip")','<div id="heroMount">'+hero+'</div>\n\n  ',home,flags=re.S)
-home=re.sub(r'<div class="ideaGrid" id="ideaGrid">.*?</div>\s*<div class="emptyState"', '<div class="ideaGrid" id="ideaGrid">'+cards(posts)+'</div>\n      <div class="emptyState"',home,flags=re.S)
-home=home.replace('<div class="emptyState" id="emptyState">','<div class="emptyState" id="emptyState" hidden>')
-home=re.sub(r'<div class="shell categoryRow" id="categoryRow">.*?</div>', '<div class="shell categoryRow" id="categoryRow">'+''.join('<a href="category/'+cat_slug(c)+'/"><span>'+e(c)+'</span></a>' for c in categories)+'</div>',home,flags=re.S)
-home=re.sub(r'<section class="newsletter">.*?</section>','<section class="newsletter"><div class="shell newsletterIn"><div><h2>Keep your favorite ideas close</h2><p>Follow new guides in your RSS reader or save an idea to Pinterest.</p></div><a class="cta" href="feed.xml">Follow the RSS feed</a></div></section>',home,flags=re.S)
-home=re.sub(r'href="assets/style\.css(?:\?[^"]*)?"','href="assets/style.css?v=20261004-folvella"',home)
-home=re.sub(r'assets/app\.js(?:\?[^"]*)?', 'assets/app.js?v=20261004-folvella',home)
-home=re.sub(r'<link rel="preconnect"[^>]*>|<script async defer src="https://assets.pinterest.com/js/pinit.js"></script>','',home)
-home=home.replace('href="#categories">Categories','href="categories/">Categories').replace('Popular Categories','Explore Categories')
-home=home.replace('<input id="searchInput"','<input aria-label="Search article titles" id="searchInput"') if 'aria-label="Search article titles"' not in home else home
-home=home.replace('<main>','<main id="main">')
-if 'id="searchStatus"' not in home:home=home.replace('<div class="ideaGrid" id="ideaGrid">','<p id="searchStatus" role="status" aria-live="polite"></p><div class="ideaGrid" id="ideaGrid">')
-home=re.sub(r'<footer>.*?</footer>',footer(),home,flags=re.S)
-if 'favicon.svg' not in home:home=home.replace('</head>','<link rel="icon" type="image/svg+xml" href="assets/favicon.svg"></head>')
+home=render_home(home,posts,home.split('</head>')[0].replace('20261004-folvella','20261004-discovery')+'</head>',footer,img,cards)
 write('index.html',home)
 # Sitemap uses only actual publication/update dates, never the build date.
 ET.register_namespace('','http://www.sitemaps.org/schemas/sitemap/0.9');ET.register_namespace('image','http://www.google.com/schemas/sitemap-image/1.1')
