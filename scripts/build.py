@@ -63,6 +63,7 @@ home=re.sub(r'<div class="ideaGrid" id="ideaGrid">.*?</div>\s*<div class="emptyS
 home=home.replace('<div class="emptyState" id="emptyState">','<div class="emptyState" id="emptyState" hidden>')
 home=re.sub(r'<div class="shell categoryRow" id="categoryRow">.*?</div>', '<div class="shell categoryRow" id="categoryRow">'+''.join('<a href="category/'+cat_slug(c)+'/"><span>'+e(c)+'</span></a>' for c in categories)+'</div>',home,flags=re.S)
 home=re.sub(r'<section class="newsletter">.*?</section>','<section class="newsletter"><div class="shell newsletterIn"><div><h2>Keep your favorite ideas close</h2><p>Follow new guides in your RSS reader or save an idea to Pinterest.</p></div><a class="cta" href="feed.xml">Follow the RSS feed</a></div></section>',home,flags=re.S)
+home=re.sub(r'href="assets/style\.css(?:\?[^"]*)?"','href="assets/style.css?v=20261004-editorial"',home)
 home=home.replace('assets/app.js?v=20261004-slider-stable','assets/app.js?v=20261004-editorial')
 write('index.html',home)
 # Sitemap uses only actual publication/update dates, never the build date.
