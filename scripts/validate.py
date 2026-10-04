@@ -32,5 +32,15 @@ for p in posts:
  if p.get('generatedImages'):
   refs=[s['image'] for s in p['sections'] if s.get('image')];assert len(refs)==len(set(refs)),p['slug']
   hashes=[hashlib.sha256((root/ref).read_bytes()).hexdigest() for ref in refs];assert len(hashes)==len(set(hashes)),'Duplicate illustration'
+manifest_path=root/'data/image-manifest.json'
+if manifest_path.exists():
+ manifest=json.loads(manifest_path.read_text())
+ records=manifest['images'];assert len(records)==manifest['replacedSectionImages']
+ assert len({r['image'] for r in records})==len(records),'Repeated replacement image path'
+ assert len({r['sha256'] for r in records})==len(records),'Repeated replacement artwork'
+ for record in records:
+  post=next(p for p in posts if p['slug']==record['slug'])
+  assert post['sections'][record['section']-1]['image']==record['image'],'Stale image manifest'
+  assert hashlib.sha256((root/record['image']).read_bytes()).hexdigest()==record['sha256'],'Changed image bytes'
 ET.parse(root/'sitemap.xml');ET.parse(root/'feed.xml')
 print(f'PASS: {len(posts)} posts, {len(files)} pages; local links, assets, schemas, image uniqueness and XML.')
