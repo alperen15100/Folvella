@@ -584,15 +584,17 @@
     display:flex;
     width:100%;
     gap:10px;
-    flex-wrap:nowrap;
+    flex-wrap:wrap;
     margin:0;
   }
   #fresh .filters button{
-    flex:1 1 0;
+    flex:0 1 auto;
     min-width:0;
+    max-width:100%;
     padding:11px 14px;
     text-align:center;
-    white-space:nowrap;
+    white-space:normal;
+    overflow-wrap:anywhere;
   }
 }
 
