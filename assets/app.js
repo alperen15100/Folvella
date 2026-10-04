@@ -72,13 +72,15 @@ function renderHeroSlider(posts){
     +'</section>').join("")
     +'<button class="heroArrow heroPrev" type="button" aria-label="Previous story">‹</button>'
     +'<button class="heroArrow heroNext" type="button" aria-label="Next story">›</button>'
-    +'<div class="heroDots" role="tablist" aria-label="Latest stories">'
+    +'<button class="heroPause" type="button" aria-label="Pause story rotation">Pause</button>'
+    +'<div class="heroDots" role="group" aria-label="Latest stories">'
       +slides.map((_,i)=>'<button class="'+(i===0?'active':'')+'" type="button" data-hero-dot="'+i+'" aria-label="Show story '+(i+1)+'"></button>').join("")
     +'</div>'
   +'</div>';
 
   let current=0;
   let timer=null;
+  let paused=false;
   const prefersReduced=window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
 
   function show(next){
@@ -92,7 +94,7 @@ function renderHeroSlider(posts){
   }
 
   function start(){
-    if(prefersReduced||slides.length<2)return;
+    if(paused||prefersReduced||slides.length<2)return;
     clearInterval(timer);
     timer=setInterval(()=>show(current+1),5000);
   }
@@ -117,6 +119,9 @@ function renderHeroSlider(posts){
     touchX=null;
   },{passive:true});
 
+  mount.querySelector(".heroPause")?.addEventListener("click",e=>{paused=!paused;e.currentTarget.textContent=paused?"Play":"Pause";e.currentTarget.setAttribute("aria-label",paused?"Resume story rotation":"Pause story rotation");if(paused)clearInterval(timer);else start()});
+  mount.addEventListener("focusin",()=>clearInterval(timer));
+  mount.addEventListener("focusout",e=>{if(!mount.contains(e.relatedTarget))start()});
   mount.addEventListener("mouseenter",()=>clearInterval(timer));
   mount.addEventListener("mouseleave",start);
   document.addEventListener("visibilitychange",()=>{if(document.hidden)clearInterval(timer);else start()});
@@ -143,11 +148,11 @@ function renderHome(posts){
   const categories=[...new Set(published.map(p=>p.category).filter(Boolean))];
   document.getElementById("categoryRow").innerHTML=categories.map(cat=>{
     const p=published.find(x=>x.category===cat);
-    return '<a href="#fresh" data-category-jump="'+esc(cat)+'"><img src="'+esc(p.cover)+'" alt=""><span>'+esc(cat)+'</span></a>';
+    return '<a href="category/'+cat.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")+'/"><img src="'+esc(p.cover)+'" alt=""><span>'+esc(cat)+'</span></a>';
   }).join("");
 
   const filters=document.getElementById("filters");
-  filters.innerHTML='<button class="active" data-filter="all">All</button>'+categories.map(c=>'<button data-filter="'+esc(c)+'">'+esc(c)+'</button>').join("");
+  filters.innerHTML='<button class="active" aria-pressed="true" data-filter="all">All</button>'+categories.map(c=>'<button aria-pressed="false" data-filter="'+esc(c)+'">'+esc(c)+'</button>').join("");
 
   grid.innerHTML="";
   published.forEach(p=>grid.appendChild(createCard(p)));
@@ -159,22 +164,26 @@ function renderHome(posts){
   const popular=document.getElementById("popularCategories");
   popular.innerHTML=categories.slice(0,8).map(cat=>{
     const p=published.find(x=>x.category===cat);
-    return '<a href="#fresh" data-category-jump="'+esc(cat)+'"><img src="'+esc(p.cover)+'" alt=""><b>'+esc(cat)+'</b></a>';
+    return '<a href="category/'+cat.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")+'/"><img src="'+esc(p.cover)+'" alt=""><b>'+esc(cat)+'</b></a>';
   }).join("");
   document.getElementById("popularSection").hidden=false;
 
   function applyFilter(){
     const active=document.querySelector("[data-filter].active")?.dataset.filter||"all";
     const q=(document.getElementById("searchInput")?.value||"").trim().toLowerCase();
+    let count=0;
     document.querySelectorAll(".ideaCardWrap").forEach(c=>{
       const cat=c.dataset.cat;
       const title=c.dataset.title;
       c.style.display=((active==="all"||cat===active)&&(!q||title.includes(q)))?"":"none";
+      if(c.style.display!=="none")count++;
     });
+    document.getElementById("searchStatus").textContent=count?`${count} guide${count===1?"":"s"} found`:"No matching guides. Try another title or category.";
   }
+  applyFilter();
   document.querySelectorAll("[data-filter]").forEach(b=>b.addEventListener("click",()=>{
-    document.querySelectorAll("[data-filter]").forEach(x=>x.classList.remove("active"));
-    b.classList.add("active");applyFilter();
+    document.querySelectorAll("[data-filter]").forEach(x=>{x.classList.remove("active");x.setAttribute("aria-pressed","false")});
+    b.classList.add("active");b.setAttribute("aria-pressed","true");applyFilter();
   }));
   document.querySelectorAll("[data-category-jump]").forEach(a=>a.addEventListener("click",()=>{
     const cat=a.dataset.categoryJump;
@@ -230,6 +239,6 @@ function renderArticle(post,posts){
     const posts=await getPosts();
     const slug=new URLSearchParams(location.search).get("slug");
     const post=posts.find(p=>p.slug===slug&&p.status!=="draft");
-    post?renderArticle(post,posts):renderMissingArticle();
+    post?location.replace(articleUrl(post.slug)):renderMissingArticle();
   }
 })();

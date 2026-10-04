@@ -16,11 +16,11 @@ class Page(HTMLParser):
   for key in ['href','src']:
    if a.get(key):self.refs.append(a[key])
   if tag=='img':assert a.get('alt') is not None,'Image without alt'
-files=[root/'index.html']+list(root.glob('*/index.html'))+list(root.glob('category/*/index.html'))
+files=[root/'index.html']+list(root.glob('*/index.html'))+list(root.glob('category/*/index.html'))+[root/(slug+'.html') for slug in json.loads((root/'data/pages.json').read_text())]
 for f in files:
  text=f.read_text();p=Page();p.feed(text)
  assert len(p.canon)==1,(f,'canonical');assert len(p.ids)==len(set(p.ids)),(f,'duplicate IDs')
- if f.name=='index.html' and f.parent!=root:assert p.h1==1,(f,'h1')
+ if f.name!='article.html':assert p.h1==1,(f,'h1')
  for raw in re.findall(r'<script type="application/ld\+json">(.*?)</script>',text,re.S):json.loads(raw)
  for ref in p.refs:
   if ref.startswith(base):target=root/unquote(urlparse(ref).path[len('/Trendora/'):])
@@ -29,8 +29,13 @@ for f in files:
   if target.is_dir():target=target/'index.html'
   assert target.exists(),(f,'missing target',ref)
 for p in posts:
+ assert p.get('generatedImages'),('Original imagery required',p['slug'])
+ assert p['cover'].startswith('assets/generated/'),('Nonlocal cover',p['slug'])
+ for source in p.get('sources',[]):
+  domain=urlparse(source['url']).hostname or ''
+  assert domain=='pinterest.com' or domain.endswith('.pinterest.com'),('Non-Pinterest source',domain)
  if p.get('generatedImages'):
-  refs=[s['image'] for s in p['sections'] if s.get('image')];assert len(refs)==len(set(refs)),p['slug']
+  refs=[s['image'] for s in p['sections'] if s.get('image')];assert all(ref.startswith('assets/generated/') and (root/ref).stat().st_size>0 for ref in refs),'Missing original image';assert len(refs)==len(set(refs)),p['slug']
   hashes=[hashlib.sha256((root/ref).read_bytes()).hexdigest() for ref in refs];assert len(hashes)==len(set(hashes)),'Duplicate illustration'
 manifest_path=root/'data/image-manifest.json'
 if manifest_path.exists():

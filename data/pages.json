@@ -1,0 +1,150 @@
+{
+  "about": {
+    "title": "About Trendora",
+    "description": "How Trendora creates original visual lifestyle guides and practical ideas.",
+    "sections": [
+      {
+        "heading": "Beautiful ideas that work in everyday life",
+        "paragraphs": [
+          "Trendora is an independent visual magazine about home, beauty, personal style and everyday creative projects. Our guides pair original explanations with original illustrations to help you choose an idea, understand the details and adapt it to your own space or routine."
+        ]
+      },
+      {
+        "heading": "How our content is made",
+        "paragraphs": [
+          "Our editorial workflow uses AI to create original writing and imagery. Trendora Editorial is the publishing identity of the site, not a claim that a named human expert tested every idea. AI-generated images are disclosed on articles and illustrate design or styling concepts; they do not document real salon work, finished interior projects or tested products."
+        ]
+      },
+      {
+        "heading": "Where topics come from",
+        "paragraphs": [
+          "We use official Pinterest trend signals to identify topics worth exploring. We record the available country, measurement type, period and observation date internally. A growing topic is a starting point for a useful guide, not a promise that every idea in that guide is viral. We do not reuse another publication’s articles or photographs."
+        ]
+      },
+      {
+        "heading": "Explore and save",
+        "paragraphs": [
+          "Browse the category library, follow the RSS feed, or use an article’s Save to Pinterest button. If you notice a mistake or want to suggest a topic, our contact page explains the current feedback route."
+        ]
+      }
+    ]
+  },
+  "editorial-policy": {
+    "title": "Editorial Policy",
+    "description": "Trendora’s standards for original writing, AI imagery, Pinterest research and corrections.",
+    "sections": [
+      {
+        "heading": "Original content and imagery",
+        "paragraphs": [
+          "We create our article text and visual concepts originally with AI assistance. We do not republish, scrape or lightly rewrite third-party articles, and we do not use stock photographs from other websites. Original generated visuals are stored locally and described with relevant alternative text. Each illustrated example should have a distinct image that matches its explanation."
+        ]
+      },
+      {
+        "heading": "Official Pinterest research",
+        "paragraphs": [
+          "Only official Pinterest pages are used for trend discovery. Search interest, Pin saves and outbound clicks are different measurements. We record the country, period and metric whenever available, and do not present annual predictions as today’s viral activity. Evergreen guides may remain useful without a verified growth statistic. Topic selection does not make Pinterest an endorsement of Trendora."
+        ]
+      },
+      {
+        "heading": "Practical, transparent guidance",
+        "paragraphs": [
+          "Guides explain the decisions behind an idea rather than repeating keywords or padding a numbered list. We do not invent product testing, expert credentials, personal experience, audience numbers or performance claims. Generated images are styling references and can contain imperfect details; verify measurements and product instructions before following a concept. Recipes and styling suggestions are not represented as professionally tested unless actual testing is documented."
+        ]
+      },
+      {
+        "heading": "Dates and corrections",
+        "paragraphs": [
+          "Publication dates identify when a guide first appeared. Update dates change when its content or visual examples receive a substantive revision. Broken links, misleading wording and image mismatches should be corrected. Report an issue through the contact page and include the article URL and the detail that needs attention."
+        ]
+      },
+      {
+        "heading": "Commercial transparency",
+        "paragraphs": [
+          "The site currently has no active paid advertising or affiliate tracking links. Any future sponsored placement or commission-bearing link must be clearly disclosed near the relevant content. Search metadata and structured data describe actual page content; they are not promises of search rankings."
+        ]
+      }
+    ]
+  },
+  "privacy": {
+    "title": "Privacy",
+    "description": "What the current Trendora website collects and how external links work.",
+    "sections": [
+      {
+        "heading": "The current website",
+        "paragraphs": [
+          "Trendora is a static website hosted on GitHub Pages. We do not currently operate user accounts, a newsletter signup database, advertising tags or a third-party analytics script. The on-page search filters article titles in your browser; it does not send your search words to a Trendora search server."
+        ]
+      },
+      {
+        "heading": "Hosting and local assets",
+        "paragraphs": [
+          "Your browser requests page files and original image assets from the hosting service. GitHub may process technical request information as the hosting provider. Trendora does not control GitHub’s platform logs. Our current site code does not set tracking cookies or store an advertising profile."
+        ]
+      },
+      {
+        "heading": "External services",
+        "paragraphs": [
+          "Save to Pinterest opens Pinterest only when you choose the button. Pinterest handles activity on its own service. The RSS feed is a public file that your chosen reader can request. Feedback links open GitHub, where your account and any submitted issue are handled by that service. Public feedback should not include private information."
+        ]
+      },
+      {
+        "heading": "Updates and questions",
+        "paragraphs": [
+          "This notice describes the features currently installed. It will need revision before adding analytics, ads, accounts, email collection or other data-processing features. For a question about the site, use the feedback route on the contact page."
+        ],
+        "links": [
+          {
+            "label": "GitHub Privacy Statement",
+            "url": "https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement"
+          },
+          {
+            "label": "Pinterest Privacy Policy",
+            "url": "https://policy.pinterest.com/en/privacy-policy"
+          }
+        ]
+      }
+    ]
+  },
+  "contact": {
+    "title": "Contact & Feedback",
+    "description": "Report a Trendora article correction, broken link or topic suggestion.",
+    "sections": [
+      {
+        "heading": "Help improve a guide",
+        "paragraphs": [
+          "Use the project’s GitHub feedback page to report a correction, broken link or image mismatch, or suggest a topic. Include the article URL, what you noticed and the specific improvement you suggest. This route requires a GitHub account and submissions are public. Do not include private contact details or sensitive information."
+        ],
+        "links": [
+          {
+            "label": "Open the Trendora feedback page",
+            "url": "https://github.com/alperen15100/Trendora/issues"
+          }
+        ]
+      },
+      {
+        "heading": "Our current contact route",
+        "paragraphs": [
+          "Trendora does not currently have a connected email form or private customer support inbox. This page links to the actual project feedback channel so a browser-only form does not falsely report that a message has been delivered."
+        ]
+      }
+    ]
+  },
+  "affiliate-disclosure": {
+    "title": "Affiliate Disclosure",
+    "description": "How Trendora handles commercial links and sponsored content.",
+    "sections": [
+      {
+        "heading": "Current commercial status",
+        "paragraphs": [
+          "Trendora currently has no active commission-bearing affiliate links, sponsored articles or installed advertising network. Pinterest save links, category links and the RSS feed are navigation features."
+        ]
+      },
+      {
+        "heading": "Future commercial content",
+        "paragraphs": [
+          "If a future article includes an affiliate link, the article must explain near that content that Trendora can earn a commission. Sponsored content must identify the sponsorship. Commercial arrangements must not be described as independent testing or change a generated illustration into a real product photograph."
+        ]
+      }
+    ]
+  }
+}
