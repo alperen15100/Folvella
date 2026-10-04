@@ -1,4 +1,4 @@
-# Trendora
+# Folvella
 
 Pinterest-driven Tier-1 lifestyle publishing site.
 

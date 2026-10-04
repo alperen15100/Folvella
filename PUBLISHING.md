@@ -1,4 +1,4 @@
-# Trendora publishing workflow
+# Folvella publishing workflow
 
 1. Read current posts and `data/trend-research.json` before choosing a topic. Do not publish the same search intent twice.
 2. Use ONLY official Pinterest Trends and official Pinterest editorial pages for topic research. Never use third-party articles, stock photography or other sites' images. A public page that exposes no trend data is not evidence of growth. Distinguish searches, Pin saves and outbound clicks; annual forecasts are not current daily viral evidence. Record the query, source URL, period, region if available, checked date and evidence type. Do not invent growth percentages, views or saves. Seasonal suggestions are labeled as editorial opportunities in the research record.

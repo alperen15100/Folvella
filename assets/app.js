@@ -47,7 +47,7 @@ function createCard(post){
 function renderEmptyHero(){
   const mount=document.getElementById("heroMount");
   if(!mount)return;
-  mount.innerHTML='<section class="emptyHero"><div class="shell emptyHeroIn"><span class="eyebrow">TRENDORA</span><h1>Beautiful ideas.<br><em>Worth saving.</em></h1><p>Visual guides for the things people actually want to make, wear, decorate and try.</p></div></section>';
+  mount.innerHTML='<section class="emptyHero"><div class="shell emptyHeroIn"><span class="eyebrow">FOLVELLA</span><h1>Beautiful ideas.<br><em>Worth saving.</em></h1><p>Visual guides for the things people actually want to make, wear, decorate and try.</p></div></section>';
 }
 
 function renderHeroSlider(posts){
@@ -199,12 +199,12 @@ function renderHome(posts){
 
 function renderMissingArticle(){
   const mount=document.getElementById("articleMount");
-  mount.innerHTML='<section class="legal shell"><span class="eyebrow dark">TRENDORA</span><h1>This story is not published yet.</h1><p>The article may still be in production or the link may be outdated.</p><a class="cta" href="index.html">Back to Trendora →</a></section>';
+  mount.innerHTML='<section class="legal shell"><span class="eyebrow dark">FOLVELLA</span><h1>This story is not published yet.</h1><p>The article may still be in production or the link may be outdated.</p><a class="cta" href="index.html">Back to Folvella →</a></section>';
   document.querySelector('meta[name="robots"]')?.setAttribute("content","noindex,follow");
 }
 
 function renderArticle(post,posts){
-  document.title=post.title+" — Trendora";
+  document.title=post.title+" — Folvella";
   document.getElementById("pageDescription")?.setAttribute("content",post.excerpt||"");
   const mount=document.getElementById("articleMount");
   const sections=(post.sections||[]).map((s,i)=>{
@@ -217,10 +217,10 @@ function renderArticle(post,posts){
   const related=posts.filter(p=>p.slug!==post.slug&&p.status!=="draft").slice(0,3);
   const relatedHtml=related.map(p=>'<a href="'+articleUrl(p.slug)+'"><img loading="lazy" src="'+esc(p.cover)+'" alt="'+esc(p.coverAlt||p.title)+'"><b>'+esc(p.title)+'</b></a>').join("");
 
-  mount.innerHTML='<section class="articleHero shell"><div class="crumb">'+esc(post.category||"Ideas")+' · GUIDE</div><h1>'+esc(post.title)+'</h1><p class="articleDek">'+esc(post.excerpt||"")+'</p><div class="meta">'+esc(post.dateLabel||"Updated 2026")+' · Trendora Editors · '+esc(post.readMinutes||"8")+' min read</div></section>'
+  mount.innerHTML='<section class="articleHero shell"><div class="crumb">'+esc(post.category||"Ideas")+' · GUIDE</div><h1>'+esc(post.title)+'</h1><p class="articleDek">'+esc(post.excerpt||"")+'</p><div class="meta">'+esc(post.dateLabel||"Updated 2026")+' · Folvella Editors · '+esc(post.readMinutes||"8")+' min read</div></section>'
     +'<section class="shell articleLayout"><article class="articleMain">'
     +'<div class="articleCoverWrap"><img class="leadImg" src="'+esc(post.cover)+'" alt="'+esc(post.coverAlt||post.title)+'"><button id="articlePin" class="articlePin" type="button" aria-label="Save to Pinterest">'+PINTEREST_ICON+'<span>Save</span></button></div>'
-    +'<p class="disclosure"><b>Disclosure:</b> This page may contain affiliate links. If you buy through an eligible link, Trendora may earn a commission at no extra cost to you.</p>'
+    +'<p class="disclosure"><b>Disclosure:</b> This page may contain affiliate links. If you buy through an eligible link, Folvella may earn a commission at no extra cost to you.</p>'
     +(post.intro||[]).map(p=>'<p>'+esc(p)+'</p>').join("")
     +'<div class="adbox">ADVERTISEMENT</div>'+sections+'</article>'
     +'<aside class="articleAside"><div class="sideCard"><button id="sidePin" class="sidePin" type="button" aria-label="Save this guide to Pinterest">'+PINTEREST_ICON+'<span>Save to Pinterest</span></button><h3>More to explore</h3><div class="sideLinks">'+related.map(p=>'<a href="'+articleUrl(p.slug)+'">'+esc(p.title)+' →</a>').join("")+'</div><div class="adbox">ADVERTISEMENT</div></div></aside></section>'

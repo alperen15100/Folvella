@@ -1,18 +1,18 @@
 {
   "about": {
-    "title": "About Trendora",
-    "description": "How Trendora creates original visual lifestyle guides and practical ideas.",
+    "title": "About Folvella",
+    "description": "How Folvella creates original visual lifestyle guides and practical ideas.",
     "sections": [
       {
         "heading": "Beautiful ideas that work in everyday life",
         "paragraphs": [
-          "Trendora is an independent visual magazine about home, beauty, personal style and everyday creative projects. Our guides pair original explanations with original illustrations to help you choose an idea, understand the details and adapt it to your own space or routine."
+          "Folvella is an independent visual magazine about home, beauty, personal style and everyday creative projects. Our guides pair original explanations with original illustrations to help you choose an idea, understand the details and adapt it to your own space or routine."
         ]
       },
       {
         "heading": "How our content is made",
         "paragraphs": [
-          "Our editorial workflow uses AI to create original writing and imagery. Trendora Editorial is the publishing identity of the site, not a claim that a named human expert tested every idea. AI-generated images are disclosed on articles and illustrate design or styling concepts; they do not document real salon work, finished interior projects or tested products."
+          "Our editorial workflow uses AI to create original writing and imagery. Folvella Editorial is the publishing identity of the site, not a claim that a named human expert tested every idea. AI-generated images are disclosed on articles and illustrate design or styling concepts; they do not document real salon work, finished interior projects or tested products."
         ]
       },
       {
@@ -31,7 +31,7 @@
   },
   "editorial-policy": {
     "title": "Editorial Policy",
-    "description": "Trendora’s standards for original writing, AI imagery, Pinterest research and corrections.",
+    "description": "Folvella’s standards for original writing, AI imagery, Pinterest research and corrections.",
     "sections": [
       {
         "heading": "Original content and imagery",
@@ -42,7 +42,7 @@
       {
         "heading": "Official Pinterest research",
         "paragraphs": [
-          "Only official Pinterest pages are used for trend discovery. Search interest, Pin saves and outbound clicks are different measurements. We record the country, period and metric whenever available, and do not present annual predictions as today’s viral activity. Evergreen guides may remain useful without a verified growth statistic. Topic selection does not make Pinterest an endorsement of Trendora."
+          "Only official Pinterest pages are used for trend discovery. Search interest, Pin saves and outbound clicks are different measurements. We record the country, period and metric whenever available, and do not present annual predictions as today’s viral activity. Evergreen guides may remain useful without a verified growth statistic. Topic selection does not make Pinterest an endorsement of Folvella."
         ]
       },
       {
@@ -67,18 +67,18 @@
   },
   "privacy": {
     "title": "Privacy",
-    "description": "What the current Trendora website collects and how external links work.",
+    "description": "What the current Folvella website collects and how external links work.",
     "sections": [
       {
         "heading": "The current website",
         "paragraphs": [
-          "Trendora is a static website hosted on GitHub Pages. We do not currently operate user accounts, a newsletter signup database, advertising tags or a third-party analytics script. The on-page search filters article titles in your browser; it does not send your search words to a Trendora search server."
+          "Folvella is a static website hosted on GitHub Pages. We do not currently operate user accounts, a newsletter signup database, advertising tags or a third-party analytics script. The on-page search filters article titles in your browser; it does not send your search words to a Folvella search server."
         ]
       },
       {
         "heading": "Hosting and local assets",
         "paragraphs": [
-          "Your browser requests page files and original image assets from the hosting service. GitHub may process technical request information as the hosting provider. Trendora does not control GitHub’s platform logs. Our current site code does not set tracking cookies or store an advertising profile."
+          "Your browser requests page files and original image assets from the hosting service. GitHub may process technical request information as the hosting provider. Folvella does not control GitHub’s platform logs. Our current site code does not set tracking cookies or store an advertising profile."
         ]
       },
       {
@@ -107,7 +107,7 @@
   },
   "contact": {
     "title": "Contact & Feedback",
-    "description": "Report a Trendora article correction, broken link or topic suggestion.",
+    "description": "Report a Folvella article correction, broken link or topic suggestion.",
     "sections": [
       {
         "heading": "Help improve a guide",
@@ -116,7 +116,7 @@
         ],
         "links": [
           {
-            "label": "Open the Trendora feedback page",
+            "label": "Open the Folvella feedback page",
             "url": "https://github.com/alperen15100/Trendora/issues"
           }
         ]
@@ -124,25 +124,25 @@
       {
         "heading": "Our current contact route",
         "paragraphs": [
-          "Trendora does not currently have a connected email form or private customer support inbox. This page links to the actual project feedback channel so a browser-only form does not falsely report that a message has been delivered."
+          "Folvella does not currently have a connected email form or private customer support inbox. This page links to the actual project feedback channel so a browser-only form does not falsely report that a message has been delivered."
         ]
       }
     ]
   },
   "affiliate-disclosure": {
     "title": "Affiliate Disclosure",
-    "description": "How Trendora handles commercial links and sponsored content.",
+    "description": "How Folvella handles commercial links and sponsored content.",
     "sections": [
       {
         "heading": "Current commercial status",
         "paragraphs": [
-          "Trendora currently has no active commission-bearing affiliate links, sponsored articles or installed advertising network. Pinterest save links, category links and the RSS feed are navigation features."
+          "Folvella currently has no active commission-bearing affiliate links, sponsored articles or installed advertising network. Pinterest save links, category links and the RSS feed are navigation features."
         ]
       },
       {
         "heading": "Future commercial content",
         "paragraphs": [
-          "If a future article includes an affiliate link, the article must explain near that content that Trendora can earn a commission. Sponsored content must identify the sponsorship. Commercial arrangements must not be described as independent testing or change a generated illustration into a real product photograph."
+          "If a future article includes an affiliate link, the article must explain near that content that Folvella can earn a commission. Sponsored content must identify the sponsorship. Commercial arrangements must not be described as independent testing or change a generated illustration into a real product photograph."
         ]
       }
     ]
