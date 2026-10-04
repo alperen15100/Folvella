@@ -55,10 +55,10 @@ for c in categories:
 # Keep the established interactive homepage, but provide the complete initial HTML for crawlers and no-JS visitors.
 home=(ROOT/'index.html').read_text()
 home=re.sub(r'<script type="application/ld\+json">.*?</script>','',home,flags=re.S)
-home=re.sub(r'<meta property="og:image"[^>]*>','',home)
+home=re.sub(r'<meta property="og:image"[^>]*>|<meta name="twitter:card"[^>]*>','',home)
 home=home.replace('</head>','<meta property="og:image" content="'+absurl(posts[0]['cover'])+'"><meta name="twitter:card" content="summary_large_image">'+schema({'@context':'https://schema.org','@type':'WebSite','name':'Trendora','url':BASE})+schema({'@context':'https://schema.org','@type':'ItemList','itemListElement':[{'@type':'ListItem','position':i+1,'name':p['title'],'url':BASE+p['slug']+'/'} for i,p in enumerate(posts)]})+'</head>')
 hero='<section class="hero">'+img(posts[0]['cover'],posts[0]['coverAlt'],True)+'<div class="heroShade"></div><div class="shell heroContent"><span class="eyebrow">'+e(posts[0]['category'])+'</span><h1>'+e(posts[0]['title'])+'</h1><p>'+e(posts[0]['excerpt'])+'</p><a class="cta" href="'+posts[0]['slug']+'/">Read the guide</a></div></section>'
-home=re.sub(r'<div id="heroMount">.*?</div>(?=\s*<section class="categoryStrip")','<div id="heroMount">'+hero+'</div>\n\n  ',home,flags=re.S)
+home=re.sub(r'<div id="heroMount">.*?</div>\s*(?=<section class="categoryStrip")','<div id="heroMount">'+hero+'</div>\n\n  ',home,flags=re.S)
 home=re.sub(r'<div class="ideaGrid" id="ideaGrid">.*?</div>\s*<div class="emptyState"', '<div class="ideaGrid" id="ideaGrid">'+cards(posts)+'</div>\n      <div class="emptyState"',home,flags=re.S)
 home=home.replace('<div class="emptyState" id="emptyState">','<div class="emptyState" id="emptyState" hidden>')
 home=re.sub(r'<div class="shell categoryRow" id="categoryRow">.*?</div>', '<div class="shell categoryRow" id="categoryRow">'+''.join('<a href="category/'+cat_slug(c)+'/"><span>'+e(c)+'</span></a>' for c in categories)+'</div>',home,flags=re.S)
