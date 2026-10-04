@@ -1,6 +1,6 @@
 """Rebuild crawlable Folvella pages using the checked-in editorial source."""
 import json,re,html,xml.etree.ElementTree as ET
-from home_design import render_home, pin_link
+from home_design import render_home, pin_link, pin_url
 from pathlib import Path
 from datetime import datetime,timezone
 from email.utils import format_datetime
@@ -16,9 +16,9 @@ def js(x):return json.dumps(x,ensure_ascii=False).replace('<','\\u003c')
 def schema(x):return '<script type="application/ld+json">'+js(x)+'</script>'
 def head(title,description,path,image=None,schemas=[]):
  url=BASE+path
- return '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+e(title)+' — Folvella</title><meta name="description" content="'+e(description)+'"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="'+url+'"><link rel="alternate" type="application/rss+xml" title="Folvella RSS" href="'+BASE+'feed.xml"><meta property="og:type" content="'+('article' if any(path==p['slug']+'/' for p in posts) else 'website')+'"><meta property="og:title" content="'+e(title)+'"><meta property="og:description" content="'+e(description)+'"><meta property="og:url" content="'+url+'"><meta property="og:site_name" content="Folvella"><meta name="twitter:card" content="summary_large_image">'+ ('<meta property="og:image" content="'+e(absurl(image))+'"><meta name="twitter:image" content="'+e(absurl(image))+'">' if image else '')+'<meta name="twitter:title" content="'+e(title)+'"><meta name="twitter:description" content="'+e(description)+'"><link rel="icon" type="image/svg+xml" href="'+BASE+'assets/favicon.svg"><link rel="stylesheet" href="'+BASE+'assets/style.css?v=20261004-discovery">'+''.join(schema(s) for s in schemas)+'</head>'
+ return '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+e(title)+' — Folvella</title><meta name="description" content="'+e(description)+'"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="'+url+'"><link rel="alternate" type="application/rss+xml" title="Folvella RSS" href="'+BASE+'feed.xml"><meta property="og:type" content="'+('article' if any(path==p['slug']+'/' for p in posts) else 'website')+'"><meta property="og:title" content="'+e(title)+'"><meta property="og:description" content="'+e(description)+'"><meta property="og:url" content="'+url+'"><meta property="og:site_name" content="Folvella"><meta name="twitter:card" content="summary_large_image">'+ ('<meta property="og:image" content="'+e(absurl(image))+'"><meta name="twitter:image" content="'+e(absurl(image))+'">' if image else '')+'<meta name="twitter:title" content="'+e(title)+'"><meta name="twitter:description" content="'+e(description)+'"><link rel="icon" type="image/svg+xml" href="'+BASE+'assets/favicon.svg"><link rel="stylesheet" href="'+BASE+'assets/style.css?v=20261004-complete">'+''.join(schema(s) for s in schemas)+'</head>'
 def nav():return '<header class="topbar"><div class="shell nav"><a class="brand" href="'+BASE+'"><span aria-hidden="true">F</span><b>Folvella</b></a><div></div><nav><a href="'+BASE+'#fresh">Ideas</a><a href="'+BASE+'categories/">Categories</a><a href="'+BASE+'about.html">About</a></nav></div></header>'
-def footer():return '<footer><div class="shell footGrid"><div><a class="brand" href="'+BASE+'">Folvella</a><p>Beautiful ideas for everyday living.</p></div><div><b>Explore</b>'+''.join('<a href="'+BASE+'category/'+cat_slug(c)+'/">'+e(c)+'</a>' for c in categories)+'</div><div><b>Trust & Legal</b>'+''.join('<a href="'+BASE+f+'.html">'+t+'</a>' for f,t in [('editorial-policy','Editorial Policy'),('about','About'),('privacy','Privacy'),('affiliate-disclosure','Affiliate Disclosure'),('contact','Contact')])+'</div></div><div class="shell copyright">© 2026 Folvella</div></footer>'
+def footer():return '<footer><div class="shell footGrid"><div><a class="brand" href="'+BASE+'">Folvella</a><p>Beautiful ideas for everyday living.</p></div><div><b>Explore</b>'+''.join('<a href="'+BASE+'category/'+cat_slug(c)+'/">'+e(c)+'</a>' for c in categories)+'</div><div><b>Trust & Legal</b>'+''.join('<a href="'+BASE+f+'.html">'+t+'</a>' for f,t in [('editorial-policy','Editorial Policy'),('about','About'),('privacy','Privacy'),('affiliate-disclosure','Affiliate Disclosure'),('contact','Contact')])+'<a href="'+BASE+'pinterest/">Pinterest images</a><a href="'+BASE+'fall-ideas/">The fall edit</a></div></div><div class="shell copyright">© 2026 Folvella</div></footer>'
 def img(src,alt,lead=False):
  # Use intrinsic dimensions to reserve space before images load.
  size=image_dimensions.get(src)
@@ -43,13 +43,13 @@ for p in posts:
  body+='<nav class="contents" aria-label="In this guide"><h2>In this guide</h2><ol>'+''.join('<li><a href="#idea-'+str(i+1)+'">'+e(s['heading'])+'</a></li>' for i,s in enumerate(p['sections']))+'</ol></nav>'
  for i,s in enumerate(p['sections']):
   body+='<section class="longSection" id="idea-'+str(i+1)+'"><h2>'+e(s['heading'])+'</h2>'+''.join('<p>'+e(t)+'</p>' for t in s.get('paragraphs',[]))
-  if s.get('image'):body+='<figure class="articleFigure">'+img(s['image'],s.get('alt',s['heading']))+('<figcaption>'+e(s['caption'])+'</figcaption>' if s.get('caption') else '')+'</figure>'
+  if s.get('image'):body+='<figure class="articleFigure">'+img(s['image'],s.get('alt',s['heading']))+'<figcaption>'+e(s.get('caption',''))+' <a class="figurePin" href="'+e(pin_url(p,s['image'],s['heading']+'. '+p['excerpt']))+'" target="_blank" rel="noopener noreferrer" aria-label="Save '+e(s['heading'])+' to Pinterest">Save this idea to Pinterest ↗</a></figcaption></figure>'
   body+='</section>'
  if faq:body+='<section class="longSection"><h2>Frequently asked questions</h2>'+''.join('<h3>'+e(q['q'])+'</h3><p>'+e(q['a'])+'</p>' for q in faq)+'</section>'
  if p.get('sources'):body+='<section class="longSection"><h2>Sources and further reading</h2><ul>'+''.join('<li><a href="'+e(s['url'])+'" rel="noopener noreferrer">'+e(s['title'])+'</a> · Checked '+e(s['accessed'])+'</li>' for s in p['sources'])+'</ul></section>'
  body+='</article><aside class="articleAside"><div class="sideCard"><h3>More to explore</h3><div class="sideLinks">'+''.join('<a href="'+BASE+x['slug']+'/">'+e(x['title'])+'</a>' for x in related)+'<a href="'+BASE+catpath+'">All '+e(p['category'])+' guides</a></div></div></aside></section><section class="section shell"><h2>You may also like</h2><div class="ideaGrid">'+cards(related)+'</div></section></main>'+footer()
- payload={'url':BASE+path,'media':absurl(p.get('pinCover',p['cover'])),'description':p.get('pinDescription',p['excerpt'])}
- body+='<script>const pin='+js(payload)+';document.getElementById("articlePin").addEventListener("click",()=>{const q=new URLSearchParams(pin);window.open("https://www.pinterest.com/pin/create/button/?"+q,"_blank","noopener,noreferrer")});</script></body></html>'
+ body=body.replace('<button id="articlePin" class="articlePin" type="button">Save to Pinterest</button>','<a class="articlePin" href="'+e(pin_url(p))+'" target="_blank" rel="noopener noreferrer">Save to Pinterest</a>')
+ body+='</body></html>'
  write(path+'index.html',body)
 for c in categories:
  items=[p for p in posts if p['category']==c];path='category/'+cat_slug(c)+'/'
@@ -77,7 +77,7 @@ write('index.html',home)
 # Sitemap uses only actual publication/update dates, never the build date.
 ET.register_namespace('','http://www.sitemaps.org/schemas/sitemap/0.9');ET.register_namespace('image','http://www.google.com/schemas/sitemap-image/1.1')
 ns='http://www.sitemaps.org/schemas/sitemap/0.9';ins='http://www.google.com/schemas/sitemap-image/1.1';sm=ET.Element('{'+ns+'}urlset')
-paths=['','categories/']+[p['slug']+'/' for p in posts]+['category/'+cat_slug(c)+'/' for c in categories]+['about.html','contact.html','editorial-policy.html','privacy.html','affiliate-disclosure.html']
+paths=['','categories/','fall-ideas/']+[p['slug']+'/' for p in posts]+['category/'+cat_slug(c)+'/' for c in categories]+['about.html','contact.html','editorial-policy.html','privacy.html','affiliate-disclosure.html']
 for path in paths:
  u=ET.SubElement(sm,'{'+ns+'}url');ET.SubElement(u,'{'+ns+'}loc').text=BASE+path
  p=next((p for p in posts if path==p['slug']+'/'),None)
@@ -94,3 +94,20 @@ for p in posts:
 ET.ElementTree(rss).write(ROOT/'feed.xml',encoding='utf-8',xml_declaration=True)
 write('llms.txt','# Folvella\n\nPractical lifestyle guides. AI-generated illustration use is disclosed on applicable pages.\n\n## Guides\n'+''.join('- ['+p['title']+']('+BASE+p['slug']+'/): '+p['excerpt']+'\n' for p in posts)+'\n## Editorial standards\n- [Editorial policy]('+BASE+'editorial-policy.html)\n')
 print(f'Built {len(posts)} articles, {len(categories)} categories, sitemap and RSS feed.')
+
+# A crawlable seasonal collection links to existing original guides.
+clusters=[
+ ('Warm corners','Small changes that make home feel more inviting.',['warm-lighting-burrowcore-ideas','trinket-shelf-styling-ideas','kitchen-witch-herbal-apothecary']),
+ ('Your home café','A house special, a cozy corner and something sweet.',['coffee-station-party-ideas','banana-syrup-for-coffee','blueberry-latte-recipe','biscoff-latte-recipe','marshmallow-cold-foam','carrot-cake-latte']),
+ ('Make something small','Tactile projects to enjoy a little at a time.',['crochet-parandi-hair-accessory','ribbon-rosette-diy','clay-bag-charms-diy','beaded-bag-charms-diy','sashiko-denim-mending','pressed-flower-frame-diy']),
+ ('Little beauty details','Soft color, sparkle and nostalgic finishing touches.',['short-fall-nail-colors','milky-lilac-nails','rhinestone-nail-ideas','90s-hair-accessory-looks']),
+ ('Fall dressing & Halloween','Easy layers and playful seasonal ideas.',['barn-jacket-outfits-women','easy-halloween-costume-ideas','fawn-halloween-makeup-outfit-ideas']),
+ ('Comfort at the table','Recipes and dinner inspiration for slower evenings.',['slow-cooker-fall-dinner-ideas','ground-beef-stuffed-peppers','burger-bowl-recipes'])]
+selected=[next(p for p in posts if p['slug']==s) for _,_,ss in clusters for s in ss]
+path='fall-ideas/'
+collection={'@context':'https://schema.org','@type':'CollectionPage','name':'The Fall Edit','url':BASE+path,'mainEntity':{'@type':'ItemList','itemListElement':[{'@type':'ListItem','position':i+1,'name':p['title'],'url':BASE+p['slug']+'/'} for i,p in enumerate(selected)]}}
+body=head('The Fall Edit: Cozy Home, Coffee, Crafts & Style','Explore original fall inspiration: warm corners, home café drinks, handmade crafts, nail ideas and easy seasonal outfits.',path,selected[0]['cover'],[collection])+'<body>'+nav()+'<main class="shell section" id="main"><p class="introKicker">THE OCTOBER EDIT</p><h1 class="seasonTitle">Make room for a slower season.</h1><p class="articleDek">Original ideas to make, wear, try and share. Start with whatever feels like you.</p><nav class="seasonJump" aria-label="Fall collections">'+''.join('<a href="#'+cat_slug(title)+'">'+e(title)+'</a>' for title,_,_ in clusters)+'</nav>'
+for title,description,ss in clusters:
+ items=[next(p for p in posts if p['slug']==s) for s in ss]
+ body+='<section class="seasonGroup" id="'+cat_slug(title)+'"><div class="sectionHead"><div><h2>'+e(title)+'</h2><p>'+e(description)+'</p></div></div><div class="ideaGrid">'+cards(items)+'</div></section>'
+write(path+'index.html',body+'</main>'+footer()+'</body></html>')

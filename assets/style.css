@@ -709,3 +709,18 @@ body[data-page="home"] #fresh{padding:36px 0 60px;scroll-margin-top:110px}body[d
  .filters{flex-wrap:nowrap;overflow-x:auto;margin:0 0 14px!important;padding-bottom:5px}.filters button{flex:none;white-space:nowrap!important}
  .footGrid{grid-template-columns:1fr 1fr}.footGrid>div:first-child{grid-column:1/-1}
 }
+
+/* Quiet seasonal discovery and direct, accessible image sharing. */
+.figurePin{display:inline-block;color:#a51635;font-size:13px;padding:7px 0;text-decoration:underline;text-underline-offset:3px}
+.articlePin{display:inline-flex;align-items:center;justify-content:center;text-decoration:none}
+.seasonalBanner{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px 28px;margin-bottom:32px;border:1px solid var(--line);border-radius:10px;background:#fcfaf8}
+.seasonalBanner h2{font:500 26px/1.15 Georgia,serif;margin:0 0 9px}.seasonalBanner p:last-child{font-size:13px;color:var(--muted);margin:0}
+.seasonTitle{font:500 clamp(32px,5vw,54px)/1.1 Georgia,serif;max-width:850px;letter-spacing:-1px}
+.seasonJump{display:flex;flex-wrap:wrap;gap:10px;margin:30px 0}.seasonJump a{font-size:13px;border:1px solid var(--line);border-radius:6px;padding:9px 13px}
+.seasonGroup{padding:24px 0 38px;scroll-margin-top:100px}.seasonGroup>h2{font:500 30px/1.2 Georgia,serif}
+.pinNote{font-size:13px;color:var(--muted);max-width:760px;line-height:1.7}
+.pinCatalogGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;align-items:start}.pinCatalogCard{border:1px solid var(--line);border-radius:10px;overflow:hidden;min-width:0}.pinCatalogCard img{width:100%;height:auto;display:block}.pinCatalogCard>div{padding:18px}.pinCatalogCard h3{font:500 23px/1.2 Georgia,serif;margin:0 0 12px}.pinCatalogCard p{font-size:13px;color:var(--muted);line-height:1.6}.pinCatalogActions{display:flex;flex-wrap:wrap;gap:10px;font-size:12px}.pinCatalogActions a{padding:8px 10px;border:1px solid var(--line);border-radius:5px}.pinCatalogActions .pinPrimary{color:white;background:#a51635;border-color:#a51635}
+@media(min-width:651px) and (max-width:1000px){body[data-page="home"] .search{display:flex;grid-column:1/-1;justify-self:stretch;max-width:none}.nav{height:auto;padding:15px 0}}
+@media(max-width:650px){.seasonalBanner{display:block;padding:20px;margin-bottom:24px}.seasonalBanner h2{font-size:23px}.seasonalBanner .textLink{display:inline-block;font-size:12px;margin-top:15px}.seasonalBanner p:last-child{line-height:1.6}.pinCatalogGrid{grid-template-columns:1fr 1fr;gap:12px}.pinCatalogCard>div{padding:12px}.pinCatalogCard h3{font-size:18px}.pinCatalogActions{font-size:11px}.seasonGroup{scroll-margin-top:90px}.seasonJump{gap:7px}.seasonJump a{font-size:12px;padding:8px 10px}}
+@media(max-width:380px){.pinCatalogGrid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}

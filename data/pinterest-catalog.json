@@ -1,0 +1,838 @@
+{
+  "preparedAt": "2026-10-04",
+  "articleCount": 37,
+  "pinCount": 83,
+  "status": "prepared-not-posted",
+  "pins": [
+    {
+      "slug": "banana-syrup-for-coffee",
+      "category": "Food & Drinks",
+      "image": "assets/generated/banana-syrup-for-coffee-pin-1.webp",
+      "download": "assets/generated/banana-syrup-for-coffee-pin-1.webp",
+      "title": "Homemade Banana Syrup",
+      "description": "Homemade Banana Syrup. Make banana syrup for coffee with a small-batch recipe, a simple iced latte method and five hot, cold and decaf drink ideas.",
+      "url": "https://alperen15100.github.io/Trendora/banana-syrup-for-coffee/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "banana-syrup-for-coffee",
+      "category": "Food & Drinks",
+      "image": "assets/generated/banana-syrup-for-coffee-pin-2.webp",
+      "download": "assets/generated/banana-syrup-for-coffee-pin-2.webp",
+      "title": "Banana Iced Latte",
+      "description": "Banana Iced Latte. Make banana syrup for coffee with a small-batch recipe, a simple iced latte method and five hot, cold and decaf drink ideas.",
+      "url": "https://alperen15100.github.io/Trendora/banana-syrup-for-coffee/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "banana-syrup-for-coffee",
+      "category": "Food & Drinks",
+      "image": "assets/generated/banana-syrup-for-coffee-pin-3.webp",
+      "download": "assets/generated/banana-syrup-for-coffee-pin-3.webp",
+      "title": "5 Banana Coffee Ideas",
+      "description": "5 Banana Coffee Ideas. Make banana syrup for coffee with a small-batch recipe, a simple iced latte method and five hot, cold and decaf drink ideas.",
+      "url": "https://alperen15100.github.io/Trendora/banana-syrup-for-coffee/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "coffee-station-party-ideas",
+      "category": "Food & Drinks",
+      "image": "assets/generated/coffee-station-party-ideas-pin-1.webp",
+      "download": "assets/generated/coffee-station-party-ideas-pin-1.webp",
+      "title": "12 Coffee Party Ideas",
+      "description": "12 Coffee Party Ideas. Plan a coffee party in a small space with twelve station ideas, a practical serving layout, drink options and an easy refill checklist.",
+      "url": "https://alperen15100.github.io/Trendora/coffee-station-party-ideas/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "coffee-station-party-ideas",
+      "category": "Food & Drinks",
+      "image": "assets/generated/coffee-station-party-ideas-pin-2.webp",
+      "download": "assets/generated/coffee-station-party-ideas-pin-2.webp",
+      "title": "Small-Space Coffee Bar",
+      "description": "Small-Space Coffee Bar. Plan a coffee party in a small space with twelve station ideas, a practical serving layout, drink options and an easy refill checklist.",
+      "url": "https://alperen15100.github.io/Trendora/coffee-station-party-ideas/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "coffee-station-party-ideas",
+      "category": "Food & Drinks",
+      "image": "assets/generated/coffee-station-party-ideas-pin-3.webp",
+      "download": "assets/generated/coffee-station-party-ideas-pin-3.webp",
+      "title": "Host a Cozy Coffee Party",
+      "description": "Host a Cozy Coffee Party. Plan a coffee party in a small space with twelve station ideas, a practical serving layout, drink options and an easy refill checklist.",
+      "url": "https://alperen15100.github.io/Trendora/coffee-station-party-ideas/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "blueberry-latte-recipe",
+      "category": "Food & Drinks",
+      "image": "assets/generated/blueberry-latte-recipe-pin-1.webp",
+      "download": "assets/generated/blueberry-latte-recipe-pin-1.webp",
+      "title": "Blueberry Iced Latte",
+      "description": "Blueberry Iced Latte. Make a blueberry latte with homemade berry syrup, hot and iced methods, plus tips for balancing milk, coffee and fruit acidity.",
+      "url": "https://alperen15100.github.io/Trendora/blueberry-latte-recipe/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "blueberry-latte-recipe",
+      "category": "Food & Drinks",
+      "image": "assets/generated/blueberry-latte-recipe-pin-2.webp",
+      "download": "assets/generated/blueberry-latte-recipe-pin-2.webp",
+      "title": "Homemade Blueberry Syrup",
+      "description": "Homemade Blueberry Syrup. Make a blueberry latte with homemade berry syrup, hot and iced methods, plus tips for balancing milk, coffee and fruit acidity.",
+      "url": "https://alperen15100.github.io/Trendora/blueberry-latte-recipe/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "blueberry-latte-recipe",
+      "category": "Food & Drinks",
+      "image": "assets/generated/blueberry-latte-recipe-pin-3.webp",
+      "download": "assets/generated/blueberry-latte-recipe-pin-3.webp",
+      "title": "Your New Coffee Favorite",
+      "description": "Your New Coffee Favorite. Make a blueberry latte with homemade berry syrup, hot and iced methods, plus tips for balancing milk, coffee and fruit acidity.",
+      "url": "https://alperen15100.github.io/Trendora/blueberry-latte-recipe/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "biscoff-latte-recipe",
+      "category": "Food & Drinks",
+      "image": "assets/generated/biscoff-latte-recipe-pin-1.webp",
+      "download": "assets/generated/biscoff-latte-recipe-pin-1.webp",
+      "title": "Easy Biscoff Latte",
+      "description": "Easy Biscoff Latte. Make a hot or iced Biscoff latte with smooth cookie butter, espresso and milk, plus easy swaps and tips to avoid clumps.",
+      "url": "https://alperen15100.github.io/Trendora/biscoff-latte-recipe/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "biscoff-latte-recipe",
+      "category": "Food & Drinks",
+      "image": "assets/generated/biscoff-latte-recipe-pin-2.webp",
+      "download": "assets/generated/biscoff-latte-recipe-pin-2.webp",
+      "title": "Hot or Iced Cookie Coffee",
+      "description": "Hot or Iced Cookie Coffee. Make a hot or iced Biscoff latte with smooth cookie butter, espresso and milk, plus easy swaps and tips to avoid clumps.",
+      "url": "https://alperen15100.github.io/Trendora/biscoff-latte-recipe/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "biscoff-latte-recipe",
+      "category": "Food & Drinks",
+      "image": "assets/generated/biscoff-latte-recipe-pin-3.webp",
+      "download": "assets/generated/biscoff-latte-recipe-pin-3.webp",
+      "title": "Coffee Shop Flavor at Home",
+      "description": "Coffee Shop Flavor at Home. Make a hot or iced Biscoff latte with smooth cookie butter, espresso and milk, plus easy swaps and tips to avoid clumps.",
+      "url": "https://alperen15100.github.io/Trendora/biscoff-latte-recipe/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "coffee-jelly-drink-recipe",
+      "category": "Food & Drinks",
+      "image": "assets/generated/coffee-jelly-drink-recipe-pin-1.webp",
+      "download": "assets/generated/coffee-jelly-drink-recipe-pin-1.webp",
+      "title": "Coffee Jelly Drink",
+      "description": "Coffee Jelly Drink. Make coffee jelly for a chilled milk coffee drink, with gelatin guidance, small cubes, wide-mouth serving jars and texture tips.",
+      "url": "https://alperen15100.github.io/Trendora/coffee-jelly-drink-recipe/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "coffee-jelly-drink-recipe",
+      "category": "Food & Drinks",
+      "image": "assets/generated/coffee-jelly-drink-recipe-pin-2.webp",
+      "download": "assets/generated/coffee-jelly-drink-recipe-pin-2.webp",
+      "title": "Make Coffee Jelly at Home",
+      "description": "Make Coffee Jelly at Home. Make coffee jelly for a chilled milk coffee drink, with gelatin guidance, small cubes, wide-mouth serving jars and texture tips.",
+      "url": "https://alperen15100.github.io/Trendora/coffee-jelly-drink-recipe/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "coffee-jelly-drink-recipe",
+      "category": "Food & Drinks",
+      "image": "assets/generated/coffee-jelly-drink-recipe-pin-3.webp",
+      "download": "assets/generated/coffee-jelly-drink-recipe-pin-3.webp",
+      "title": "A Fun Iced Coffee Twist",
+      "description": "A Fun Iced Coffee Twist. Make coffee jelly for a chilled milk coffee drink, with gelatin guidance, small cubes, wide-mouth serving jars and texture tips.",
+      "url": "https://alperen15100.github.io/Trendora/coffee-jelly-drink-recipe/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "ground-beef-stuffed-peppers",
+      "category": "Food & Drinks",
+      "image": "assets/generated/ground-beef-stuffed-peppers-pin-1.webp",
+      "download": "assets/generated/ground-beef-stuffed-peppers-pin-1.webp",
+      "title": "7 Stuffed Pepper Ideas",
+      "description": "7 Stuffed Pepper Ideas. Make ground beef stuffed peppers with cooked rice, tomato and seven flavor variations, plus practical baking and make-ahead steps.",
+      "url": "https://alperen15100.github.io/Trendora/ground-beef-stuffed-peppers/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "ground-beef-stuffed-peppers",
+      "category": "Food & Drinks",
+      "image": "assets/generated/ground-beef-stuffed-peppers-pin-2.webp",
+      "download": "assets/generated/ground-beef-stuffed-peppers-pin-2.webp",
+      "title": "Easy Ground Beef Peppers",
+      "description": "Easy Ground Beef Peppers. Make ground beef stuffed peppers with cooked rice, tomato and seven flavor variations, plus practical baking and make-ahead steps.",
+      "url": "https://alperen15100.github.io/Trendora/ground-beef-stuffed-peppers/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "ground-beef-stuffed-peppers",
+      "category": "Food & Drinks",
+      "image": "assets/generated/ground-beef-stuffed-peppers-pin-3.webp",
+      "download": "assets/generated/ground-beef-stuffed-peppers-pin-3.webp",
+      "title": "A Cozy Make-Ahead Dinner",
+      "description": "A Cozy Make-Ahead Dinner. Make ground beef stuffed peppers with cooked rice, tomato and seven flavor variations, plus practical baking and make-ahead steps.",
+      "url": "https://alperen15100.github.io/Trendora/ground-beef-stuffed-peppers/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "burger-bowl-recipes",
+      "category": "Food & Drinks",
+      "image": "assets/generated/burger-bowl-recipes-pin-1.webp",
+      "download": "assets/generated/burger-bowl-recipes-pin-1.webp",
+      "title": "5 Easy Burger Bowls",
+      "description": "5 Easy Burger Bowls. Build five burger bowls with skillet beef, a simple burger sauce and fresh toppings, plus potato, avocado, mushroom and rice options.",
+      "url": "https://alperen15100.github.io/Trendora/burger-bowl-recipes/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "burger-bowl-recipes",
+      "category": "Food & Drinks",
+      "image": "assets/generated/burger-bowl-recipes-pin-2.webp",
+      "download": "assets/generated/burger-bowl-recipes-pin-2.webp",
+      "title": "Burger Flavor in a Bowl",
+      "description": "Burger Flavor in a Bowl. Build five burger bowls with skillet beef, a simple burger sauce and fresh toppings, plus potato, avocado, mushroom and rice options.",
+      "url": "https://alperen15100.github.io/Trendora/burger-bowl-recipes/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "burger-bowl-recipes",
+      "category": "Food & Drinks",
+      "image": "assets/generated/burger-bowl-recipes-pin-3.webp",
+      "download": "assets/generated/burger-bowl-recipes-pin-3.webp",
+      "title": "Build Your Favorite Burger Bowl",
+      "description": "Build Your Favorite Burger Bowl. Build five burger bowls with skillet beef, a simple burger sauce and fresh toppings, plus potato, avocado, mushroom and rice options.",
+      "url": "https://alperen15100.github.io/Trendora/burger-bowl-recipes/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "crochet-parandi-hair-accessory",
+      "category": "Women's Hair",
+      "image": "assets/generated/crochet-parandi-hair-accessory-pin-1.webp",
+      "download": "assets/generated/crochet-parandi-hair-accessory-pin-1.jpg",
+      "title": "Crochet a Braid Accent",
+      "description": "Crochet a Braid Accent. Make a lightweight crochet tassel braid accent with simple caps, cotton cords and comfortable attachment tips inspired by Punjabi parandi styling. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/crochet-parandi-hair-accessory/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "crochet-parandi-hair-accessory",
+      "category": "Women's Hair",
+      "image": "assets/generated/crochet-parandi-hair-accessory-pin-2.webp",
+      "download": "assets/generated/crochet-parandi-hair-accessory-pin-2.jpg",
+      "title": "Colorful Parandi Ideas",
+      "description": "Colorful Parandi Ideas. Make a lightweight crochet tassel braid accent with simple caps, cotton cords and comfortable attachment tips inspired by Punjabi parandi styling. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/crochet-parandi-hair-accessory/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "crochet-parandi-hair-accessory",
+      "category": "Women's Hair",
+      "image": "assets/generated/crochet-parandi-hair-accessory-pin-3.webp",
+      "download": "assets/generated/crochet-parandi-hair-accessory-pin-3.jpg",
+      "title": "A Handmade Hair Detail",
+      "description": "A Handmade Hair Detail. Make a lightweight crochet tassel braid accent with simple caps, cotton cords and comfortable attachment tips inspired by Punjabi parandi styling. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/crochet-parandi-hair-accessory/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "ribbon-rosette-diy",
+      "category": "Home & DIY",
+      "image": "assets/generated/ribbon-rosette-diy-pin-1.webp",
+      "download": "assets/generated/ribbon-rosette-diy-pin-1.jpg",
+      "title": "Make a Ribbon Rosette",
+      "description": "Make a Ribbon Rosette. Fold a simple ribbon rosette with pleats, a card backing and two tails, then use it for birthday keepsakes, gift wrap or party place settings. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/ribbon-rosette-diy/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "ribbon-rosette-diy",
+      "category": "Home & DIY",
+      "image": "assets/generated/ribbon-rosette-diy-pin-2.webp",
+      "download": "assets/generated/ribbon-rosette-diy-pin-2.jpg",
+      "title": "Ribbon Details to Make",
+      "description": "Ribbon Details to Make. Fold a simple ribbon rosette with pleats, a card backing and two tails, then use it for birthday keepsakes, gift wrap or party place settings. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/ribbon-rosette-diy/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "ribbon-rosette-diy",
+      "category": "Home & DIY",
+      "image": "assets/generated/ribbon-rosette-diy-pin-3.webp",
+      "download": "assets/generated/ribbon-rosette-diy-pin-3.jpg",
+      "title": "A Handmade Party Accent",
+      "description": "A Handmade Party Accent. Fold a simple ribbon rosette with pleats, a card backing and two tails, then use it for birthday keepsakes, gift wrap or party place settings. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/ribbon-rosette-diy/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "birthday-magazine-ideas",
+      "category": "Home & DIY",
+      "image": "assets/generated/birthday-magazine-ideas-pin-1.webp",
+      "download": "assets/generated/birthday-magazine-ideas-pin-1.jpg",
+      "title": "A Birthday Magazine Idea",
+      "description": "A Birthday Magazine Idea. Plan an eight-page birthday magazine with cover ideas, a memory timeline, personal messages and practical layout and print-checking tips. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/birthday-magazine-ideas/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "birthday-magazine-ideas",
+      "category": "Home & DIY",
+      "image": "assets/generated/birthday-magazine-ideas-pin-2.webp",
+      "download": "assets/generated/birthday-magazine-ideas-pin-2.jpg",
+      "title": "Make a Birthday Keepsake",
+      "description": "Make a Birthday Keepsake. Plan an eight-page birthday magazine with cover ideas, a memory timeline, personal messages and practical layout and print-checking tips. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/birthday-magazine-ideas/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "birthday-magazine-ideas",
+      "category": "Home & DIY",
+      "image": "assets/generated/birthday-magazine-ideas-pin-3.webp",
+      "download": "assets/generated/birthday-magazine-ideas-pin-3.jpg",
+      "title": "Pages Filled With Memories",
+      "description": "Pages Filled With Memories. Plan an eight-page birthday magazine with cover ideas, a memory timeline, personal messages and practical layout and print-checking tips. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/birthday-magazine-ideas/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "sashiko-denim-mending",
+      "category": "Home & DIY",
+      "image": "assets/generated/sashiko-denim-mending-pin-1.webp",
+      "download": "assets/generated/sashiko-denim-mending-pin-1.jpg",
+      "title": "Give Denim a New Life",
+      "description": "Give Denim a New Life. Repair worn denim with a backing patch and simple sashiko-inspired running stitches, with beginner advice on spacing, tension and finishing. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/sashiko-denim-mending/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "sashiko-denim-mending",
+      "category": "Home & DIY",
+      "image": "assets/generated/sashiko-denim-mending-pin-2.webp",
+      "download": "assets/generated/sashiko-denim-mending-pin-2.jpg",
+      "title": "Simple Visible Mending",
+      "description": "Simple Visible Mending. Repair worn denim with a backing patch and simple sashiko-inspired running stitches, with beginner advice on spacing, tension and finishing. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/sashiko-denim-mending/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "sashiko-denim-mending",
+      "category": "Home & DIY",
+      "image": "assets/generated/sashiko-denim-mending-pin-3.webp",
+      "download": "assets/generated/sashiko-denim-mending-pin-3.jpg",
+      "title": "A Patch Worth Showing",
+      "description": "A Patch Worth Showing. Repair worn denim with a backing patch and simple sashiko-inspired running stitches, with beginner advice on spacing, tension and finishing. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/sashiko-denim-mending/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "clay-bag-charms-diy",
+      "category": "Home & DIY",
+      "image": "assets/generated/clay-bag-charms-diy-pin-1.webp",
+      "download": "assets/generated/clay-bag-charms-diy-pin-1.jpg",
+      "title": "Make Clay Bag Charms",
+      "description": "Make Clay Bag Charms. Make lightweight polymer clay bag charms with simple shapes, secure attachment points and curing instructions matched to your clay brand. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/clay-bag-charms-diy/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "clay-bag-charms-diy",
+      "category": "Home & DIY",
+      "image": "assets/generated/clay-bag-charms-diy-pin-2.webp",
+      "download": "assets/generated/clay-bag-charms-diy-pin-2.jpg",
+      "title": "Tiny Charms Big Personality",
+      "description": "Tiny Charms Big Personality. Make lightweight polymer clay bag charms with simple shapes, secure attachment points and curing instructions matched to your clay brand. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/clay-bag-charms-diy/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "clay-bag-charms-diy",
+      "category": "Home & DIY",
+      "image": "assets/generated/clay-bag-charms-diy-pin-3.webp",
+      "download": "assets/generated/clay-bag-charms-diy-pin-3.jpg",
+      "title": "A Handmade Bag Detail",
+      "description": "A Handmade Bag Detail. Make lightweight polymer clay bag charms with simple shapes, secure attachment points and curing instructions matched to your clay brand. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/clay-bag-charms-diy/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "beginner-hand-embroidery-motifs",
+      "category": "Home & DIY",
+      "image": "assets/generated/beginner-hand-embroidery-motifs-pin-1.webp",
+      "download": "assets/generated/beginner-hand-embroidery-motifs-pin-1.jpg",
+      "title": "Small Embroidery Ideas",
+      "description": "Small Embroidery Ideas. Practice six small hand embroidery motifs with easy stitches, floss guidance and finishing ideas for a hoop, pouch or fabric patch. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/beginner-hand-embroidery-motifs/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "beginner-hand-embroidery-motifs",
+      "category": "Home & DIY",
+      "image": "assets/generated/beginner-hand-embroidery-motifs-pin-2.webp",
+      "download": "assets/generated/beginner-hand-embroidery-motifs-pin-2.jpg",
+      "title": "Start With a Simple Stitch",
+      "description": "Start With a Simple Stitch. Practice six small hand embroidery motifs with easy stitches, floss guidance and finishing ideas for a hoop, pouch or fabric patch. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/beginner-hand-embroidery-motifs/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "beginner-hand-embroidery-motifs",
+      "category": "Home & DIY",
+      "image": "assets/generated/beginner-hand-embroidery-motifs-pin-3.webp",
+      "download": "assets/generated/beginner-hand-embroidery-motifs-pin-3.jpg",
+      "title": "Make a Tiny Floral Hoop",
+      "description": "Make a Tiny Floral Hoop. Practice six small hand embroidery motifs with easy stitches, floss guidance and finishing ideas for a hoop, pouch or fabric patch. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/beginner-hand-embroidery-motifs/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "bedazzled-headphones-diy",
+      "category": "Home & DIY",
+      "image": "assets/generated/bedazzled-headphones-diy-pin-1.webp",
+      "download": "assets/generated/bedazzled-headphones-diy-pin-1.jpg",
+      "title": "Add a Little Sparkle",
+      "description": "Add a Little Sparkle. Add rhinestones to compatible removable headphone covers with light patterns and clear space around vents, controls, hinges and ports. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/bedazzled-headphones-diy/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "bedazzled-headphones-diy",
+      "category": "Home & DIY",
+      "image": "assets/generated/bedazzled-headphones-diy-pin-2.webp",
+      "download": "assets/generated/bedazzled-headphones-diy-pin-2.jpg",
+      "title": "Decorate Headphone Covers",
+      "description": "Decorate Headphone Covers. Add rhinestones to compatible removable headphone covers with light patterns and clear space around vents, controls, hinges and ports. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/bedazzled-headphones-diy/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "bedazzled-headphones-diy",
+      "category": "Home & DIY",
+      "image": "assets/generated/bedazzled-headphones-diy-pin-3.webp",
+      "download": "assets/generated/bedazzled-headphones-diy-pin-3.jpg",
+      "title": "A Personal Headphone Detail",
+      "description": "A Personal Headphone Detail. Add rhinestones to compatible removable headphone covers with light patterns and clear space around vents, controls, hinges and ports. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/bedazzled-headphones-diy/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "barn-jacket-outfits-women",
+      "category": "Style & Seasonal",
+      "image": "assets/generated/barn-jacket-outfits-women-pin-1.webp",
+      "download": "assets/generated/barn-jacket-outfits-women-pin-1.jpg",
+      "title": "Style a Barn Jacket",
+      "description": "Style a Barn Jacket. Style a barn jacket with jeans, a midi skirt, trousers, a knit dress or leggings using five practical fall combinations and balanced layers. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/barn-jacket-outfits-women/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "barn-jacket-outfits-women",
+      "category": "Style & Seasonal",
+      "image": "assets/generated/barn-jacket-outfits-women-pin-2.webp",
+      "download": "assets/generated/barn-jacket-outfits-women-pin-2.jpg",
+      "title": "Easy Fall Outfit Ideas",
+      "description": "Easy Fall Outfit Ideas. Style a barn jacket with jeans, a midi skirt, trousers, a knit dress or leggings using five practical fall combinations and balanced layers. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/barn-jacket-outfits-women/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "barn-jacket-outfits-women",
+      "category": "Style & Seasonal",
+      "image": "assets/generated/barn-jacket-outfits-women-pin-3.webp",
+      "download": "assets/generated/barn-jacket-outfits-women-pin-3.jpg",
+      "title": "One Jacket Five Looks",
+      "description": "One Jacket Five Looks. Style a barn jacket with jeans, a midi skirt, trousers, a knit dress or leggings using five practical fall combinations and balanced layers. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/barn-jacket-outfits-women/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "beaded-bag-charms-diy",
+      "category": "Home & DIY",
+      "image": "assets/generated/beaded-bag-charms-diy-pin-1.webp",
+      "download": "assets/generated/beaded-bag-charms-diy-pin-1.jpg",
+      "title": "Make a Beaded Bag Charm",
+      "description": "Make a Beaded Bag Charm. Build a lightweight beaded bag charm loop using compatible wire, crimps and a clasp, with color ideas and step-by-step assembly advice. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/beaded-bag-charms-diy/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "beaded-bag-charms-diy",
+      "category": "Home & DIY",
+      "image": "assets/generated/beaded-bag-charms-diy-pin-2.webp",
+      "download": "assets/generated/beaded-bag-charms-diy-pin-2.jpg",
+      "title": "Beads for Your Everyday Bag",
+      "description": "Beads for Your Everyday Bag. Build a lightweight beaded bag charm loop using compatible wire, crimps and a clasp, with color ideas and step-by-step assembly advice. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/beaded-bag-charms-diy/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "beaded-bag-charms-diy",
+      "category": "Home & DIY",
+      "image": "assets/generated/beaded-bag-charms-diy-pin-3.webp",
+      "download": "assets/generated/beaded-bag-charms-diy-pin-3.jpg",
+      "title": "A Simple Charm to Make",
+      "description": "A Simple Charm to Make. Build a lightweight beaded bag charm loop using compatible wire, crimps and a clasp, with color ideas and step-by-step assembly advice. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/beaded-bag-charms-diy/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "trinket-shelf-styling-ideas",
+      "category": "Home Decor",
+      "image": "assets/generated/trinket-shelf-styling-ideas-pin-1.webp",
+      "download": "assets/generated/trinket-shelf-styling-ideas-pin-1.jpg",
+      "title": "Style a Trinket Shelf",
+      "description": "Style a Trinket Shelf. Arrange small collections on a trinket shelf with loose groups, simple risers, breathing room and an easy routine for cleaning and rotating. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/trinket-shelf-styling-ideas/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "trinket-shelf-styling-ideas",
+      "category": "Home Decor",
+      "image": "assets/generated/trinket-shelf-styling-ideas-pin-2.webp",
+      "download": "assets/generated/trinket-shelf-styling-ideas-pin-2.jpg",
+      "title": "A Home for Tiny Treasures",
+      "description": "A Home for Tiny Treasures. Arrange small collections on a trinket shelf with loose groups, simple risers, breathing room and an easy routine for cleaning and rotating. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/trinket-shelf-styling-ideas/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "trinket-shelf-styling-ideas",
+      "category": "Home Decor",
+      "image": "assets/generated/trinket-shelf-styling-ideas-pin-3.webp",
+      "download": "assets/generated/trinket-shelf-styling-ideas-pin-3.jpg",
+      "title": "Small Shelf Lovely Details",
+      "description": "Small Shelf Lovely Details. Arrange small collections on a trinket shelf with loose groups, simple risers, breathing room and an easy routine for cleaning and rotating. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/trinket-shelf-styling-ideas/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "easy-air-dry-clay-crafts",
+      "category": "Home & DIY",
+      "image": "assets/generated/easy-air-dry-clay-crafts-pin-1.webp",
+      "download": "assets/generated/easy-air-dry-clay-crafts-pin-1.jpg",
+      "title": "Easy Air Dry Clay Ideas",
+      "description": "Easy Air Dry Clay Ideas. Try six decorative air-dry clay projects, from a ring dish to a photo stand, with shaping, drying and finishing tips for your first batch. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/easy-air-dry-clay-crafts/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "easy-air-dry-clay-crafts",
+      "category": "Home & DIY",
+      "image": "assets/generated/easy-air-dry-clay-crafts-pin-2.webp",
+      "download": "assets/generated/easy-air-dry-clay-crafts-pin-2.jpg",
+      "title": "Make a Little Clay Stand",
+      "description": "Make a Little Clay Stand. Try six decorative air-dry clay projects, from a ring dish to a photo stand, with shaping, drying and finishing tips for your first batch. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/easy-air-dry-clay-crafts/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "easy-air-dry-clay-crafts",
+      "category": "Home & DIY",
+      "image": "assets/generated/easy-air-dry-clay-crafts-pin-3.webp",
+      "download": "assets/generated/easy-air-dry-clay-crafts-pin-3.jpg",
+      "title": "No Kiln Craft Projects",
+      "description": "No Kiln Craft Projects. Try six decorative air-dry clay projects, from a ring dish to a photo stand, with shaping, drying and finishing tips for your first batch. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/easy-air-dry-clay-crafts/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "pressed-flower-frame-diy",
+      "category": "Home & DIY",
+      "image": "assets/generated/pressed-flower-frame-diy-pin-1.webp",
+      "download": "assets/generated/pressed-flower-frame-diy-pin-1.jpg",
+      "title": "Frame Your Pressed Flowers",
+      "description": "Frame Your Pressed Flowers. Press thin flowers and leaves, check that they are dry and arrange a botanical frame with simple guidance on pressing, layout and display. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/pressed-flower-frame-diy/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "pressed-flower-frame-diy",
+      "category": "Home & DIY",
+      "image": "assets/generated/pressed-flower-frame-diy-pin-2.webp",
+      "download": "assets/generated/pressed-flower-frame-diy-pin-2.jpg",
+      "title": "A Botanical Keepsake",
+      "description": "A Botanical Keepsake. Press thin flowers and leaves, check that they are dry and arrange a botanical frame with simple guidance on pressing, layout and display. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/pressed-flower-frame-diy/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "pressed-flower-frame-diy",
+      "category": "Home & DIY",
+      "image": "assets/generated/pressed-flower-frame-diy-pin-3.webp",
+      "download": "assets/generated/pressed-flower-frame-diy-pin-3.jpg",
+      "title": "Simple Pressed Flower Art",
+      "description": "Simple Pressed Flower Art. Press thin flowers and leaves, check that they are dry and arrange a botanical frame with simple guidance on pressing, layout and display. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/pressed-flower-frame-diy/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "marshmallow-cold-foam",
+      "category": "Food & Drinks",
+      "image": "assets/generated/marshmallow-cold-foam-pin-1.webp",
+      "download": "assets/generated/marshmallow-cold-foam-pin-1.jpg",
+      "title": "Make Marshmallow Cold Foam",
+      "description": "Make Marshmallow Cold Foam. Make marshmallow cold foam for iced coffee with a small dairy batch, frothing tips, three flavor variations and easy texture adjustments. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/marshmallow-cold-foam/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "marshmallow-cold-foam",
+      "category": "Food & Drinks",
+      "image": "assets/generated/marshmallow-cold-foam-pin-2.webp",
+      "download": "assets/generated/marshmallow-cold-foam-pin-2.jpg",
+      "title": "A Soft Sweet Coffee Top",
+      "description": "A Soft Sweet Coffee Top. Make marshmallow cold foam for iced coffee with a small dairy batch, frothing tips, three flavor variations and easy texture adjustments. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/marshmallow-cold-foam/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "marshmallow-cold-foam",
+      "category": "Food & Drinks",
+      "image": "assets/generated/marshmallow-cold-foam-pin-3.webp",
+      "download": "assets/generated/marshmallow-cold-foam-pin-3.jpg",
+      "title": "Try This Iced Coffee Topping",
+      "description": "Try This Iced Coffee Topping. Make marshmallow cold foam for iced coffee with a small dairy batch, frothing tips, three flavor variations and easy texture adjustments. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/marshmallow-cold-foam/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "cookies-and-cream-latte",
+      "category": "Food & Drinks",
+      "image": "assets/generated/cookies-and-cream-latte-pin-1.webp",
+      "download": "assets/generated/cookies-and-cream-latte-pin-1.jpg",
+      "title": "Cookies and Cream Latte",
+      "description": "Cookies and Cream Latte. Make an iced cookies and cream latte with cocoa, vanilla, coffee and milk, then finish with fine cookie crumbs and an optional cream topping. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/cookies-and-cream-latte/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "cookies-and-cream-latte",
+      "category": "Food & Drinks",
+      "image": "assets/generated/cookies-and-cream-latte-pin-2.webp",
+      "download": "assets/generated/cookies-and-cream-latte-pin-2.jpg",
+      "title": "A Cookie Inspired Coffee",
+      "description": "A Cookie Inspired Coffee. Make an iced cookies and cream latte with cocoa, vanilla, coffee and milk, then finish with fine cookie crumbs and an optional cream topping. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/cookies-and-cream-latte/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "cookies-and-cream-latte",
+      "category": "Food & Drinks",
+      "image": "assets/generated/cookies-and-cream-latte-pin-3.webp",
+      "download": "assets/generated/cookies-and-cream-latte-pin-3.jpg",
+      "title": "Make an Iced Cookie Latte",
+      "description": "Make an Iced Cookie Latte. Make an iced cookies and cream latte with cocoa, vanilla, coffee and milk, then finish with fine cookie crumbs and an optional cream topping. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/cookies-and-cream-latte/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "carrot-cake-latte",
+      "category": "Food & Drinks",
+      "image": "assets/generated/carrot-cake-latte-pin-1.webp",
+      "download": "assets/generated/carrot-cake-latte-pin-1.jpg",
+      "title": "Make a Carrot Cake Latte",
+      "description": "Make a Carrot Cake Latte. Make a carrot cake-inspired latte with cinnamon, ginger, nutmeg and vanilla, plus hot, iced and decaf options for a cozy coffee break. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/carrot-cake-latte/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "carrot-cake-latte",
+      "category": "Food & Drinks",
+      "image": "assets/generated/carrot-cake-latte-pin-2.webp",
+      "download": "assets/generated/carrot-cake-latte-pin-2.jpg",
+      "title": "Warm Spiced Coffee at Home",
+      "description": "Warm Spiced Coffee at Home. Make a carrot cake-inspired latte with cinnamon, ginger, nutmeg and vanilla, plus hot, iced and decaf options for a cozy coffee break. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/carrot-cake-latte/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "carrot-cake-latte",
+      "category": "Food & Drinks",
+      "image": "assets/generated/carrot-cake-latte-pin-3.webp",
+      "download": "assets/generated/carrot-cake-latte-pin-3.jpg",
+      "title": "A Cozy Cake Inspired Latte",
+      "description": "A Cozy Cake Inspired Latte. Make a carrot cake-inspired latte with cinnamon, ginger, nutmeg and vanilla, plus hot, iced and decaf options for a cozy coffee break. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/carrot-cake-latte/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "mango-iced-coffee",
+      "category": "Food & Drinks",
+      "image": "assets/generated/mango-iced-coffee-pin-1.webp",
+      "download": "assets/generated/mango-iced-coffee-pin-1.jpg",
+      "title": "Try Mango Iced Coffee",
+      "description": "Try Mango Iced Coffee. Make a small mango syrup batch for an iced latte or cold brew, with straining steps, balanced proportions and tips for a smoother drink. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/mango-iced-coffee/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "mango-iced-coffee",
+      "category": "Food & Drinks",
+      "image": "assets/generated/mango-iced-coffee-pin-2.webp",
+      "download": "assets/generated/mango-iced-coffee-pin-2.jpg",
+      "title": "A Fruity Cold Brew",
+      "description": "A Fruity Cold Brew. Make a small mango syrup batch for an iced latte or cold brew, with straining steps, balanced proportions and tips for a smoother drink. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/mango-iced-coffee/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "mango-iced-coffee",
+      "category": "Food & Drinks",
+      "image": "assets/generated/mango-iced-coffee-pin-3.webp",
+      "download": "assets/generated/mango-iced-coffee-pin-3.jpg",
+      "title": "Make Mango Coffee at Home",
+      "description": "Make Mango Coffee at Home. Make a small mango syrup batch for an iced latte or cold brew, with straining steps, balanced proportions and tips for a smoother drink. Read the full original guide on Folvella.",
+      "url": "https://alperen15100.github.io/Trendora/mango-iced-coffee/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "feminine-pixie-cut-ideas",
+      "category": "Women's Hair",
+      "image": "assets/generated/feminine-pixie-cut-ideas-cover.webp",
+      "download": "assets/generated/feminine-pixie-cut-ideas-cover.webp",
+      "title": "15 Feminine Pixie Cut Ideas for Different Hair Textures",
+      "description": "Explore 15 pixie haircut ideas, from soft fringes to curly shapes, with practical notes on texture, styling and what to discuss with your stylist. Save the guide for original visual ideas and practical details.",
+      "url": "https://alperen15100.github.io/Trendora/feminine-pixie-cut-ideas/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "slow-cooker-fall-dinner-ideas",
+      "category": "Food & Drinks",
+      "image": "assets/generated/slow-cooker-fall-dinner-ideas-cover.webp",
+      "download": "assets/generated/slow-cooker-fall-dinner-ideas-cover.webp",
+      "title": "6 Cozy Slow Cooker Dinner Ideas for Fall",
+      "description": "Plan comforting slow cooker dinners with six original flavor ideas, serving suggestions and notes on choosing a suitable tested recipe. Save the guide for original visual ideas and practical details.",
+      "url": "https://alperen15100.github.io/Trendora/slow-cooker-fall-dinner-ideas/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "easy-halloween-costume-ideas",
+      "category": "Style & Seasonal",
+      "image": "assets/generated/easy-halloween-costume-ideas-cover.webp",
+      "download": "assets/generated/easy-halloween-costume-ideas-cover.webp",
+      "title": "12 Easy Halloween Costume Ideas Using Everyday Clothes",
+      "description": "Create a Halloween costume from everyday clothes with 12 original outfit ideas, simple accessories and practical tips for a comfortable evening. Save the guide for original visual ideas and practical details.",
+      "url": "https://alperen15100.github.io/Trendora/easy-halloween-costume-ideas/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "fawn-halloween-makeup-outfit-ideas",
+      "category": "Style & Seasonal",
+      "image": "assets/generated/fawn-halloween-makeup-outfit-ideas-cover.webp",
+      "download": "assets/generated/fawn-halloween-makeup-outfit-ideas-cover.webp",
+      "title": "8 Fawn Halloween Makeup and Outfit Ideas to Make Your Own",
+      "description": "Explore eight fawn-inspired Halloween looks, pairing warm brown outfits with optional makeup, small ear accessories and practical styling notes. Save the guide for original visual ideas and practical details.",
+      "url": "https://alperen15100.github.io/Trendora/fawn-halloween-makeup-outfit-ideas/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "rhinestone-nail-ideas",
+      "category": "Beauty & Nails",
+      "image": "assets/generated/rhinestone-nail-ideas-cover.webp",
+      "download": "assets/generated/rhinestone-nail-ideas-cover.webp",
+      "title": "12 Rhinestone Nail Ideas: Minimal to Statement",
+      "description": "Find twelve rhinestone manicure ideas with distinct gem placement, nail shapes and color combinations, plus practical notes for your salon reference. Save the guide for original visual ideas and practical details.",
+      "url": "https://alperen15100.github.io/Trendora/rhinestone-nail-ideas/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "90s-hair-accessory-looks",
+      "category": "Women's Hair",
+      "image": "assets/generated/90s-hair-accessory-looks-cover.webp",
+      "download": "assets/generated/90s-hair-accessory-looks-cover.webp",
+      "title": "10 ’90s Hair Accessory Looks to Recreate",
+      "description": "Style headbands, claw clips, scrunchies and butterfly clips with ten original ’90s-inspired looks and practical placement tips for different hair lengths. Save the guide for original visual ideas and practical details.",
+      "url": "https://alperen15100.github.io/Trendora/90s-hair-accessory-looks/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "small-gaming-room-setup-ideas",
+      "category": "Home Decor",
+      "image": "assets/generated/gaming-room-pin.webp",
+      "download": "assets/generated/gaming-room-pin.webp",
+      "title": "6 Small Gaming Room Setup Ideas for a Calm, Organized Space",
+      "description": "Small gaming room setup ideas with a compact desk layout, warm lighting, cable organization and a calm console corner. Save this practical room planning guide.",
+      "url": "https://alperen15100.github.io/Trendora/small-gaming-room-setup-ideas/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "warm-lighting-burrowcore-ideas",
+      "category": "Home Decor",
+      "image": "assets/generated/warm-reading-corner.webp",
+      "download": "assets/generated/warm-reading-corner.webp",
+      "title": "Warm Lighting Ideas for a Cozy Burrowcore Home",
+      "description": "Create a cozy reading corner, calmer bedroom and welcoming kitchen with shaded lamps, layered light and a practical room-by-room plan.",
+      "url": "https://alperen15100.github.io/Trendora/warm-lighting-burrowcore-ideas/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "short-fall-nail-colors",
+      "category": "Beauty & Nails",
+      "image": "assets/generated/chocolate-short-nails.webp",
+      "download": "assets/generated/chocolate-short-nails.webp",
+      "title": "3 Short Fall Nail Colors to Try: Chocolate, Cherry and Olive",
+      "description": "Three wearable autumn manicure ideas with original visual references, finish comparisons and a simple checklist for your next salon appointment.",
+      "url": "https://alperen15100.github.io/Trendora/short-fall-nail-colors/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "soft-wolf-cut-men",
+      "category": "Men's Grooming",
+      "image": "assets/generated/soft-wolf-cut-men-cover.webp",
+      "download": "assets/generated/soft-wolf-cut-men-cover.webp",
+      "title": "23 Soft Wolf Cut Ideas for Men That Look Modern, Textured and Easy to Style",
+      "description": "23 soft wolf cut ideas for men to save: wavy wolf cuts, curtain fringe, textured layers, subtle mullet shapes, short wolf cuts, curly versions and easy styling ideas for your next haircut.",
+      "url": "https://alperen15100.github.io/Trendora/soft-wolf-cut-men/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "home-cafe-coffee-ideas",
+      "category": "Food & Drinks",
+      "image": "assets/generated/home-cafe-coffee-ideas-cover.webp",
+      "download": "assets/generated/home-cafe-coffee-ideas-cover.webp",
+      "title": "21 Home Café Ideas & Coffee Recipes That Make Mornings Feel Like a Coffee Shop",
+      "description": "21 home café ideas and coffee recipes to save: banana syrup coffee, blueberry latte, Biscoff latte, cold foam, cinnamon drinks, coffee station ideas and small-space coffee bar inspiration.",
+      "url": "https://alperen15100.github.io/Trendora/home-cafe-coffee-ideas/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "perfume-layering-ideas",
+      "category": "Beauty & Fragrance",
+      "image": "assets/generated/perfume-layering-ideas-cover.webp",
+      "download": "assets/generated/perfume-layering-ideas-cover.webp",
+      "title": "19 Perfume Layering Ideas That Smell Expensive and Completely Unique",
+      "description": "19 perfume layering ideas that smell expensive and unique. Save these vanilla, amber, citrus, rose, fig, jasmine, oud and musk fragrance combinations for your next scent routine.",
+      "url": "https://alperen15100.github.io/Trendora/perfume-layering-ideas/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "kitchen-witch-herbal-apothecary",
+      "category": "Home & DIY",
+      "image": "assets/generated/kitchen-witch-herbal-apothecary-cover.webp",
+      "download": "assets/generated/kitchen-witch-herbal-apothecary-cover.webp",
+      "title": "17 Kitchen Witch & Herbal Apothecary Ideas That Make a Kitchen Feel Magical",
+      "description": "17 kitchen witch and herbal apothecary ideas for a cozy, organized kitchen. Save these amber bottle, dried herb, tea station and labeled jar ideas for your next home refresh.",
+      "url": "https://alperen15100.github.io/Trendora/kitchen-witch-herbal-apothecary/",
+      "status": "prepared-not-posted"
+    },
+    {
+      "slug": "milky-lilac-nails",
+      "category": "Beauty & Nails",
+      "image": "assets/generated/milky-lilac-nails-cover.webp",
+      "download": "assets/generated/milky-lilac-nails-cover.webp",
+      "title": "21 Milky Lilac Nail Ideas That Look Soft, Glossy and Expensive",
+      "description": "21 milky lilac nail ideas for a soft, glossy manicure. Save these sheer lavender, glazed lilac, French tip and almond nail ideas for your next salon visit.",
+      "url": "https://alperen15100.github.io/Trendora/milky-lilac-nails/",
+      "status": "prepared-not-posted"
+    }
+  ]
+}
