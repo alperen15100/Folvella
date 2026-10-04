@@ -72,7 +72,7 @@ home=(ROOT/'index.html').read_text()
 home=re.sub(r'<script type="application/ld\+json">.*?</script>','',home,flags=re.S)
 home=re.sub(r'<meta property="og:image"[^>]*>|<meta name="twitter:(?:card|image)"[^>]*>','',home)
 home=home.replace('</head>','<meta property="og:image" content="'+absurl(posts[0]['cover'])+'"><meta name="twitter:image" content="'+absurl(posts[0]['cover'])+'"><meta name="twitter:card" content="summary_large_image">'+schema({'@context':'https://schema.org','@type':'WebSite','name':'Folvella','url':BASE})+schema({'@context':'https://schema.org','@type':'ItemList','itemListElement':[{'@type':'ListItem','position':i+1,'name':p['title'],'url':BASE+p['slug']+'/'} for i,p in enumerate(posts)]})+'</head>')
-home=render_home(home,posts,home.split('</head>')[0].replace('20261004-folvella','20261004-discovery')+'</head>',footer,img,cards)
+home=render_home(home,posts,home.split('</head>')[0].replace('20261004-folvella','20261004-complete').replace('20261004-discovery','20261004-complete')+'</head>',footer,img,cards)
 write('index.html',home)
 # Sitemap uses only actual publication/update dates, never the build date.
 ET.register_namespace('','http://www.sitemaps.org/schemas/sitemap/0.9');ET.register_namespace('image','http://www.google.com/schemas/sitemap-image/1.1')
