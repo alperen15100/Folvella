@@ -1,0 +1,419 @@
+{
+  "imageCount": 69,
+  "images": [
+    {
+      "path": "assets/generated/feminine-pixie-cut-ideas-cover.webp",
+      "sha256": "d7755d6a245425421f75c607bb47a3012a061c41981af2d44f07b3ba1a725f79",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/slow-cooker-fall-dinner-ideas-cover.webp",
+      "sha256": "61da31be7a0bc7a7593941695658f5ed62d72f1bef010918ec5c16988be0e6a8",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/easy-halloween-costume-ideas-cover.webp",
+      "sha256": "2c55cefa49c0da1a33a0420e8cf1c69b6545654e9e8b8f9535edc9725ed2827e",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/fawn-halloween-makeup-outfit-ideas-cover.webp",
+      "sha256": "66f5f912d5e6227aa6825ffd3c654079e6bdd1fb1185c8d1bc88a8b69be79062",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/rhinestone-nail-ideas-cover.webp",
+      "sha256": "04d383f65a56250def046b4c8de8cd7c302f9ee29f43e2c17ab3246312357ed3",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/90s-hair-accessory-looks-cover.webp",
+      "sha256": "796d381c8d96b9fa605b51373681544b81a2263510ccbb28b69a9a7b54a2959c",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/feminine-pixie-cut-ideas-02.webp",
+      "sha256": "5d608e29cccca2244da2a9917bfb5ef1938fb4ced5c53f2ab8516d37076fb63f",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/feminine-pixie-cut-ideas-08.webp",
+      "sha256": "efdcebb2754df330ed107bf2a7a21cdbea0a3dd57d9a3ea9769ac8d354cc320d",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/feminine-pixie-cut-ideas-03.webp",
+      "sha256": "b69077e8f0afc47ca3ef39adaa1c8077f6b3f49e512f61fbdb59e61fb57bbf21",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/feminine-pixie-cut-ideas-09.webp",
+      "sha256": "e06957aee9254dadaba016ac2a20f8d751e679db523db4bbd77ed8ecac2c1abc",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/feminine-pixie-cut-ideas-01.webp",
+      "sha256": "f0b6d54f1bb9efb6b34d60038512dc0f50e87c954b80e93acb97e1155bdd0e57",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/feminine-pixie-cut-ideas-11.webp",
+      "sha256": "2157e48c73e54ee65674386c6049054c351b9426d8427e27ccc98b183ca1fee1",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/feminine-pixie-cut-ideas-04.webp",
+      "sha256": "85fd3f32fbec899e8cad1c90651b74a81be45728f893d8a9a62ae321e04b585e",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/feminine-pixie-cut-ideas-10.webp",
+      "sha256": "c95384d7202fa8594d4483cdb30550eddac27e174ff040ee10398c2ed19ff1a5",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/feminine-pixie-cut-ideas-12.webp",
+      "sha256": "c6b3e8342b44eff3ed6a03f42b8bb40eedc669b2ba376b87d221515e607a5197",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/feminine-pixie-cut-ideas-05.webp",
+      "sha256": "2a0baf0d208a81a4b979d3fd090e3587dc09ffea3e55d3a2e9d0f2b5cee155b3",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/feminine-pixie-cut-ideas-13.webp",
+      "sha256": "ece1eb748814aa422e02439d4f108ff2c23081aafede821582f4846f29cbd5dc",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/feminine-pixie-cut-ideas-06.webp",
+      "sha256": "92f4c2a80625cf63cd126deccd12f8982d64189977a767d652483f9ad2349ad5",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/feminine-pixie-cut-ideas-14.webp",
+      "sha256": "eca23526d66c8f807b0b573462bac0dc95181ca64107117484cb9daa8d5ea927",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/slow-cooker-fall-dinner-ideas-03.webp",
+      "sha256": "42e885522c2ba9358e7a2fe05ce01aa52d75d2560fe03ab511aa4267136a341a",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/feminine-pixie-cut-ideas-07.webp",
+      "sha256": "4c8d819690ed391318b89d44d3d093e56e98017ca842a0cf0380f1c79edef70d",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/slow-cooker-fall-dinner-ideas-05.webp",
+      "sha256": "98e0b06c75d1643aea7ada9eab8db39fe37b50850d6a4ef3d8cf1af0107096e0",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/slow-cooker-fall-dinner-ideas-04.webp",
+      "sha256": "1b6da6126eaf4849730c656fb3f9af478d97d7defac2f4706d84b053008e83a7",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/feminine-pixie-cut-ideas-15.webp",
+      "sha256": "30e4420c2730cd069a9ad5944eb622701a843ef6878529e6d94342623ab0de28",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/slow-cooker-fall-dinner-ideas-01.webp",
+      "sha256": "7fc98713ebcbed8caf3ad405ac98137abf3783798c338b7d875fbad16f392b83",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/slow-cooker-fall-dinner-ideas-06.webp",
+      "sha256": "f2311da082e9cd1bc3af829ecd2ce07836fe5694761fc05de6bd82e77860002b",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/easy-halloween-costume-ideas-02.webp",
+      "sha256": "0c4afddd016e2f522154113f9ec8ea8cf34a4ea882a33afb4af1b2d6c71f2c18",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/easy-halloween-costume-ideas-01.webp",
+      "sha256": "f275ebaa01960a85ac4f2e77ac30b08b5d4850df6b1f8d15483b37fbaae929a4",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/slow-cooker-fall-dinner-ideas-02.webp",
+      "sha256": "bb8c2f045659ab3b373c5b53f31822e25e00c9f21f720d0ebc49f736841e763f",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/easy-halloween-costume-ideas-05.webp",
+      "sha256": "42a45368424f74465b8f162a8ad4e440f590551ae32f232ac048d6e56bf8d736",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/easy-halloween-costume-ideas-03.webp",
+      "sha256": "2bb12f898f57aff25888e34762aaecd99e883ae8a210639a413ef45b199775a5",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/easy-halloween-costume-ideas-08.webp",
+      "sha256": "458e388056cf30507158a95087c24a355bcee1e16847545b834ec79448b239f7",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/easy-halloween-costume-ideas-06.webp",
+      "sha256": "575cd6faaf749857be1569a1c253be684ddee08011ac6951ced211a729e2d1bf",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/easy-halloween-costume-ideas-04.webp",
+      "sha256": "ad7569be88ccad2739b1b6bedf085db51614c2b753fba729dfbffb54a1305a90",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/easy-halloween-costume-ideas-12.webp",
+      "sha256": "b41d8a96aa960ec17b5297a755ae138a34ac0e37b10dea533820c56e17c22dea",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/easy-halloween-costume-ideas-09.webp",
+      "sha256": "2b0208a1626291b77ae7b3c0eb405da7e503268e9fe603c6c6f2c967f95146f7",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/easy-halloween-costume-ideas-07.webp",
+      "sha256": "8db5a8462297afdc8843634f5782ea435825e2be350605ab1a9408e83e1ec08f",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/fawn-halloween-makeup-outfit-ideas-01.webp",
+      "sha256": "7fbf77a0be2508a4c1763be935bfbc114b6df6dafd38c3542fbf47ef54217cb2",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/fawn-halloween-makeup-outfit-ideas-03.webp",
+      "sha256": "f5c3b2766d81a5d73ab069abc360aaf0c00604599e594a1bb211794f3de5f014",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/easy-halloween-costume-ideas-10.webp",
+      "sha256": "5910c94198fb0c1bc0b55882b29e300a7520272fe8dea0eee091cc6cf245a83e",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/fawn-halloween-makeup-outfit-ideas-04.webp",
+      "sha256": "6589ad24d3074afa1a915e63029f81ed20a9384c6cbfa8a2a84032df69b3d122",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/easy-halloween-costume-ideas-11.webp",
+      "sha256": "ca8ca2578efcf62ed948d02dd0cafcce2002e209ffd0a478e15cb26f0de4e75c",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/fawn-halloween-makeup-outfit-ideas-02.webp",
+      "sha256": "2faa04c4a1598bb4eab3bdd5ef3e4b691a8ee1149e4be34d2286fc75e098cbea",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/fawn-halloween-makeup-outfit-ideas-05.webp",
+      "sha256": "455dc02f1647927727a137c99604892b77eaa2426e0bafc5e58e49c6ac33e351",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/rhinestone-nail-ideas-03.webp",
+      "sha256": "0c38053227b5cadc117d2f81151877c931e94325915e6646b77be0aeaa57928a",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/rhinestone-nail-ideas-05.webp",
+      "sha256": "db067c127b622f7eee54e0f4a9738ec71ef67605610690abbe6526a3eb7e0678",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/fawn-halloween-makeup-outfit-ideas-06.webp",
+      "sha256": "918f670924f08589c46e75683e70cd6c81024b68318d6108aa103f0b8c28bc4e",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/rhinestone-nail-ideas-04.webp",
+      "sha256": "df699e60a145526b2011f9ce19513fd82fa7e948b50ab27ef7f85f69041f1333",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/rhinestone-nail-ideas-06.webp",
+      "sha256": "9f14dafee43a39f0eadbb0c3d3743c2ec6fb22abdb2533704b17f66941605cd2",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/rhinestone-nail-ideas-08.webp",
+      "sha256": "1719f47c1ad196465f53b9d11d677a5b0cdea55cb4be601b8c07c87e9aee5d46",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/fawn-halloween-makeup-outfit-ideas-07.webp",
+      "sha256": "348a638a1d111743a2407d324dd5815b9f51e912eed35a963388551e9ba58c3a",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/rhinestone-nail-ideas-07.webp",
+      "sha256": "a5f334758f671b8e369793a61d23de3ea6769296915e1f346c6937cf48ee5c13",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/rhinestone-nail-ideas-09.webp",
+      "sha256": "2e36f3a39987b4a4c4c52b373ef7c94e1b6d7384b3a48f3f938885abf01bca8b",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/fawn-halloween-makeup-outfit-ideas-08.webp",
+      "sha256": "39e3f019b67ac2e8846f1ea0a869847f7db5525f28c50569ee09399574c1e403",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/rhinestone-nail-ideas-10.webp",
+      "sha256": "016edec6833359041785ea45482f3370e51c8732bd258cec5e4f40883f9553c7",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/rhinestone-nail-ideas-01.webp",
+      "sha256": "97efa770dbf1ccb1fb126bc165d7480890b8f4f9bff0f3f7ece0f5b274cafb34",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/90s-hair-accessory-looks-02.webp",
+      "sha256": "a54d903355044c95db552d7d8200af1c27c9ae051d20c648c9e42a1dc6b64a79",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/rhinestone-nail-ideas-11.webp",
+      "sha256": "3be675a473ae2be8c21f65f767812a28f1ea82b0f1705dfc79252c94e476add9",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/90s-hair-accessory-looks-03.webp",
+      "sha256": "2fd80f75ecb779974355605f6a96d8994066057fb158a74b9d84235c03265865",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/rhinestone-nail-ideas-02.webp",
+      "sha256": "e661d730ab93d88c90826c83a8f35feeb9b102e53282f3f8853c4ce1369ad364",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/rhinestone-nail-ideas-12.webp",
+      "sha256": "ee77f6f1ac0e26cd552661d01fbd5eaf88a033b7d067022f5136740716ea50e7",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/90s-hair-accessory-looks-04.webp",
+      "sha256": "c4c9b7c17b3c5e2ce4fe50c9e3bd7fb824e1eb1c59b8f29a66427ec580becabb",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/90s-hair-accessory-looks-08.webp",
+      "sha256": "14e22a51ecfa6c0f335fac8a08b48ac24f3855226a0c2121be20b92d60b9bfd4",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/90s-hair-accessory-looks-01.webp",
+      "sha256": "e0c2de21e81a3d4475f558130b591b5bb2a51d89529d1ddfd5f9db15ec35b39d",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/90s-hair-accessory-looks-10.webp",
+      "sha256": "505b6c20646593a7b523d704153018b8b12a67f321dd5491f52ca7bffb19a92c",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/90s-hair-accessory-looks-05.webp",
+      "sha256": "60240e4b6f065f22a4f280855a09150ff0d22f8cca1a0e377d68e1a6ee3f576f",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/90s-hair-accessory-looks-09.webp",
+      "sha256": "4ffd8c4f9d350c516d40cf09f14ad4910d8f82917d988ae22ee8609f4fe69269",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/90s-hair-accessory-looks-06.webp",
+      "sha256": "2f487b7cd1c75e182341cb7ee2c2078e90e8baaf54574ca555a75e054f28b89f",
+      "width": 1440,
+      "height": 960
+    },
+    {
+      "path": "assets/generated/90s-hair-accessory-looks-07.webp",
+      "sha256": "d8b43820cc688e56d530cf6e06591a991f41ee99a3086fa463c27b509aa21a2e",
+      "width": 1440,
+      "height": 960
+    }
+  ]
+}

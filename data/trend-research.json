@@ -27,7 +27,8 @@
         "end": "2026-09-30"
       },
       "evidenceType": "Direct observation of public Pinterest Trends spotlight",
-      "source": "https://trends.pinterest.com/"
+      "source": "https://trends.pinterest.com/",
+      "publishedSlug": "feminine-pixie-cut-ideas"
     },
     {
       "query": "Crockpot Dinner Recipes",
@@ -39,7 +40,39 @@
         "end": "2026-09-30"
       },
       "evidenceType": "Direct observation of public Pinterest Trends spotlight",
-      "source": "https://trends.pinterest.com/"
+      "source": "https://trends.pinterest.com/",
+      "publishedSlug": "slow-cooker-fall-dinner-ideas"
+    },
+    {
+      "query": "Halloween Costume Inspiration",
+      "reportedGrowth": "+40%",
+      "metric": "Pin saves",
+      "comparison": "month over month, as displayed by Pinterest",
+      "displayedChartRange": {
+        "start": "2026-07-08",
+        "end": "2026-09-30"
+      },
+      "evidenceType": "Direct observation of public Pinterest Trends spotlight",
+      "source": "https://trends.pinterest.com/",
+      "publishedSlug": "easy-halloween-costume-ideas"
+    },
+    {
+      "query": "Fawn Season Aesthetic",
+      "evidenceType": "Direct observation of Pinterest current Editors’ Picks; no growth percentage displayed",
+      "source": "https://trends.pinterest.com/",
+      "publishedSlug": "fawn-halloween-makeup-outfit-ideas"
+    },
+    {
+      "query": "Bedazzled Everything",
+      "evidenceType": "Direct observation of Pinterest current Editors’ Picks; no growth percentage displayed",
+      "source": "https://trends.pinterest.com/",
+      "publishedSlug": "rhinestone-nail-ideas"
+    },
+    {
+      "query": "’90s Hair Accessories",
+      "evidenceType": "Direct observation of Pinterest current Editors’ Picks; no growth percentage displayed",
+      "source": "https://trends.pinterest.com/",
+      "publishedSlug": "90s-hair-accessory-looks"
     }
   ]
 }

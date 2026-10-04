@@ -28,6 +28,13 @@ for f in files:
   else:target=f.parent/unquote(urlparse(ref).path)
   if target.is_dir():target=target/'index.html'
   assert target.exists(),(f,'missing target',ref)
+for batch_file in root.glob('data/asset-batch-*.json'):
+ batch=json.loads(batch_file.read_text());records=batch['images']
+ assert len(records)==batch['imageCount'],'Incomplete image batch'
+ assert len({x['path'] for x in records})==len(records),'Repeated batch image path'
+ assert len({x['sha256'] for x in records})==len(records),'Repeated batch image bytes'
+ for record in records:
+  assert hashlib.sha256((root/record['path']).read_bytes()).hexdigest()==record['sha256'],'Changed batch artwork'
 for p in posts:
  assert p.get('generatedImages'),('Original imagery required',p['slug'])
  assert p['cover'].startswith('assets/generated/'),('Nonlocal cover',p['slug'])

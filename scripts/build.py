@@ -19,7 +19,7 @@ def head(title,description,path,image=None,schemas=[]):
 def nav():return '<header class="topbar"><div class="shell nav"><a class="brand" href="'+BASE+'"><span>🍁</span><b>Trendora</b></a><div></div><nav><a href="'+BASE+'#fresh">Ideas</a><a href="'+BASE+'categories/">Categories</a><a href="'+BASE+'about.html">About</a></nav></div></header>'
 def footer():return '<footer><div class="shell footGrid"><div><a class="brand" href="'+BASE+'">Trendora</a><p>Beautiful ideas for everyday living.</p></div><div><b>Explore</b>'+''.join('<a href="'+BASE+'category/'+cat_slug(c)+'/">'+e(c)+'</a>' for c in categories)+'</div><div><b>Trust & Legal</b>'+''.join('<a href="'+BASE+f+'.html">'+t+'</a>' for f,t in [('editorial-policy','Editorial Policy'),('about','About'),('privacy','Privacy'),('affiliate-disclosure','Affiliate Disclosure'),('contact','Contact')])+'</div></div><div class="shell copyright">© 2026 Trendora</div></footer>'
 def img(src,alt,lead=False):
- # Remote stock dimensions are unspecified; local editorial tiles are square.
+ # Use intrinsic dimensions to reserve space before images load.
  size=image_dimensions.get(src)
  dimensions=(' width="'+str(size[0])+'" height="'+str(size[1])+'"') if size else ''
  return '<img src="'+e(absurl(src))+'" alt="'+e(alt)+'" decoding="async"'+dimensions+(' fetchpriority="high"' if lead else ' loading="lazy"')+'>'
@@ -35,6 +35,7 @@ for p in posts:
  schemas=[article,breadcrumb]
  if faq:schemas.append({'@context':'https://schema.org','@type':'FAQPage','mainEntity':[{'@type':'Question','name':q['q'],'acceptedAnswer':{'@type':'Answer','text':q['a']}} for q in faq]})
  related=sorted([x for x in posts if x['slug']!=p['slug']],key=lambda x:x['category']!=p['category'])[:3]
+ if p.get('relatedSlugs'):related=[next(x for x in posts if x['slug']==slug) for slug in p['relatedSlugs']]
  body=head(p['title'],p['excerpt'],path,p['cover'],schemas).replace('</head>','<meta property="article:published_time" content="'+e(p['datePublished'])+'"><meta property="article:modified_time" content="'+e(p['dateModified'])+'"><meta property="og:image:alt" content="'+e(p['coverAlt'])+'"></head>')+'<body>'+nav()+'<main id="main"><section class="articleHero shell"><div class="crumb"><a href="'+BASE+'">Home</a> / <a href="'+BASE+catpath+'">'+e(p['category'])+'</a></div><h1>'+e(p['title'])+'</h1><p class="articleDek">'+e(p['excerpt'])+'</p><div class="meta">By <a href="'+BASE+'about.html">Trendora Editorial</a> · <time datetime="'+e(p['dateModified'])+'">Updated '+e(p['dateModified'])+'</time> · '+str(p.get('readMinutes',6))+' min read</div></section><section class="shell articleLayout"><article class="articleMain"><div class="articleCoverWrap">'+img(p['cover'],p['coverAlt'],True)+'<button id="articlePin" class="articlePin" type="button">Save to Pinterest</button></div>'
  if p.get('generatedImages'):body+='<p class="disclosure">Images are original AI-generated styling illustrations, not product or service photographs.</p>'
  body+=''.join('<p>'+e(t)+'</p>' for t in p.get('intro',[]))
@@ -53,9 +54,9 @@ for c in categories:
  items=[p for p in posts if p['category']==c];path='category/'+cat_slug(c)+'/'
  desc='Explore '+c.lower()+' ideas, visual references and practical guides from Trendora.'
  collection={'@context':'https://schema.org','@type':'CollectionPage','name':c+' Ideas','url':BASE+path,'mainEntity':{'@type':'ItemList','itemListElement':[{'@type':'ListItem','position':i+1,'url':BASE+p['slug']+'/','name':p['title']} for i,p in enumerate(items)]}}
- write(path+'index.html',head(c+' Ideas',desc,path,items[0]['cover'],[collection])+'<body>'+nav()+'<main class="shell section"><div class="crumb"><a href="'+BASE+'">Home</a> / '+e(c)+'</div><h1>'+e(c)+' Ideas</h1><p>'+e(desc)+'</p><div class="ideaGrid">'+cards(items)+'</div></main>'+footer()+'</body></html>')
+ write(path+'index.html',head(c+' Ideas',desc,path,items[0]['cover'],[collection,{'@context':'https://schema.org','@type':'BreadcrumbList','itemListElement':[{'@type':'ListItem','position':1,'name':'Home','item':BASE},{'@type':'ListItem','position':2,'name':'Categories','item':BASE+'categories/'},{'@type':'ListItem','position':3,'name':c,'item':BASE+path}]}])+'<body>'+nav()+'<main class="shell section"><div class="crumb"><a href="'+BASE+'">Home</a> / '+e(c)+'</div><h1>'+e(c)+' Ideas</h1><p>'+e(desc)+'</p><div class="ideaGrid">'+cards(items)+'</div></main>'+footer()+'</body></html>')
 # Category hub and trust pages share the same navigation and SEO conventions.
-hubitems=[{'slug':'category/'+cat_slug(c),'category':c,'title':c+' · '+str(sum(p['category']==c for p in posts))+' guides','cover':next(p['cover'] for p in posts if p['category']==c),'coverAlt':c+' visual guide'} for c in categories]
+hubitems=[{'slug':'category/'+cat_slug(c),'category':c,'title':c+' · '+str(sum(p['category']==c for p in posts))+(' guide' if sum(p['category']==c for p in posts)==1 else ' guides'),'cover':next(p['cover'] for p in posts if p['category']==c),'coverAlt':c+' visual guide'} for c in categories]
 write('categories/index.html',head('Explore Categories','Browse original visual guides for home, beauty, grooming and food.','categories/')+'<body>'+nav()+'<main class="shell section"><h1>Explore Categories</h1><p>Choose a topic and find practical guides with original visual ideas.</p><div class="ideaGrid">'+cards(hubitems)+'</div></main>'+footer()+'</body></html>')
 for slug,page in json.loads((ROOT/'data/pages.json').read_text()).items():
  path=slug+'.html'
