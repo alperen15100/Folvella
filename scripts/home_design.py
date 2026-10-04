@@ -1,5 +1,6 @@
 """Render the discovery homepage from real published editorial content."""
-import html, re
+import html, re, json
+from pathlib import Path
 from urllib.parse import urlencode
 
 BASE = 'https://alperen15100.github.io/Trendora/'
@@ -17,11 +18,12 @@ def pin_link(post):
     return '<a class="pinBubble" href="https://www.pinterest.com/pin/create/button/?' + esc(query) + '" target="_blank" rel="noopener noreferrer" aria-label="Save ' + esc(post['title']) + ' to Pinterest"><svg class="pinterestSvg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.6 19.3c0-.8.1-1.8.3-2.6l1.3-5.5s-.3-.7-.3-1.6c0-1.5.9-2.6 2-2.6.9 0 1.4.7 1.4 1.5 0 .9-.6 2.3-.9 3.6-.3 1.1.5 2 1.6 2 1.9 0 3.4-2 3.4-5 0-2.6-1.9-4.4-4.5-4.4-3.1 0-4.9 2.3-4.9 4.7 0 .9.4 1.9.8 2.5l-.3 1.2c-1.4-.6-2.2-2.6-2.2-4.2 0-3.4 2.5-6.6 7.2-6.6 3.8 0 6.7 2.7 6.7 6.3 0 3.7-2.4 6.8-5.7 6.8-1.1 0-2.1-.6-2.5-1.2l-.7 2.6c-.2 1-.9 2.1-1.4 2.9A10 10 0 1 0 12 2z"/></svg></a>'
 
 def render_home(old, posts, head, footer, img, cards):
-    categories = list(dict.fromkeys(p['category'] for p in posts))
-    preferred = ['warm-lighting-burrowcore-ideas', 'milky-lilac-nails', 'barn-jacket-outfits-women']
+    category_covers = json.loads((Path(__file__).resolve().parents[1] / 'data/category-covers.json').read_text())
+    categories = list(category_covers)
+    preferred = ['minimal-habit-tracker-ideas', 'deer-print-nail-ideas', 'pleated-skirt-fall-outfits']
     featured = [next((p for p in posts if p['slug'] == s), posts[i]) for i, s in enumerate(preferred)]
     intro = '<section class="discoveryIntro shell"><p class="introKicker">A LITTLE INSPIRATION, EVERY DAY</p><h1>Find something you love.</h1><p>Beautiful ideas to make, wear, try and keep.</p></section>'
-    circles = '<section class="categoryStrip" aria-label="Explore topics"><div class="shell categoryRow" id="categoryRow">' + ''.join('<a href="category/' + slug(c) + '/">' + img(next(p['cover'] for p in posts if p['category'] == c), '', False) + '<span>' + esc(c) + '</span></a>' for c in categories) + '</div></section>'
+    circles = '<section class="categoryStrip" aria-label="Explore topics"><div class="shell categoryRow" id="categoryRow">' + ''.join('<a href="category/' + slug(c) + '/">' + img(category_covers[c], '', False) + '<span>' + esc(c) + '</span></a>' for c in categories) + '</div></section>'
     picks = '<section class="shell featuredSection" aria-labelledby="featuredTitle"><div class="sectionHead"><h2 id="featuredTitle">The Folvella edit</h2><a class="textLink" href="#fresh">Explore all ideas <span aria-hidden="true">↗</span></a></div><div id="heroMount" class="featuredGrid">' + cards(featured) + '</div></section>'
     collections = '<section class="collectionSection" id="collections"><div class="shell"><div class="sectionHead"><div><h2>Your next inspiration</h2><p>Start with a collection that feels like you.</p></div><a class="textLink" href="categories/">All collections ↗</a></div><div class="collectionGrid">'
     for c, title, description in [('Home Decor', 'Make yourself at home', 'Warm corners, thoughtful details.'), ('Beauty & Nails', 'Nail ideas to keep', 'Little details, a fresh perspective.'), ('Food & Drinks', 'Your home café', 'Recipes for a slower morning.')]:

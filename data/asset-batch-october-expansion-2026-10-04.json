@@ -1,0 +1,156 @@
+{
+  "date": "2026-10-04",
+  "imageCount": 15,
+  "images": [
+    {
+      "path": "assets/generated/minimal-habit-tracker-ideas-cover.webp",
+      "sha256": "5bf291a7a8e6aa422f1819367f9b675858b69609de53a9fb221c4c427490a1b9",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 147850,
+      "slug": "minimal-habit-tracker-ideas",
+      "type": "cover",
+      "original": true
+    },
+    {
+      "path": "assets/generated/retro-cyberdeck-design-ideas-cover.webp",
+      "sha256": "b8a75822d745afd92c7d57691b06627dbfcffa100a6bc3ad8642f3eaaaf6fec9",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 143664,
+      "slug": "retro-cyberdeck-design-ideas",
+      "type": "cover",
+      "original": true
+    },
+    {
+      "path": "assets/generated/handmade-ceramic-serving-platter-ideas-cover.webp",
+      "sha256": "93ae366108606979eb7466a5f19fd9cffdf4c76b9de8808c638e8f9fffd96e75",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 267158,
+      "slug": "handmade-ceramic-serving-platter-ideas",
+      "type": "cover",
+      "original": true
+    },
+    {
+      "path": "assets/generated/military-jacket-outfits-women-cover.webp",
+      "sha256": "85c057e44345b437258b8a85c1bd56ad560f1cd1f35e21ca38b177213a9a89c4",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 262844,
+      "slug": "military-jacket-outfits-women",
+      "type": "cover",
+      "original": true
+    },
+    {
+      "path": "assets/generated/paper-blind-bag-diy-ideas-cover.webp",
+      "sha256": "2d7b4d85470924463e455dfe1503d41900051a675c6403d3200f5bcd239ad65a",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 109298,
+      "slug": "paper-blind-bag-diy-ideas",
+      "type": "cover",
+      "original": true
+    },
+    {
+      "path": "assets/generated/reading-journal-layout-ideas-cover.webp",
+      "sha256": "fd55c1bf408c2a4167bac1c60c6a6e78a959114196db828763e6c40ebc73ea79",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 237318,
+      "slug": "reading-journal-layout-ideas",
+      "type": "cover",
+      "original": true
+    },
+    {
+      "path": "assets/generated/gothic-pottery-decor-ideas-cover.webp",
+      "sha256": "8cdc7ea96939b8da38dc6695345448dbbae0774fd7db6d19226a52ca6f72ee24",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 154752,
+      "slug": "gothic-pottery-decor-ideas",
+      "type": "cover",
+      "original": true
+    },
+    {
+      "path": "assets/generated/upcycled-miniature-craft-ideas-cover.webp",
+      "sha256": "bb6a68b606edcc402f9f45125ce1bc0311e89527bb26d661b481ad8db54a7364",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 188512,
+      "slug": "upcycled-miniature-craft-ideas",
+      "type": "cover",
+      "original": true
+    },
+    {
+      "path": "assets/generated/pleated-skirt-fall-outfits-cover.webp",
+      "sha256": "c0ed66cdb27ef1e17cbebfc5fa11d8296f70f712515d0442d1dff1e25a009b75",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 225684,
+      "slug": "pleated-skirt-fall-outfits",
+      "type": "cover",
+      "original": true
+    },
+    {
+      "path": "assets/generated/cardboard-mini-room-ideas-cover.webp",
+      "sha256": "1c1d20fc45ecbc98fdfc104114491836c79a1a90175306912fa00c412bed246d",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 197082,
+      "slug": "cardboard-mini-room-ideas",
+      "type": "cover",
+      "original": true
+    },
+    {
+      "path": "assets/generated/mini-watercolor-painting-ideas-cover.webp",
+      "sha256": "03e4f16671bee8d8e42a215622dbd5ea0e6d7f08f2be823cb08198aab87e1962",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 293652,
+      "slug": "mini-watercolor-painting-ideas",
+      "type": "cover",
+      "original": true
+    },
+    {
+      "path": "assets/generated/paper-tunnel-book-diy-cover.webp",
+      "sha256": "f004206b3c4979f883c10bc5ef262b38bacf1269abd3afbf92337830e43dfb8f",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 209746,
+      "slug": "paper-tunnel-book-diy",
+      "type": "cover",
+      "original": true
+    },
+    {
+      "path": "assets/generated/korean-inspired-ground-beef-bowl-cover.webp",
+      "sha256": "5c8f80b1ccbfdcb79d44da8d3c4b14ca68880f3d9fdc51570d6826fcc643e9d8",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 226404,
+      "slug": "korean-inspired-ground-beef-bowl",
+      "type": "cover",
+      "original": true
+    },
+    {
+      "path": "assets/generated/deer-print-nail-ideas-cover.webp",
+      "sha256": "e169f7a7904cf3e2a3f7c8a5a663c94d6656be86c9979d8ebbb0a8a4bbc766b7",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 197858,
+      "slug": "deer-print-nail-ideas",
+      "type": "cover",
+      "original": true
+    },
+    {
+      "path": "assets/generated/rhinestone-cup-decorating-ideas-cover.webp",
+      "sha256": "a4b86085e439204317ce42406253050ea821e4673d0f3f0df8772ef189dc90fc",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 291420,
+      "slug": "rhinestone-cup-decorating-ideas",
+      "type": "cover",
+      "original": true
+    }
+  ]
+}

@@ -11,7 +11,7 @@ e=lambda x:html.escape(str(x),quote=True)
 absurl=lambda x:x if x.startswith('https://') else BASE+x
 cat_slug=lambda x:re.sub(r'[^a-z0-9]+','-',x.lower()).strip('-')
 image_dimensions=json.loads((ROOT/'data/image-dimensions.json').read_text())
-categories=list(dict.fromkeys(p['category'] for p in posts))
+categories=list(json.loads((ROOT/'data/category-covers.json').read_text()))
 def js(x):return json.dumps(x,ensure_ascii=False).replace('<','\\u003c')
 def schema(x):return '<script type="application/ld+json">'+js(x)+'</script>'
 def head(title,description,path,image=None,schemas=[]):
@@ -47,6 +47,7 @@ for p in posts:
   body+='</section>'
  if faq:body+='<section class="longSection"><h2>Frequently asked questions</h2>'+''.join('<h3>'+e(q['q'])+'</h3><p>'+e(q['a'])+'</p>' for q in faq)+'</section>'
  if p.get('sources'):body+='<section class="longSection"><h2>Sources and further reading</h2><ul>'+''.join('<li><a href="'+e(s['url'])+'" rel="noopener noreferrer">'+e(s['title'])+'</a> · Checked '+e(s['accessed'])+'</li>' for s in p['sources'])+'</ul></section>'
+ if p.get('technicalReferences'):body+='<section class="longSection"><h2>Practical references</h2><ul>'+''.join('<li><a href="'+e(s['url'])+'" rel="noopener noreferrer">'+e(s['title'])+'</a> · Checked '+e(s['accessed'])+'</li>' for s in p['technicalReferences'])+'</ul></section>'
  body+='</article><aside class="articleAside"><div class="sideCard"><h3>More to explore</h3><div class="sideLinks">'+''.join('<a href="'+BASE+x['slug']+'/">'+e(x['title'])+'</a>' for x in related)+'<a href="'+BASE+catpath+'">All '+e(p['category'])+' guides</a></div></div></aside></section><section class="section shell"><h2>You may also like</h2><div class="ideaGrid">'+cards(related)+'</div></section></main>'+footer()
  body=body.replace('<button id="articlePin" class="articlePin" type="button">Save to Pinterest</button>','<a class="articlePin" href="'+e(pin_url(p))+'" target="_blank" rel="noopener noreferrer">Save to Pinterest</a>')
  body+='</body></html>'
