@@ -11,6 +11,8 @@ for record in json.loads((root/'data/pinterest-pins-2026-10-04.json').read_text(
  p=lookup[record['slug']];image=record['path'];jpg=image.replace('.webp','.jpg')
  pins.append(dict(slug=p['slug'],category=p['category'],image=image,download=jpg if (root/jpg).exists() else image,title=record['headline'],description=record['headline']+'. '+p['excerpt']))
 pins+=json.loads((root/'data/pinterest-pins-fall-2026-10-04.json').read_text())['pins']
+october=root/'data/pinterest-pins-october-2026-10-05.json'
+if october.exists(): pins+=json.loads(october.read_text())['pins']
 covered={p['slug'] for p in pins}
 for p in posts:
  if p['slug'] not in covered:
