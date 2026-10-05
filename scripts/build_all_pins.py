@@ -13,6 +13,8 @@ for record in json.loads((root/'data/pinterest-pins-2026-10-04.json').read_text(
 pins+=json.loads((root/'data/pinterest-pins-fall-2026-10-04.json').read_text())['pins']
 october=root/'data/pinterest-pins-october-2026-10-05.json'
 if october.exists(): pins+=json.loads(october.read_text())['pins']
+fall_eight=root/'data/pinterest-pins-fall-eight-2026-10-05.json'
+if fall_eight.exists(): pins+=json.loads(fall_eight.read_text())['pins']
 covered={p['slug'] for p in pins}
 for p in posts:
  if p['slug'] not in covered:

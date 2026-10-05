@@ -250,5 +250,36 @@
         }
       ]
     }
+  ],
+  "editorialBatches": [
+    {
+      "checkedAt": "2026-10-05",
+      "period": "October 2026 seasonal planning",
+      "region": "English-language Tier-1 editorial audience; no topic-level regional metrics verified",
+      "evidenceType": "Editorial opportunities informed by official seasonal planning guidance, not verified daily viral rankings",
+      "source": "https://business.pinterest.com/en-gb/blog/holiday-2026-starts-now-a-pinterest-guide-to-success/",
+      "sourcePublished": "2026-07-30",
+      "queries": [
+        "15 Minimal Halloween Nail Ideas for a Subtle October Manicure",
+        "12 No-Carve Pumpkin Decorating Ideas for a Softer Fall Display",
+        "10 Cozy Fall Balcony Ideas for Small Spaces",
+        "9 Easy Halloween Party Snacks for a Small Gathering",
+        "12 Brown French Tip Nail Ideas from Espresso to Caramel",
+        "10 Thrifted Halloween Table Decor Ideas with Vintage Character",
+        "8 Apple Cinnamon Desserts for Cozy Fall Evenings",
+        "12 Plaid Nail Designs for Autumn in Burgundy, Brown and Green"
+      ],
+      "publishedSlugs": [
+        "minimal-halloween-nail-ideas",
+        "no-carve-pumpkin-decorating-ideas",
+        "cozy-fall-balcony-ideas-small-spaces",
+        "easy-halloween-party-snacks",
+        "brown-french-tip-nail-ideas",
+        "thrifted-halloween-table-decor-ideas",
+        "apple-cinnamon-desserts-fall",
+        "plaid-nail-designs-autumn"
+      ],
+      "metrics": null
+    }
   ]
 }

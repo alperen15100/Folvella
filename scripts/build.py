@@ -98,6 +98,7 @@ print(f'Built {len(posts)} articles, {len(categories)} categories, sitemap and R
 
 # A crawlable seasonal collection links to existing original guides.
 clusters=[
+ ('New for October','Fresh Halloween details and small autumn rituals.',['minimal-halloween-nail-ideas','no-carve-pumpkin-decorating-ideas','cozy-fall-balcony-ideas-small-spaces','easy-halloween-party-snacks','brown-french-tip-nail-ideas','thrifted-halloween-table-decor-ideas','apple-cinnamon-desserts-fall','plaid-nail-designs-autumn']),
  ('Warm corners','Small changes that make home feel more inviting.',['warm-lighting-burrowcore-ideas','trinket-shelf-styling-ideas','kitchen-witch-herbal-apothecary']),
  ('Your home café','A house special, a cozy corner and something sweet.',['coffee-station-party-ideas','banana-syrup-for-coffee','blueberry-latte-recipe','biscoff-latte-recipe','marshmallow-cold-foam','carrot-cake-latte']),
  ('Make something small','Tactile projects to enjoy a little at a time.',['crochet-parandi-hair-accessory','ribbon-rosette-diy','clay-bag-charms-diy','beaded-bag-charms-diy','sashiko-denim-mending','pressed-flower-frame-diy']),
