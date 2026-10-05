@@ -2,9 +2,10 @@
 import json,html
 from pathlib import Path
 from urllib.parse import urlencode
+from site_config import ROOT, BASE
 
-root=Path(__file__).resolve().parents[1]
-base='https://alperen15100.github.io/Folvella/'
+root=ROOT
+base=BASE
 metadata=json.loads((root/'data/pinterest-pins-fall-2026-10-04.json').read_text())
 posts={p['slug']:p for p in json.loads((root/'data/posts.json').read_text())}
 pins=metadata['pins'];escape=lambda x:html.escape(str(x),quote=True)
@@ -18,7 +19,7 @@ for slug in dict.fromkeys(p['slug'] for p in pins):
     post=posts[slug];group=[p for p in pins if p['slug']==slug]
     body+='<section class="pinGroup" id="'+slug+'" data-category="'+escape(post['category'])+'"><h2>'+escape(post['title'])+'</h2><a class="topLink" href="'+base+slug+'/">Read the full guide →</a><div class="pinGrid">'
     for pin in group:
-        share='https://www.pinterest.com/pin/create/button/?'+urlencode({'url':pin['url'],'media':base+pin['download'],'description':pin['description']})
+        share='https://www.pinterest.com/pin/create/button/?'+urlencode({'url':base+slug+'/','media':base+pin['download'],'description':pin['description']})
         body+='<article class="pinAsset"><img loading="lazy" decoding="async" width="1024" height="1536" src="'+escape(pin['image'])+'" alt="'+escape(pin['title'])+' — original illustrated Pinterest design"><h3>'+escape(pin['title'])+'</h3><p>'+escape(pin['description'])+'</p><div class="pinActions"><a href="'+escape(pin['download'])+'" download>Download JPG</a><a href="'+escape(share)+'" target="_blank" rel="noopener noreferrer">Save to Pinterest</a></div></article>'
     body+='</div></section>'
 body+='''<footer><a href="pinterest-kit-2026-10-04.html">Previous coffee &amp; food Pin kit</a> · <a href="'''+base+'''">Back to Folvella</a></footer></main><script>

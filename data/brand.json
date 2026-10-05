@@ -4,5 +4,9 @@
   "updatedAt": "2026-10-04",
   "requestedDomain": "folvella.com",
   "domainConnected": false,
-  "siteBase": "https://alperen15100.github.io/Folvella/"
+  "siteBase": "https://alperen15100.github.io/Folvella/",
+  "legacySiteBases": [
+    "https://alperen15100.github.io/Trendora/",
+    "https://alperen15100.github.io/Folvella/"
+  ]
 }

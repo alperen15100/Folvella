@@ -4,7 +4,9 @@ from pathlib import Path
 from urllib.parse import urlparse,unquote
 from html.parser import HTMLParser
 import xml.etree.ElementTree as ET
-root=Path(__file__).resolve().parents[1];base='https://alperen15100.github.io/Folvella/';stale='https://alperen15100.github.io/Trendora/';stale_encoded='https%3A%2F%2Falperen15100.github.io%2FTrendora%2F'
+from site_config import ROOT, BASE, BASE_PATH, LEGACY_BASES
+root=ROOT;base=BASE;base_path=BASE_PATH
+enc=lambda u:u.replace(':','%3A').replace('/','%2F')
 posts=json.loads((root/'data/posts.json').read_text());slugs=[p['slug'] for p in posts];assert len(slugs)==len(set(slugs)),'Duplicate slug'
 class Page(HTMLParser):
  def __init__(self):super().__init__();self.refs=[];self.h1=0;self.canon=[];self.ids=[]
@@ -18,12 +20,15 @@ class Page(HTMLParser):
   if tag=='img':assert a.get('alt') is not None,'Image without alt'
 files=[root/'index.html']+list(root.glob('*/index.html'))+list(root.glob('category/*/index.html'))+[root/(slug+'.html') for slug in json.loads((root/'data/pages.json').read_text())]
 for f in files:
- text=f.read_text();assert stale not in text and stale_encoded not in text,(f,'stale Trendora URL');p=Page();p.feed(text)
- assert len(p.canon)==1,(f,'canonical');assert len(p.ids)==len(set(p.ids)),(f,'duplicate IDs')
+ text=f.read_text()
+ for stale in LEGACY_BASES:
+  if stale!=base:assert stale not in text and enc(stale) not in text,(f,'stale site URL',stale)
+ p=Page();p.feed(text)
+ assert len(p.canon)==1,(f,'canonical');assert p.canon[0].startswith(base),(f,'canonical base',p.canon[0],base);assert len(p.ids)==len(set(p.ids)),(f,'duplicate IDs')
  if f.name!='article.html':assert p.h1==1,(f,'h1')
  for raw in re.findall(r'<script type="application/ld\+json">(.*?)</script>',text,re.S):json.loads(raw)
  for ref in p.refs:
-  if ref.startswith(base):target=root/unquote(urlparse(ref).path[len('/Folvella/'):])
+  if ref.startswith(base):target=root/unquote(urlparse(ref).path[len(base_path):])
   elif ref.startswith(('http:','https:','mailto:','tel:','#')):continue
   else:target=f.parent/unquote(urlparse(ref).path)
   if target.is_dir():target=target/'index.html'
@@ -65,6 +70,8 @@ if manifest_path.exists():
   assert hashlib.sha256((root/record['image']).read_bytes()).hexdigest()==record['sha256'],'Changed image bytes'
 for extra in [root/'robots.txt',root/'sitemap.xml',root/'feed.xml',root/'llms.txt',root/'pinterest/index.html',root/'pinterest-kit-2026-10-04.html',root/'pinterest-kit-fall-2026-10-04.html']:
  if extra.exists():
-  text=extra.read_text();assert stale not in text and stale_encoded not in text,(extra,'stale Trendora URL')
+  text=extra.read_text()
+  for stale in LEGACY_BASES:
+   if stale!=base:assert stale not in text and enc(stale) not in text,(extra,'stale site URL',stale)
 ET.parse(root/'sitemap.xml');ET.parse(root/'feed.xml')
 print(f'PASS: {len(posts)} posts, {len(files)} pages; local links, assets, schemas, image uniqueness and XML.')

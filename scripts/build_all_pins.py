@@ -2,8 +2,9 @@
 import json,html
 from pathlib import Path
 from urllib.parse import urlencode
-root=Path(__file__).resolve().parents[1]
-base='https://alperen15100.github.io/Folvella/'
+from site_config import ROOT, BASE
+root=ROOT
+base=BASE
 posts=json.loads((root/'data/posts.json').read_text());lookup={p['slug']:p for p in posts}
 e=lambda x:html.escape(str(x),quote=True)
 pins=[]

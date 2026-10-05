@@ -1,9 +1,9 @@
 """Render the discovery homepage from real published editorial content."""
 import html, re, json
 from pathlib import Path
+from site_config import ROOT, BASE
 from urllib.parse import urlencode
 
-BASE = 'https://alperen15100.github.io/Folvella/'
 esc = lambda value: html.escape(str(value), quote=True)
 slug = lambda value: re.sub(r'[^a-z0-9]+', '-', value.lower()).strip('-')
 
@@ -18,7 +18,7 @@ def pin_link(post):
     return '<a class="pinBubble" href="https://www.pinterest.com/pin/create/button/?' + esc(query) + '" target="_blank" rel="noopener noreferrer" aria-label="Save ' + esc(post['title']) + ' to Pinterest"><svg class="pinterestSvg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.6 19.3c0-.8.1-1.8.3-2.6l1.3-5.5s-.3-.7-.3-1.6c0-1.5.9-2.6 2-2.6.9 0 1.4.7 1.4 1.5 0 .9-.6 2.3-.9 3.6-.3 1.1.5 2 1.6 2 1.9 0 3.4-2 3.4-5 0-2.6-1.9-4.4-4.5-4.4-3.1 0-4.9 2.3-4.9 4.7 0 .9.4 1.9.8 2.5l-.3 1.2c-1.4-.6-2.2-2.6-2.2-4.2 0-3.4 2.5-6.6 7.2-6.6 3.8 0 6.7 2.7 6.7 6.3 0 3.7-2.4 6.8-5.7 6.8-1.1 0-2.1-.6-2.5-1.2l-.7 2.6c-.2 1-.9 2.1-1.4 2.9A10 10 0 1 0 12 2z"/></svg></a>'
 
 def render_home(old, posts, head, footer, img, cards):
-    category_covers = json.loads((Path(__file__).resolve().parents[1] / 'data/category-covers.json').read_text())
+    category_covers = json.loads((ROOT / 'data/category-covers.json').read_text())
     categories = list(category_covers)
     preferred = ['minimal-habit-tracker-ideas', 'deer-print-nail-ideas', 'pleated-skirt-fall-outfits']
     featured = [next((p for p in posts if p['slug'] == s), posts[i]) for i, s in enumerate(preferred)]

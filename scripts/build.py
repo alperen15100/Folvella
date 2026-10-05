@@ -2,10 +2,9 @@
 import json,re,html,xml.etree.ElementTree as ET
 from home_design import render_home, pin_link, pin_url
 from pathlib import Path
+from site_config import ROOT, BASE
 from datetime import datetime,timezone
 from email.utils import format_datetime
-ROOT=Path(__file__).resolve().parents[1]
-BASE='https://alperen15100.github.io/Folvella/'
 posts=[p for p in json.loads((ROOT/'data/posts.json').read_text()) if p.get('status')=='published']
 e=lambda x:html.escape(str(x),quote=True)
 absurl=lambda x:x if x.startswith('https://') else BASE+x
