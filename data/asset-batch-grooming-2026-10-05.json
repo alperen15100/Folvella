@@ -1,0 +1,125 @@
+{
+  "imageCount": 24,
+  "images": [
+    {
+      "slug": "beard-fade-guide",
+      "path": "assets/generated/beard-fade-guide-01.webp",
+      "sha256": "8156d5a73d7a89f5e54b17e3b49e0d3b6117728cd4b3f45410ebf01f421a8b5e"
+    },
+    {
+      "slug": "beard-fade-guide",
+      "path": "assets/generated/beard-fade-guide-02.webp",
+      "sha256": "0cba3063a80c0d1b53fac206c4c69e7c5bcfb9609627880ca7df561569af8962"
+    },
+    {
+      "slug": "beard-fade-guide",
+      "path": "assets/generated/beard-fade-guide-03.webp",
+      "sha256": "0dc35e346577fb7ab023364152bb9dfb010fb844ad2ff39818758d65a73d0146"
+    },
+    {
+      "slug": "italian-beard-fade-guide",
+      "path": "assets/generated/italian-beard-fade-guide-01.webp",
+      "sha256": "df69e5938c28aedee9c2787db1ab71cbe65c0036c74cd56400c220fc2e0111aa"
+    },
+    {
+      "slug": "italian-beard-fade-guide",
+      "path": "assets/generated/italian-beard-fade-guide-02.webp",
+      "sha256": "9a36bd35fce64172f89f85171380ef25d8a78e335ebbe06c10353fc65694c343"
+    },
+    {
+      "slug": "italian-beard-fade-guide",
+      "path": "assets/generated/italian-beard-fade-guide-03.webp",
+      "sha256": "f38ee1e2a82323b3ea858e19d819f97fbd270cb11475d0c63f805070b38b95f6"
+    },
+    {
+      "slug": "korean-two-block-haircut-guide",
+      "path": "assets/generated/korean-two-block-haircut-guide-01.webp",
+      "sha256": "6dbeb56282368ffc0f95c49e52817693f3bc1579da6edd6359f5bb733454ca40"
+    },
+    {
+      "slug": "korean-two-block-haircut-guide",
+      "path": "assets/generated/korean-two-block-haircut-guide-02.webp",
+      "sha256": "585d3feb5ca14fa54a171f582e21425cd27e27119957a23b55a734612d28609e"
+    },
+    {
+      "slug": "korean-two-block-haircut-guide",
+      "path": "assets/generated/korean-two-block-haircut-guide-03.webp",
+      "sha256": "dbc095f96840e59370dfad0ae6e1f62cbc37fce94dd72d550cbee207ee19bbf4"
+    },
+    {
+      "slug": "loose-wavy-perm-men-guide",
+      "path": "assets/generated/loose-wavy-perm-men-guide-01.webp",
+      "sha256": "e57b5bd6b4ecc04042d0045ea12f1ab0428734f54f767546cda86a5daf57c0d5"
+    },
+    {
+      "slug": "loose-wavy-perm-men-guide",
+      "path": "assets/generated/loose-wavy-perm-men-guide-02.webp",
+      "sha256": "5ac040ed0a596dc29d145ce60136f68d9ca1351180f06faf876984743ac19f58"
+    },
+    {
+      "slug": "loose-wavy-perm-men-guide",
+      "path": "assets/generated/loose-wavy-perm-men-guide-03.webp",
+      "sha256": "93f5afb0a8ac7b19f40e75cfa83cd8e06bff00a1bfea5b32d9c2de6d66667c04"
+    },
+    {
+      "slug": "clay-vs-wax-vs-pomade",
+      "path": "assets/generated/clay-vs-wax-vs-pomade-01.webp",
+      "sha256": "8495ab72990c9c158325c5a6b45b2d6495662ace8ce3401cda9a752af6be3a9a"
+    },
+    {
+      "slug": "clay-vs-wax-vs-pomade",
+      "path": "assets/generated/clay-vs-wax-vs-pomade-02.webp",
+      "sha256": "20075799ba6c30e9aaf06c63d4891673789d60ca3d79d85531467e0be9e4dd27"
+    },
+    {
+      "slug": "clay-vs-wax-vs-pomade",
+      "path": "assets/generated/clay-vs-wax-vs-pomade-03.webp",
+      "sha256": "a51464ac2a71a91322c0350c3ea70deb216872562806f9d2171c083aa3d791a7"
+    },
+    {
+      "slug": "perfume-discovery-set-guide",
+      "path": "assets/generated/perfume-discovery-set-guide-01.webp",
+      "sha256": "877a6bff212f75a1c74e0c9e5fad5521a7aca2c033807a90c6ad3b1439a3bf17"
+    },
+    {
+      "slug": "perfume-discovery-set-guide",
+      "path": "assets/generated/perfume-discovery-set-guide-02.webp",
+      "sha256": "0096d21de86639d2c04047e6d941641f79111324023ab0de6015ca2c0c67b2bf"
+    },
+    {
+      "slug": "perfume-discovery-set-guide",
+      "path": "assets/generated/perfume-discovery-set-guide-03.webp",
+      "sha256": "c6cd0f0ef29a5e421cb38fe3921f407a0d58ae8f08d091e7e2db024a7d9b1bc2"
+    },
+    {
+      "slug": "small-fragrance-wardrobe-guide",
+      "path": "assets/generated/small-fragrance-wardrobe-guide-01.webp",
+      "sha256": "17d99839bc6fe1c0d7ca5e72fd6a4c5e7a007dd86fb384cdd7f989d06e8f2217"
+    },
+    {
+      "slug": "small-fragrance-wardrobe-guide",
+      "path": "assets/generated/small-fragrance-wardrobe-guide-02.webp",
+      "sha256": "b72aabf8ff0cce154998c84e3bbf171ab523d9a83478321a97afc36c09309f71"
+    },
+    {
+      "slug": "small-fragrance-wardrobe-guide",
+      "path": "assets/generated/small-fragrance-wardrobe-guide-03.webp",
+      "sha256": "b9fc13daaa4716d0ef5a43a8bd9d837527cd35bfdf65c2da9b5985f1c7cd1ca5"
+    },
+    {
+      "slug": "fragrance-notes-testing-journal",
+      "path": "assets/generated/fragrance-notes-testing-journal-01.webp",
+      "sha256": "c80b4523cbd13bbda39a6fc0d6d230757eb93710b4232d76878a93468495c1e0"
+    },
+    {
+      "slug": "fragrance-notes-testing-journal",
+      "path": "assets/generated/fragrance-notes-testing-journal-02.webp",
+      "sha256": "b6fc98efc5d04c148ce940b438cc7de8b231a3d1689728c3541115c3209de683"
+    },
+    {
+      "slug": "fragrance-notes-testing-journal",
+      "path": "assets/generated/fragrance-notes-testing-journal-03.webp",
+      "sha256": "2a26b8b66613297e52b045a9929d4839027c0068429b16119043c7edf6574bdc"
+    }
+  ]
+}
