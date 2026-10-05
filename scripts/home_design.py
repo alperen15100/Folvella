@@ -3,7 +3,7 @@ import html, re, json
 from pathlib import Path
 from urllib.parse import urlencode
 
-BASE = 'https://alperen15100.github.io/Trendora/'
+BASE = 'https://alperen15100.github.io/Folvella/'
 esc = lambda value: html.escape(str(value), quote=True)
 slug = lambda value: re.sub(r'[^a-z0-9]+', '-', value.lower()).strip('-')
 

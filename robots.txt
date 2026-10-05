@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://alperen15100.github.io/Trendora/sitemap.xml
+Sitemap: https://alperen15100.github.io/Folvella/sitemap.xml

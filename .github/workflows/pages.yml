@@ -23,6 +23,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+      - name: Rebuild static site
+        run: python3 scripts/build.py
       - name: Validate publication
         run: python3 scripts/validate.py
       - name: Setup Pages
