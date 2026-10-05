@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-04",
+  "checkedAt": "2026-10-05",
   "region": "United States",
   "directPinterestTrendsAvailable": true,
   "sourcePolicy": "Official Pinterest only. These are observed topic save metrics, not search growth or global daily viral counts. Existing evergreen guides do not imply verified trend growth.",
@@ -73,6 +73,21 @@
       "evidenceType": "Direct observation of Pinterest current Editors’ Picks; no growth percentage displayed",
       "source": "https://trends.pinterest.com/",
       "publishedSlug": "90s-hair-accessory-looks"
+    },
+    {
+      "query": "Gardening tools",
+      "reportedGrowth": "+115%",
+      "metric": "Outbound clicks",
+      "comparison": "month over month, as displayed by Pinterest",
+      "displayedChartRange": {
+        "start": "2026-07-31",
+        "end": "2026-09-25"
+      },
+      "region": "United States",
+      "observedAt": "2026-10-05",
+      "evidenceType": "Direct observation of the public Pinterest Trends shopping trends module",
+      "source": "https://trends.pinterest.com/?country=US&trendsPreset=1",
+      "publishedSlug": "essential-garden-tools-small-fall-garden"
     }
   ],
   "publicationBatches": [
