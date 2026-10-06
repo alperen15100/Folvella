@@ -78,8 +78,13 @@ def draw_leaf(draw,cx,cy,scale=1.0):
 
 def available_images(p):
     candidates=[]
-    for src in [p.get('cover'),p.get('pinCover')]+[s.get('image') for s in p.get('sections',[]) if s.get('image')]:
-        if src and src not in candidates and (ROOT/src).is_file():
+    raw=[p.get('cover'),p.get('pinCover')]+list(p.get('pinImages',[]))+[s.get('image') for s in p.get('sections',[]) if s.get('image')]
+    for src in raw:
+        if not src or src in candidates:
+            continue
+        if Path(src).suffix.lower() not in {'.jpg','.jpeg','.png','.webp'}:
+            continue
+        if (ROOT/src).is_file():
             candidates.append(src)
     if not candidates:
         raise FileNotFoundError(p['slug'])
