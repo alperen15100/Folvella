@@ -15,14 +15,14 @@ def schema(obj):
 
 def live_header(home=False):
     home_href=BASE
-    social='<div class="social"><span>p</span><span>◎</span><span>▶</span><span>♪</span><a class="sub" href="'+BASE+'contact.html">✉ Subscribe</a></div>' if home else '<div class="social"><a class="sub" href="'+BASE+'">← Home</a></div>'
+    social='<div class="social"><span>p</span><span>◎</span><span>▶</span><span>♪</span><a class="sub" href="'+BASE+'blog/">Blog</a><a class="sub" href="'+BASE+'contact.html">✉ Subscribe</a></div>' if home else '<div class="social"><a class="sub" href="'+BASE+'blog/">Blog</a><a class="sub" href="'+BASE+'">← Home</a></div>'
     return '<header class="top"><div class="shell head"><a class="brand-lockup" href="'+home_href+'"><img src="'+BASE+'assets/inspomint-wordmark.svg" alt="InspoMint — Fresh ideas worth saving."><small>by Ecrin Labs</small></a><div class="head-spacer"></div>'+social+'</div></header>'
 
 def live_footer():
-    return '<footer class="full-footer"><div class="shell footer-grid"><div><a class="footer-brand-img" href="'+BASE+'"><img src="'+BASE+'assets/inspomint-wordmark.svg" alt="InspoMint — Fresh ideas worth saving."></a><p>Beautiful ideas to make, wear, try and keep. A lifestyle project by Ecrin Labs.</p></div><div><b>Explore</b><a href="'+BASE+'#trending">Trending Now</a><a href="'+BASE+'#collections">Collections</a><a href="'+BASE+'#more">More to Love</a><a href="'+BASE+'october-2026/">October Issue</a><a href="'+BASE+'pinterest/">Pinterest images</a></div><div><b>Trust & Legal</b><a href="'+BASE+'editorial-policy.html">Editorial Policy</a><a href="'+BASE+'about.html">About</a><a href="'+BASE+'privacy.html">Privacy</a><a href="'+BASE+'affiliate-disclosure.html">Affiliate Disclosure</a><a href="'+BASE+'contact.html">Contact</a></div></div><div class="shell footer-bottom"><span>© 2026 Folvella</span><span><strong>Ecrin Labs</strong> · Created with care</span></div></footer>'
+    return '<footer class="full-footer"><div class="shell footer-grid"><div><a class="footer-brand-img" href="'+BASE+'"><img src="'+BASE+'assets/inspomint-wordmark.svg" alt="InspoMint — Fresh ideas worth saving."></a><p>Beautiful ideas to make, wear, try and keep. A lifestyle project by Ecrin Labs.</p></div><div><b>Explore</b><a href="'+BASE+'#trending">Trending Now</a><a href="'+BASE+'#collections">Collections</a><a href="'+BASE+'blog/">Blog</a><a href="'+BASE+'#more">More to Love</a><a href="'+BASE+'october-2026/">October Issue</a><a href="'+BASE+'pinterest/">Pinterest images</a></div><div><b>Trust & Legal</b><a href="'+BASE+'editorial-policy.html">Editorial Policy</a><a href="'+BASE+'about.html">About</a><a href="'+BASE+'privacy.html">Privacy</a><a href="'+BASE+'affiliate-disclosure.html">Affiliate Disclosure</a><a href="'+BASE+'contact.html">Contact</a></div></div><div class="shell footer-bottom"><span>© 2026 Folvella</span><span><strong>Ecrin Labs</strong> · Created with care</span></div></footer>'
 
 def mobilebar():
-    return '<nav class="mobilebar" aria-label="Mobile navigation"><a href="'+BASE+'">⌂<br>Home</a><a href="'+BASE+'pinterest/">P<br>Pinterest</a><a href="'+BASE+'#collections">◇<br>Collections</a><a href="'+BASE+'#trending">↗<br>Trending</a><a href="'+BASE+'#more">•••<br>More</a></nav>'
+    return '<nav class="mobilebar" aria-label="Mobile navigation"><a href="'+BASE+'">⌂<br>Home</a><a href="'+BASE+'blog/">✦<br>Blog</a><a href="'+BASE+'pinterest/">P<br>Pinterest</a><a href="'+BASE+'#collections">◇<br>Collections</a><a href="'+BASE+'#trending">↗<br>Trending</a></nav>'
 
 def convert_preview(page, path, title, desc, image=None, home=False):
     page=re.sub(r'<head>[\s\S]*?</head>','__HEAD__',page,count=1)
@@ -30,6 +30,7 @@ def convert_preview(page, path, title, desc, image=None, home=False):
     page=page.replace('href="./#', 'href="'+BASE+'#')
     page=page.replace('href="../pinterest/"','href="'+BASE+'pinterest/"')
     page=page.replace('href="../contact.html"','href="'+BASE+'contact.html"')
+    page=page.replace('<div class="social">','<div class="social"><a class="sub" href="'+BASE+'blog/">Blog</a>',1)
     page=page.replace('href="../editorial-policy.html"','href="'+BASE+'editorial-policy.html"')
     page=page.replace('href="../about.html"','href="'+BASE+'about.html"')
     page=page.replace('href="../privacy.html"','href="'+BASE+'privacy.html"')
@@ -48,6 +49,12 @@ def convert_preview(page, path, title, desc, image=None, home=False):
 # Live homepage: approved preview, converted to production URLs/SEO.
 preview=(ROOT/'theme-preview-modern-creative/index.html').read_text(encoding='utf-8')
 home=convert_preview(preview,'','InspoMint — Fresh Ideas Worth Saving','Beauty, style, home, DIY, food and grooming ideas worth reading, saving and coming back to.','assets/inspomint-og.svg',True)
+
+# Keep the homepage fresh: the six newest published guides always populate Latest Articles.
+latest_cards=''.join('<a class="mini" href="'+BASE+p['slug']+'/"><img src="'+absurl(p['cover'])+'" alt="'+e(p['title'])+'" loading="lazy"><h3>'+e(p['title'])+'</h3></a>' for p in posts[:6])
+home=re.sub(r'(<section class="section"><div class="shell"><div class="section-title"><h2>Latest[\\s\\S]*?<div class="latest">)[\\s\\S]*?(</div></div></section>)',lambda m:m.group(1)+latest_cards+m.group(2),home,count=1)
+home=home.replace('<a href="#more">View All →</a>','<a href="'+BASE+'blog/">View All →</a>',1)
+home=re.sub(r'<strong>\\d+ stories</strong>','<strong>'+str(len(posts))+' stories</strong>',home,count=1)
 (ROOT/'index.html').write_text(home,encoding='utf-8')
 
 # Live October issue.
@@ -55,6 +62,18 @@ issue_src=(ROOT/'theme-preview-modern-creative/october-2026.html').read_text(enc
 issue=convert_preview(issue_src,'october-2026/','October 2026 Issue','Everything InspoMint published in October 2026, collected across beauty, hair, style, home, DIY, food, fragrance and grooming.','assets/inspomint-og.svg',False)
 issue_dir=ROOT/'october-2026'; issue_dir.mkdir(exist_ok=True)
 (issue_dir/'index.html').write_text(issue,encoding='utf-8')
+
+# Full Blog hub: all published guides, newest first, with category filters.
+blog_posts=sorted(posts,key=lambda p:p.get('datePublished',''),reverse=True)
+blog_path='blog/'
+blog_desc='Browse every InspoMint article across beauty, nails, hair, fragrance, home, DIY, food, style and grooming.'
+blog_schema={'@context':'https://schema.org','@type':'CollectionPage','name':'InspoMint Blog','url':BASE+blog_path,'description':blog_desc,'mainEntity':{'@type':'ItemList','itemListElement':[{'@type':'ListItem','position':i+1,'name':p['title'],'url':BASE+p['slug']+'/'} for i,p in enumerate(blog_posts)]}}
+blog_hd='<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Blog — InspoMint</title><meta name="description" content="'+e(blog_desc)+'"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="'+BASE+blog_path+'"><meta property="og:type" content="website"><meta property="og:site_name" content="InspoMint"><meta property="og:title" content="InspoMint Blog"><meta property="og:description" content="'+e(blog_desc)+'"><meta property="og:url" content="'+BASE+blog_path+'"><meta property="og:image" content="'+absurl(posts[0]['cover'])+'"><meta name="twitter:card" content="summary_large_image"><link rel="icon" type="image/svg+xml" href="'+BASE+'assets/inspomint-mark.svg">'+font+'<link rel="stylesheet" href="'+BASE+'assets/modern-creative.css?v=20261006-blog">'+schema(blog_schema)+'<style>.blog-hero{padding:56px 0 30px}.blog-hero h1{font:800 clamp(48px,8vw,88px)/.9 Georgia,serif;letter-spacing:-.055em;margin:10px 0;color:#0f2b25}.blog-hero h1 span{color:#7c9c82}.blog-hero p{max-width:720px;color:#6f625d;font-size:18px;line-height:1.65}.blog-count{font-size:13px;color:#7c9c82;font-weight:800;text-transform:uppercase;letter-spacing:.12em}.blog-filters{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0 28px}.blog-filters button{border:1px solid #ded6ca;background:#fff;border-radius:999px;padding:9px 14px;font:700 12px Arial,sans-serif;cursor:pointer;color:#0f2b25}.blog-filters button.active{background:#7c9c82;border-color:#7c9c82;color:#fff}.blog-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;padding-bottom:70px}.blog-card{background:#fff;border:1px solid #e7e0d5;border-radius:18px;overflow:hidden}.blog-card[hidden]{display:none}.blog-card a{text-decoration:none;color:inherit}.blog-card img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}.blog-card-copy{padding:16px}.blog-card small{color:#7c9c82;font-weight:800;text-transform:uppercase;letter-spacing:.07em}.blog-card h2{font:700 22px/1.08 Georgia,serif;margin:8px 0;color:#0f2b25}.blog-card p{font-size:13px;line-height:1.5;color:#6f625d;margin:0}.blog-search{margin:0 0 22px;display:flex;max-width:560px}.blog-search input{width:100%;border:1px solid #ded6ca;border-radius:999px;padding:12px 16px;background:#fff;font:inherit}.blog-empty{display:none;padding:30px 0 70px;color:#6f625d}@media(max-width:900px){.blog-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:560px){.blog-grid{grid-template-columns:1fr}.blog-hero{padding-top:34px}}</style></head>'
+blog_filters='<div class="blog-filters"><button type="button" class="active" data-blog-filter="all">All</button>'+''.join('<button type="button" data-blog-filter="'+e(c)+'">'+e(c)+'</button>' for c in cats)+'</div>'
+blog_cards=''.join('<article class="blog-card" data-cat="'+e(p['category'])+'" data-search="'+e((p['title']+' '+p['category']+' '+p.get('excerpt','')).lower())+'"><a href="'+BASE+p['slug']+'/"><img src="'+absurl(p['cover'])+'" alt="'+e(p.get('coverAlt',p['title']))+'" loading="lazy"><div class="blog-card-copy"><small>'+e(p['category'])+' · '+e(p.get('dateLabel',p.get('datePublished','')))+'</small><h2>'+e(p['title'])+'</h2><p>'+e(p.get('excerpt',''))+'</p></div></a></article>' for p in blog_posts)
+blog_js='''<script>(function(){const btns=[...document.querySelectorAll('[data-blog-filter]')],cards=[...document.querySelectorAll('.blog-card')],input=document.getElementById('blogSearch'),status=document.getElementById('blogStatus'),empty=document.getElementById('blogEmpty');let cat='all';function apply(){const q=(input.value||'').trim().toLowerCase();let n=0;cards.forEach(card=>{const show=(cat==='all'||card.dataset.cat===cat)&&(!q||card.dataset.search.includes(q));card.hidden=!show;if(show)n++});status.textContent=n+' articles';empty.style.display=n?'none':'block'}btns.forEach(b=>b.addEventListener('click',()=>{cat=b.dataset.blogFilter;btns.forEach(x=>x.classList.toggle('active',x===b));apply()}));input.addEventListener('input',apply);apply()})();</script>'''
+blog_body=blog_hd+'<body>'+live_header(False)+'<main><section class="shell blog-hero"><div class="blog-count">THE INS POMINT JOURNAL</div><h1>Fresh ideas,<br><span>all in one place.</span></h1><p>'+e(blog_desc)+'</p></section><section class="shell"><form class="blog-search" role="search" onsubmit="return false"><input id="blogSearch" type="search" placeholder="Search the blog…" aria-label="Search the blog"></form>'+blog_filters+'<p id="blogStatus" class="blog-count">'+str(len(blog_posts))+' articles</p><div class="blog-grid">'+blog_cards+'</div><p id="blogEmpty" class="blog-empty">No articles match that search.</p></section></main>'+mobilebar()+live_footer()+blog_js+'</body></html>'
+blog_dir=ROOT/'blog'; blog_dir.mkdir(exist_ok=True); (blog_dir/'index.html').write_text(blog_body,encoding='utf-8')
 
 # Static, SEO-friendly Modern Creative article pages.
 for p in posts:
@@ -82,7 +101,7 @@ for p in posts:
     if faq:
         faqhtml='<section class="faq"><h2>Frequently Asked Questions</h2>'+''.join('<details><summary>'+e(q['q'])+'</summary><p>'+e(q['a'])+'</p></details>' for q in faq)+'</section>'
     relatedhtml='<section class="article-section"><h2>More to <span class="script-word">explore</span></h2><div class="related-preview">'+''.join('<a href="'+BASE+x['slug']+'/"><img src="'+absurl(x['cover'])+'" alt="'+e(x['title'])+'" loading="lazy"><b>'+e(x['title'])+'</b></a>' for x in related)+'</div></section>'
-    body=hd+'<body>'+live_header(False)+'<main><div class="article-shell article-top"><span class="article-crumb">'+e(p['category'])+'</span><h1>'+e(p['title'])+'</h1><p class="article-dek">'+e(p['excerpt'])+'</p><div class="article-meta">'+e(p.get('dateLabel',p['datePublished']))+' · '+e(p.get('readMinutes',3))+' min read · InspoMint by Ecrin Labs</div></div><div class="article-shell article-layout"><article class="article-main"><img class="article-cover" src="'+absurl(p['cover'])+'" alt="'+e(p.get('coverAlt',p['title']))+'" fetchpriority="high"><div class="intro">'+intro+'</div>'+secs+faqhtml+relatedhtml+'</article><aside><div class="article-side"><h3>InspoMint ♡</h3><p style="color:#6f625d;line-height:1.55">Ideas worth reading, saving and coming back to.</p><a href="'+BASE+'">← Home</a><a href="'+BASE+'#trending">Trending Now</a><a href="'+BASE+'#collections">Collections</a><a href="'+BASE+'october-2026/">October Issue</a><a href="'+BASE+'pinterest/">Pinterest images</a></div></aside></div></main>'+mobilebar()+live_footer()+'</body></html>'
+    body=hd+'<body>'+live_header(False)+'<main><div class="article-shell article-top"><span class="article-crumb">'+e(p['category'])+'</span><h1>'+e(p['title'])+'</h1><p class="article-dek">'+e(p['excerpt'])+'</p><div class="article-meta">'+e(p.get('dateLabel',p['datePublished']))+' · '+e(p.get('readMinutes',3))+' min read · InspoMint by Ecrin Labs</div></div><div class="article-shell article-layout"><article class="article-main"><img class="article-cover" src="'+absurl(p['cover'])+'" alt="'+e(p.get('coverAlt',p['title']))+'" fetchpriority="high"><div class="intro">'+intro+'</div>'+secs+faqhtml+relatedhtml+'</article><aside><div class="article-side"><h3>InspoMint ♡</h3><p style="color:#6f625d;line-height:1.55">Ideas worth reading, saving and coming back to.</p><a href="'+BASE+'">← Home</a><a href="'+BASE+'blog/">Blog</a><a href="'+BASE+'#trending">Trending Now</a><a href="'+BASE+'#collections">Collections</a><a href="'+BASE+'october-2026/">October Issue</a><a href="'+BASE+'pinterest/">Pinterest images</a></div></aside></div></main>'+mobilebar()+live_footer()+'</body></html>'
     out=ROOT/path; out.mkdir(parents=True,exist_ok=True); (out/'index.html').write_text(body,encoding='utf-8')
 
 # Ensure October issue is discoverable in the sitemap generated earlier in the build.
@@ -92,9 +111,9 @@ if sm.exists():
     ET.register_namespace('',ns)
     tree=ET.parse(sm); root=tree.getroot()
     locs={n.text for n in root.findall('{'+ns+'}url/{'+ns+'}loc')}
-    url=BASE+'october-2026/'
-    if url not in locs:
-        u=ET.SubElement(root,'{'+ns+'}url'); ET.SubElement(u,'{'+ns+'}loc').text=url
+    for url in [BASE+'october-2026/',BASE+'blog/']:
+        if url not in locs:
+            u=ET.SubElement(root,'{'+ns+'}url'); ET.SubElement(u,'{'+ns+'}loc').text=url
     tree.write(sm,encoding='utf-8',xml_declaration=True)
 
 print(f'Published InspoMint Modern Creative live theme for {len(posts)} articles.')
