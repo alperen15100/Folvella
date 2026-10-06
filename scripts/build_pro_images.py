@@ -97,8 +97,20 @@ def nail_semantics(im,pal,slug,heading,i,srcname):
   return ImageEnhance.Sharpness(out).enhance(1.08)
  if srcname.startswith('brown-french'):
   # Source already has a clean nude + brown French manicure; keep skin/fabric untouched.
-  mask=(Hh<35)&(S>58)&(V<85)
-  if any(k in h for k in ['pumpkin','orange','gold','caramel']):
+  mask=(Hh<35)&(S>58)&(V<110)
+  if 'tortoiseshell' in slug:
+   out,m=recolor(im,mask,(184,119,56),.52)
+   lay=Image.new('RGBA',im.size,(0,0,0,0)); d=ImageDraw.Draw(lay,'RGBA')
+   rng=random.Random(seed(slug,i,'tortoise-tip'))
+   W,H=im.size
+   for _ in range(85):
+    x=rng.randrange(W); y=rng.randrange(H); rx=rng.randrange(4,16); ry=rng.randrange(3,11)
+    col=(65,33,20,rng.randrange(90,155)) if rng.random()>.35 else (119,65,27,rng.randrange(75,130))
+    d.ellipse((x-rx,y-ry,x+rx,y+ry),fill=col)
+   aa=np.minimum(np.array(lay)[...,3],np.array(m,dtype=np.uint8))
+   la=np.array(lay); la[...,3]=aa
+   out=Image.alpha_composite(out.convert('RGBA'),Image.fromarray(la,'RGBA')).convert('RGB')
+  elif any(k in h for k in ['pumpkin','orange','gold','caramel']):
    out,_=recolor(im,mask,target,.82)
   else: out=im
   return ImageEnhance.Color(out).enhance(1.03)
@@ -347,9 +359,9 @@ def render(p,i,path,heading):
 
 COVER_SOURCE={
  'dark-red-cat-eye-nail-ideas-fall-2026':'assets/generated/cherry-jam-nails.webp',
- 'tortoiseshell-french-tip-nail-ideas-fall':'assets/generated/brown-french-tip-nail-ideas-02.webp',
  'fall-scent-stacking-vanilla-coffee-amber':'assets/generated/perfume-layering-ideas-06.webp',
  'cozy-october-recipes-pumpkin-apple-comfort-dinners':'assets/generated/apple-cinnamon-desserts-fall-01.webp',
+ 'textured-french-bob-ideas-fall':'assets/generated/90s-hair-accessory-looks-05.webp',
 }
 COVER_HEADING={
  'moss-green-chocolate-brown-living-room-ideas':'Moss green sofa with walnut furniture',
