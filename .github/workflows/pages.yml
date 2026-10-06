@@ -23,12 +23,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+      - name: Install image dependencies
+        run: python3 -m pip install --quiet Pillow numpy
+      - name: Build section-aware editorial images
+        run: python3 scripts/build_pro_images.py
       - name: Rebuild static site
         run: python3 scripts/build.py
       - name: Build InspoMint 3-photo Pins
-        run: |
-          python3 -m pip install --quiet Pillow
-          python3 scripts/build_inspomint_pins.py
+        run: python3 scripts/build_inspomint_pins.py
       - name: Rebuild Pinterest catalog
         run: python3 scripts/build_all_pins.py
       - name: Rebuild Pinterest kit
