@@ -24,7 +24,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
       - name: Install image dependencies
-        run: python3 -m pip install --quiet Pillow
+        run: python3 -m pip install --quiet Pillow numpy
       - name: Build editorial WebP images
         run: python3 scripts/build_pro_images.py
       - name: Rebuild static site
