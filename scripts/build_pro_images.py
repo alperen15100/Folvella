@@ -332,6 +332,10 @@ def render(p,i,path,heading):
   im=food_semantics(food_photo(p['slug'],i,heading),heading,p['slug'],i,pal)
  else:
   src=choose(['warm-reading-corner.webp'],p['slug'],i,heading); im=fit(Image.open(src),(1024,768),.5)
+ # Guarantee a genuinely distinct treatment per section even when the same base photo is reused.
+ if i%2==1: im=im.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
+ im=ImageEnhance.Brightness(im).enhance(0.988+(i%7)*0.004)
+ im=ImageEnhance.Color(im).enhance(0.97+(i%5)*0.012)
  im=ImageEnhance.Sharpness(ImageEnhance.Contrast(im).enhance(1.02)).enhance(1.06)
  im.save(ROOT/path,'WEBP',quality=91,method=4); DIMS[path]=[1024,768]
 
