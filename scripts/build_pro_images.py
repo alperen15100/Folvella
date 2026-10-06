@@ -188,6 +188,8 @@ def fragrance_semantics(im,heading,slug,i):
  return Image.alpha_composite(out,lay).convert('RGB')
 
 def room_base(slug,i,h):
+ if slug=='moss-green-chocolate-brown-living-room-ideas' and i==0:
+  return fit(Image.open(OUT/'warm-reading-corner.webp'),(1024,768),.5)
  return fit(Image.open(choose(['warm-reading-corner.webp','trinket-shelf-styling-ideas-cover.webp'],slug,i,h)),(1024,768),.5)
 
 def room_semantics(im,pal,heading,slug,i):
@@ -211,6 +213,8 @@ def room_semantics(im,pal,heading,slug,i):
  return Image.alpha_composite(out.convert('RGBA'),lay).convert('RGB')
 
 def wallpaper_base(slug,i,h):
+ if slug=='botanical-wallpaper-ideas-cozy-fall-rooms' and i==0:
+  return fit(Image.open(OUT/'warm-bedroom-lighting.webp'),(1024,768),.47)
  return fit(Image.open(choose(['warm-bedroom-lighting.webp','warm-reading-corner.webp'],slug,i,h)),(1024,768),.47)
 
 def wallpaper_semantics(im,pal,heading,slug,i):
@@ -226,8 +230,10 @@ def wallpaper_semantics(im,pal,heading,slug,i):
   x0,y0,x1,y1=box; step=92 if 'mural' not in h else 145
   for y in range(y0+38,y1,step):
    for x in range(x0+34,x1,step):
-    col=(78,105,65,68) if not dark else (154,177,130,64)
-    d.ellipse((x-24,y-8,x+24,y+8),fill=col); d.line((x-24,y+17,x+24,y-17),fill=(80,67,48,45),width=2)
+    col=(78,105,65,150) if not dark else (154,177,130,135)
+    d.ellipse((x-30,y-11,x+30,y+11),fill=col)
+    d.ellipse((x-7,y-31,x+7,y+31),fill=col)
+    d.line((x-34,y+24,x+34,y-24),fill=(80,67,48,105),width=3)
   if 'framed' in h: d.rectangle(box,outline=(101,79,53,100),width=5)
  return Image.alpha_composite(out,lay).convert('RGB')
 
@@ -339,10 +345,35 @@ def render(p,i,path,heading):
  im=ImageEnhance.Sharpness(ImageEnhance.Contrast(im).enhance(1.02)).enhance(1.06)
  im.save(ROOT/path,'WEBP',quality=91,method=4); DIMS[path]=[1024,768]
 
+COVER_SOURCE={
+ 'dark-red-cat-eye-nail-ideas-fall-2026':'assets/generated/cherry-jam-nails.webp',
+ 'tortoiseshell-french-tip-nail-ideas-fall':'assets/generated/brown-french-tip-nail-ideas-02.webp',
+ 'fall-scent-stacking-vanilla-coffee-amber':'assets/generated/perfume-layering-ideas-06.webp',
+ 'cozy-october-recipes-pumpkin-apple-comfort-dinners':'assets/generated/apple-cinnamon-desserts-fall-01.webp',
+}
+COVER_HEADING={
+ 'moss-green-chocolate-brown-living-room-ideas':'Moss green sofa with walnut furniture',
+ 'botanical-wallpaper-ideas-cozy-fall-rooms':'Soft botanical bedroom wall',
+ 'pumpkin-chrome-nail-ideas-october-2026':'Burnt orange mirror chrome',
+ 'cherry-mocha-plum-nail-ideas-fall':'Deep plum almond nails',
+ 'cherry-cola-hair-color-ideas-fall':'Deep cherry cola all-over color',
+ 'textured-french-bob-ideas-fall':'Classic jaw-length textured French bob',
+}
+
+def copy_cover(src,path):
+ im=fit(Image.open(ROOT/src),(1024,768),.5)
+ im=ImageEnhance.Sharpness(ImageEnhance.Contrast(im).enhance(1.02)).enhance(1.05)
+ im.save(ROOT/path,'WEBP',quality=91,method=4)
+ DIMS[path]=[1024,768]
+
 count=0
 for p in POSTS:
  if p.get('qualityStandard')!='pro-v2': continue
- render(p,0,p['cover'],p['title']); count+=1
+ if p['slug'] in COVER_SOURCE:
+  copy_cover(COVER_SOURCE[p['slug']],p['cover'])
+ else:
+  render(p,0,p['cover'],COVER_HEADING.get(p['slug'],p['title']))
+ count+=1
  for i,s in enumerate(p.get('sections',[]),1):
   if s.get('image'):
    render(p,i,s['image'],clean(s.get('heading',''))); count+=1
