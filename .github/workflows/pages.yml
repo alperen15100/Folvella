@@ -1,4 +1,4 @@
-name: Deploy Folvella to GitHub Pages
+name: Deploy InspoMint to GitHub Pages
 
 on:
   push:
@@ -33,6 +33,8 @@ jobs:
         run: python3 scripts/publish_modern_theme.py
       - name: Apply configured site base
         run: python3 scripts/rewrite_site_base.py
+      - name: Apply InspoMint branding
+        run: python3 scripts/rewrite_brand.py
       - name: Validate publication
         run: python3 scripts/validate.py
       - name: Setup Pages
