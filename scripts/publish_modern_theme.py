@@ -76,25 +76,44 @@ issue_peeks=''.join('<a class="issue-peek" href="'+BASE+p['slug']+'/"><img src="
 issue_home='<section class="shell october-issue"><div class="issue-copy"><span class="kicker2">InspoMint Monthly</span><h2>October <span class="script-word">Issue</span></h2><p>Everything we published this October — beauty, hair, style, home, DIY, food and grooming — collected in one place.</p><div class="issue-stats"><strong>'+str(len(home_posts))+' stories</strong><span>•</span><strong>'+str(len(cats))+' collections</strong></div><a class="issue-cta" href="'+BASE+'october-2026/">Explore the October Issue ↗</a></div><div class="issue-peeks">'+issue_peeks+'</div></section>'
 home=re.sub(r'<section class="shell october-issue">[\\s\\S]*?</section>',issue_home,home,count=1)
 
+# Refresh the "Your next inspiration" collections with current posts and a richer editorial layout.
+def latest_for_categories(names,limit=3):
+    items=[p for p in home_posts if p['category'] in names]
+    return items[:limit]
+
+collection_specs=[
+    ('Beauty worth saving',['Beauty & Nails'],'Glossy color, small details and manicure ideas to keep.','Beauty & Nails'),
+    ('A fresh hair chapter',["Women's Hair"],'Cuts, color and texture ideas for your next salon visit.',"Women's Hair"),
+    ('Make home feel warmer',['Home Decor','Home & DIY'],'Cozy rooms, thoughtful details and little projects.','Home Decor'),
+    ('Something cozy to make',['Food & Drinks'],'Seasonal baking, comfort dinners and slow-morning recipes.','Food & Drinks')
+]
+collection_cards=''
+for idx,(title,names,desc,filter_cat) in enumerate(collection_specs):
+    items=latest_for_categories(names,3)
+    if not items: continue
+    imgs=''.join('<img src="'+absurl(p['cover'])+'" alt="'+e(p['title'])+'" loading="lazy">' for p in items)
+    collection_cards+='<a class="collection-card'+(' collection-card-featured' if idx==0 else '')+'" href="?cat='+urllib.parse.quote(filter_cat)+'#more"><div class="collection-kicker">'+e(names[0])+'</div><div class="collection-images">'+imgs+'</div><div class="collection-copy"><h3>'+e(title)+'</h3><p>'+e(desc)+'</p><span class="collection-count">'+str(sum(1 for p in home_posts if p['category'] in names))+' ideas</span></div><span class="arrow">↗</span></a>'
+collection_section='<section class="collection-section" id="collections"><div class="shell"><div class="section-title collection-title"><div><span class="collection-eyebrow">CURATED FOR YOU</span><h2>Your next <span class="script-word">inspiration</span></h2><p>Four fresh ways to keep exploring InspoMint.</p></div><a href="'+BASE+'blog/">Browse all ideas ↗</a></div><div class="collection-grid">'+collection_cards+'</div></div></section>'
+home=re.sub(r'<section class="collection-section" id="collections">[\\s\\S]*?</section>\\s*<section class="section" id="more">',collection_section+'\\n\\n<section class="section" id="more">',home,count=1)
+
 more_cards=''.join('<article class="more-card" data-cat="'+e(p['category'])+'"><a href="'+BASE+p['slug']+'/"><img src="'+absurl(p['cover'])+'" alt="'+e(p['title'])+'" loading="lazy"><div class="more-copy"><small>'+e(p['category'])+'</small><h3>'+e(p['title'])+'</h3></div></a></article>' for p in home_posts)
 home=replace_between(home,'<div class="more-grid">','</div><div class="preview"',more_cards)
 (ROOT/'index.html').write_text(home,encoding='utf-8')
 
-# Live October issue, fully synced with posts.json.
-issue_src=(ROOT/'theme-preview-modern-creative/october-2026.html').read_text(encoding='utf-8')
-issue=convert_preview(issue_src,'october-2026/','October 2026 Issue','Everything InspoMint published in October 2026, collected across beauty, hair, style, home, DIY, food, fragrance and grooming.','assets/inspomint-og.svg',False)
+# Live October issue, generated directly from posts.json so new articles can never be omitted.
 issue_posts=[p for p in ordered_posts if p.get('datePublished','').startswith('2026-10')]
 issue_counts={c:sum(1 for p in issue_posts if p['category']==c) for c in cats}
+issue_path='october-2026/'
+issue_desc='Everything InspoMint published in October 2026, collected across beauty, hair, style, home, DIY, food, fragrance and grooming.'
+issue_schema={'@context':'https://schema.org','@type':'CollectionPage','name':'October 2026 Issue','url':BASE+issue_path,'description':issue_desc,'mainEntity':{'@type':'ItemList','itemListElement':[{'@type':'ListItem','position':i+1,'name':p['title'],'url':BASE+p['slug']+'/'} for i,p in enumerate(issue_posts)]}}
+issue_hd='<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>October 2026 Issue — InspoMint</title><meta name="description" content="'+e(issue_desc)+'"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="'+BASE+issue_path+'"><meta property="og:type" content="website"><meta property="og:site_name" content="InspoMint"><meta property="og:title" content="October 2026 Issue"><meta property="og:description" content="'+e(issue_desc)+'"><meta property="og:url" content="'+BASE+issue_path+'"><meta property="og:image" content="'+absurl(issue_posts[0]['cover'])+'"><meta name="twitter:card" content="summary_large_image"><link rel="icon" type="image/svg+xml" href="'+BASE+'assets/inspomint-mark.svg">'+font+'<link rel="stylesheet" href="'+BASE+'assets/modern-creative.css?v=20261006-issue">'+schema(issue_schema)+'</head>'
 issue_summary=''.join('<span>'+e(c)+' · '+str(issue_counts[c])+'</span>' for c in cats if issue_counts[c])
-issue=replace_between(issue,'<div class="issue-summary">','</div>',issue_summary)
-issue=re.sub(r'<h2>\\d+ October <span class="script-word">stories</span></h2>','<h2>'+str(len(issue_posts))+' October <span class="script-word">stories</span></h2>',issue,count=1)
-issue=re.sub(r'<p class="issue-page-count" id="issueCount">.*?</p>','<p class="issue-page-count" id="issueCount">Showing all '+str(len(issue_posts))+' stories.</p>',issue,count=1)
 issue_filters='<button type="button" data-issue-filter="all" class="active">All October ('+str(len(issue_posts))+')</button>'+''.join('<button type="button" data-issue-filter="'+e(c)+'">'+e(c)+' ('+str(issue_counts[c])+')</button>' for c in cats if issue_counts[c])
-issue=replace_between(issue,'<div class="filters">','</div>',issue_filters)
-issue_cards=''.join('<article class="issue-card" data-cat="'+e(p['category'])+'"><a href="'+BASE+p['slug']+'/"><img src="'+absurl(p['cover'])+'" alt="'+e(p['title'])+'" loading="lazy"><div class="issue-card-copy"><small>'+e(p['category'])+'</small><h2>'+e(p['title'])+'</h2><p>'+e(p['excerpt'])+'</p></div></a></article>' for p in issue_posts)
-issue=re.sub(r'<div class="issue-grid" id="issueGrid">[\\s\\S]*?</div>\\s*</div></section>','<div class="issue-grid" id="issueGrid">'+issue_cards+'</div></div></section>',issue,count=1)
+issue_cards=''.join('<article class="issue-card" data-cat="'+e(p['category'])+'" data-search="'+e((p['title']+' '+p['category']+' '+p.get('excerpt','')).lower())+'"><a href="'+BASE+p['slug']+'/"><img src="'+absurl(p['cover'])+'" alt="'+e(p.get('coverAlt',p['title']))+'" loading="lazy"><div class="issue-card-copy"><small>'+e(p['category'])+'</small><h2>'+e(p['title'])+'</h2><p>'+e(p['excerpt'])+'</p></div></a></article>' for p in issue_posts)
+issue_js='''<script>(function(){const btns=[...document.querySelectorAll('[data-issue-filter]')],cards=[...document.querySelectorAll('.issue-card')],input=document.getElementById('issueSearch'),count=document.getElementById('issueCount');let cat='all';function apply(){const q=(input.value||'').trim().toLowerCase();let n=0;cards.forEach(card=>{const show=(cat==='all'||card.dataset.cat===cat)&&(!q||card.dataset.search.includes(q));card.hidden=!show;if(show)n++});count.textContent='Showing '+n+' '+(n===1?'story':'stories')+'.'}btns.forEach(b=>b.addEventListener('click',()=>{cat=b.dataset.issueFilter;btns.forEach(x=>x.classList.toggle('active',x===b));apply()}));input.addEventListener('input',apply);apply()})();</script>'''
+issue_body=issue_hd+'<body>'+live_header(False)+'<main><section class="issue-page-hero"><div class="shell"><span class="issue-eyebrow">InspoMint Monthly · October 2026</span><h1>October <span>Issue</span></h1><p>'+e(issue_desc)+'</p><div class="issue-summary">'+issue_summary+'</div></div></section><section class="section"><div class="shell"><div class="section-title"><div><h2>'+str(len(issue_posts))+' October <span class="script-word">stories</span></h2><p class="issue-page-count" id="issueCount">Showing all '+str(len(issue_posts))+' stories.</p></div><a href="'+BASE+'blog/">All articles →</a></div><form class="issue-search" role="search" onsubmit="return false"><input id="issueSearch" type="search" placeholder="Search October stories…" aria-label="Search October stories"></form><div class="filters">'+issue_filters+'</div><div class="issue-grid" id="issueGrid">'+issue_cards+'</div></div></section></main>'+mobilebar()+live_footer()+issue_js+'</body></html>'
 issue_dir=ROOT/'october-2026'; issue_dir.mkdir(exist_ok=True)
-(issue_dir/'index.html').write_text(issue,encoding='utf-8')
+(issue_dir/'index.html').write_text(issue_body,encoding='utf-8')
 
 # Full Blog hub: all published guides, newest first, with category filters.
 blog_posts=sorted(posts,key=lambda p:p.get('datePublished',''),reverse=True)
