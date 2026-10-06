@@ -143,7 +143,7 @@ for p in posts:
     if not related:
         related=sorted([x for x in posts if x['slug']!=p['slug']],key=lambda x:x['category']!=p['category'])[:3]
     article_images=[absurl(x) for x in dict.fromkeys([p['cover']]+[sec.get('image') for sec in p.get('sections',[]) if sec.get('image')])]
-    article_words=len(re.findall(r'\\S+',' '.join(p.get('intro',[])+[t for sec in p.get('sections',[]) for t in sec.get('paragraphs',[])]+[q.get('a','') for q in faq])))
+    article_words=len(re.findall(r'\S+',' '.join(p.get('intro',[])+[t for sec in p.get('sections',[]) for t in sec.get('paragraphs',[])]+[q.get('a','') for q in faq])))
     article_schema={'@context':'https://schema.org','@type':'BlogPosting','headline':p['title'],'description':p['excerpt'],'image':article_images,'mainEntityOfPage':BASE+path,'datePublished':p['datePublished'],'dateModified':p['dateModified'],'author':{'@type':'Organization','name':'InspoMint Editorial','url':BASE+'about.html'},'publisher':{'@type':'Organization','name':'InspoMint','url':BASE},'articleSection':p['category'],'inLanguage':'en','wordCount':article_words}
     breadcrumb={'@context':'https://schema.org','@type':'BreadcrumbList','itemListElement':[{'@type':'ListItem','position':1,'name':'Home','item':BASE},{'@type':'ListItem','position':2,'name':p['category'],'item':BASE+catpath},{'@type':'ListItem','position':3,'name':p['title'],'item':BASE+path}]}
     schemas=[article_schema,breadcrumb]

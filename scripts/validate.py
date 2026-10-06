@@ -61,12 +61,12 @@ for p in posts:
   assert len(p.get('intro',[]))>=3,('Professional intro requires 3 paragraphs',p['slug'])
   assert len(p.get('faq',[]))>=4,('Professional FAQ requires 4 questions',p['slug'])
   prose=p.get('intro',[])+[t for sec in p.get('sections',[]) for t in sec.get('paragraphs',[])]+[q.get('a','') for q in p.get('faq',[])]
-  word_count=len(re.findall(r'\\S+',' '.join(prose)))
+  word_count=len(re.findall(r'\S+',' '.join(prose)))
   assert word_count>=780,('Article too thin',p['slug'],word_count)
   expected_read=max(4,(word_count+199)//200)
   assert p.get('readMinutes')==expected_read,('Read time mismatch',p['slug'],p.get('readMinutes'),expected_read)
   for i,sec in enumerate(p.get('sections',[]),1):
-   sec_words=len(re.findall(r'\\S+',' '.join(sec.get('paragraphs',[]))))
+   sec_words=len(re.findall(r'\S+',' '.join(sec.get('paragraphs',[]))))
    assert sec_words>=40,('Thin idea section',p['slug'],i,sec_words)
    assert sec.get('image'),('Every idea requires a visual',p['slug'],i)
    assert len(sec.get('alt',''))>=20,('Weak image alt text',p['slug'],i)
