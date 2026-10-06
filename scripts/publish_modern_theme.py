@@ -69,7 +69,7 @@ for p in home_posts[:5]:
 home=replace_between(home,'<div class="trend-track" id="trendTrack">','</div></div><div class="trend-nav">',trend_cards)
 
 latest_cards=''.join('<a class="mini" href="'+BASE+p['slug']+'/"><img src="'+absurl(p['cover'])+'" alt="'+e(p['title'])+'" loading="lazy"><h3>'+e(p['title'])+'</h3></a>' for p in home_posts[:6])
-home=replace_between(home,'<div class="latest">','</div></div></section>\\n\\n<section class="shell october-issue">',latest_cards)
+home=replace_between(home,'<div class="latest">','<section class="shell october-issue">',latest_cards+'</div></div></section>\n\n')
 home=home.replace('href="#more">View All →</a>','href="'+BASE+'blog/">View All →</a>')
 
 issue_peeks=''.join('<a class="issue-peek" href="'+BASE+p['slug']+'/"><img src="'+absurl(p['cover'])+'" alt="'+e(p['title'])+'" loading="lazy"><span>'+e(p['category'])+'</span></a>' for p in home_posts[:4])
