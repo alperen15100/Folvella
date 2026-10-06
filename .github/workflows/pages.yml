@@ -29,6 +29,8 @@ jobs:
         run: python3 scripts/build_all_pins.py
       - name: Rebuild Pinterest kit
         run: python3 scripts/build_pin_kit.py
+      - name: Publish Modern Creative live theme
+        run: python3 scripts/publish_modern_theme.py
       - name: Apply configured site base
         run: python3 scripts/rewrite_site_base.py
       - name: Validate publication
