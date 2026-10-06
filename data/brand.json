@@ -3,8 +3,8 @@
   "previousName": "Folvella",
   "updatedAt": "2026-10-06",
   "requestedDomain": "inspomint.com",
-  "domainConnected": false,
-  "siteBase": "https://alperen15100.github.io/Folvella/",
+  "domainConnected": true,
+  "siteBase": "https://inspomint.com/",
   "legacySiteBases": [
     "https://alperen15100.github.io/Trendora/",
     "https://alperen15100.github.io/Folvella/"
