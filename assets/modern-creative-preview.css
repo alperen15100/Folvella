@@ -48,3 +48,102 @@
  .footer-grid{grid-template-columns:1fr 1fr;gap:28px}.footer-grid>div:first-child{grid-column:1/-1}.footer-bottom{display:block}.footer-bottom span{display:block;margin-top:5px}
  .article-top{padding-top:30px}.article-top h1{font-size:43px}.article-dek{font-size:16px}.article-main .article-cover{height:360px}.article-section h2{font-size:28px}.article-figure img{max-height:460px}.related-preview{grid-template-columns:1fr}
 }
+
+
+/* v5 — slogan + handwriting accents + readable collection cards */
+:root{--script:"Caveat","Segoe Print","Bradley Hand",cursive}
+.top-slogan{
+  min-height:50px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  white-space:nowrap;
+  color:#5d514c;
+}
+.top-slogan span{
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.top-slogan strong{
+  font-family:var(--script);
+  font-size:32px;
+  line-height:1;
+  color:var(--pink);
+  font-weight:700;
+  transform:rotate(-2deg);
+}
+.script-word{
+  font-family:var(--script)!important;
+  font-weight:700!important;
+  color:var(--pink)!important;
+  font-size:1.18em!important;
+  letter-spacing:0!important;
+  display:inline-block;
+  transform:rotate(-1.5deg);
+}
+.doodle,.group-tag,.scribble{
+  font-family:var(--script)!important;
+  font-weight:700!important;
+  letter-spacing:.01em!important;
+}
+.doodle{font-size:24px!important}
+.group-tag{font-size:21px!important}
+.scribble{font-size:18px!important}
+
+.collection-card{
+  display:block;
+  overflow:hidden;
+  padding:12px 12px 17px;
+  min-width:0;
+}
+.collection-images{
+  overflow:hidden;
+  border-radius:16px;
+  height:180px;
+}
+.collection-images img{border-radius:0!important}
+.collection-images img:first-child{border-radius:14px 0 0 14px!important}
+.collection-images img:last-child{border-radius:0 14px 14px 0!important}
+.collection-card h3{
+  position:relative;
+  z-index:3;
+  margin:16px 4px 5px!important;
+  padding:0!important;
+  background:#fff;
+  color:var(--ink)!important;
+  font-size:24px!important;
+  line-height:1.05!important;
+  min-height:25px;
+}
+.collection-card p{
+  position:relative;
+  z-index:3;
+  background:#fff;
+  color:var(--muted)!important;
+  margin:0 34px 0 4px!important;
+  line-height:1.35;
+}
+.collection-card .arrow{
+  z-index:4;
+  bottom:18px;
+}
+.seasonal h2 .script-word{font-size:1.12em!important}
+.section-title h2 .script-word{font-size:1.13em!important}
+
+@media(max-width:1020px){
+  .top-slogan strong{font-size:28px}
+  .top-slogan span{font-size:10px}
+}
+@media(max-width:680px){
+  .head{grid-template-columns:42px 1fr 42px}
+  .head:after{content:""!important}
+  .top-slogan{display:none}
+  .collection-images{height:150px}
+  .collection-card h3{font-size:22px!important;margin-top:14px!important}
+  .doodle{font-size:20px!important}
+  .group-tag{font-size:17px!important}
+  .scribble{font-size:15px!important}
+}
