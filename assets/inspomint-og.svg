@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+<rect width="1200" height="630" fill="#FDFBF6"/>
+<circle cx="1040" cy="90" r="180" fill="#E8F4EE"/>
+<circle cx="1110" cy="550" r="220" fill="#F1E6D8"/>
+<g transform="translate(60 95)">
+  <text x="0" y="150" font-family="Georgia,Times New Roman,serif" font-size="150" font-weight="700" fill="#0F2B25">I</text>
+  <path d="M78 75 C106 50,136 48,150 52 C141 86,123 115,91 128 C84 108,82 91,78 75 Z" fill="#7C9C82"/>
+  <path d="M122 24 L130 44 L150 52 L130 60 L122 80 L114 60 L94 52 L114 44 Z" fill="#0F2B25"/>
+  <text x="120" y="150" font-family="Georgia,Times New Roman,serif" font-size="132">
+    <tspan fill="#0F2B25">nspo</tspan><tspan fill="#7C9C82" font-weight="600">Mint</tspan>
+  </text>
+  <text x="128" y="205" font-family="Arial,Helvetica,sans-serif" font-size="25" letter-spacing="8" fill="#0F2B25">Fresh ideas worth saving.</text>
+  <text x="8" y="320" font-family="Georgia,Times New Roman,serif" font-size="34" fill="#0F2B25">Ideas for a more beautiful everyday life.</text>
+  <text x="8" y="380" font-family="Arial,Helvetica,sans-serif" font-size="17" letter-spacing="4" fill="#6C756F">HOME  /  BEAUTY  /  STYLE  /  DIY  /  FOOD  /  AND MORE</text>
+</g>
+<g transform="translate(760 150)">
+  <rect x="0" y="0" width="170" height="240" rx="26" fill="#D8E7DD" transform="rotate(-5 85 120)"/>
+  <rect x="145" y="-30" width="190" height="260" rx="26" fill="#E6D9C8" transform="rotate(4 240 100)"/>
+  <rect x="65" y="215" width="220" height="150" rx="26" fill="#AFCDBB" transform="rotate(2 175 290)"/>
+  <text x="105" y="280" font-family="Georgia,Times New Roman,serif" font-size="28" fill="#0F2B25">collect</text>
+  <text x="105" y="315" font-family="Georgia,Times New Roman,serif" font-size="28" fill="#0F2B25">what inspires</text>
+  <text x="105" y="350" font-family="Georgia,Times New Roman,serif" font-size="28" fill="#0F2B25">you ✦</text>
+</g>
+</svg>

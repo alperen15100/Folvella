@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<rect width="512" height="512" rx="112" fill="#7C9C82"/>
+<text x="116" y="390" font-family="Georgia,Times New Roman,serif" font-size="352" font-weight="700" fill="#fff">I</text>
+<path d="M272 192 C340 136,405 136,428 140 C407 217,363 286,284 316 C268 267,264 229,272 192 Z" fill="#FDFBF6"/>
+<path d="M368 80 L384 120 L424 136 L384 152 L368 192 L352 152 L312 136 L352 120 Z" fill="#fff"/>
+</svg>

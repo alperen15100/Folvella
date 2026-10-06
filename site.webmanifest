@@ -1,0 +1,12 @@
+{
+  "name": "InspoMint",
+  "short_name": "InspoMint",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FDFBF6",
+  "theme_color": "#7C9C82",
+  "icons": [
+    {"src": "/assets/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "/assets/android-icon.svg", "sizes": "any", "type": "image/svg+xml"}
+  ]
+}

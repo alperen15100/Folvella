@@ -724,3 +724,6 @@ body[data-page="home"] #fresh{padding:36px 0 60px;scroll-margin-top:110px}body[d
 @media(max-width:650px){.seasonalBanner{display:block;padding:20px;margin-bottom:24px}.seasonalBanner h2{font-size:23px}.seasonalBanner .textLink{display:inline-block;font-size:12px;margin-top:15px}.seasonalBanner p:last-child{line-height:1.6}.pinCatalogGrid{grid-template-columns:1fr 1fr;gap:12px}.pinCatalogCard>div{padding:12px}.pinCatalogCard h3{font-size:18px}.pinCatalogActions{font-size:11px}.seasonGroup{scroll-margin-top:90px}.seasonJump{gap:7px}.seasonJump a{font-size:12px;padding:8px 10px}}
 @media(max-width:380px){.pinCatalogGrid{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
+/* InspoMint global brand mark */
+.brand{display:inline-flex;align-items:center;gap:9px}.brand img{width:28px!important;height:28px!important;object-fit:contain;border-radius:8px}.footGrid .brand img{width:32px!important;height:32px!important}
