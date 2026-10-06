@@ -334,3 +334,27 @@ body{background:var(--paper);color:var(--ink)}
  .collection-card .arrow{right:15px;bottom:16px}
  .issue-search{max-width:none}
 }
+
+
+/* InspoMint mobile visual polish — 2026-10-06 */
+.trend>a:first-child{overflow:hidden;background:#ddd}
+.trend>a:first-child img{width:100%;height:100%;object-fit:cover!important;object-position:center!important;background:transparent!important}
+.trend:after{inset:36% 0 0}
+
+@media(max-width:680px){
+  .trend{height:405px!important;border-radius:22px}
+  .trend>a:first-child img{object-fit:cover!important}
+  .trend-copy{left:18px;right:58px;bottom:19px}
+  .trend-copy h3{font-size:26px!important;line-height:1.01}
+  .trend-copy b{font-size:9px}
+  .collection-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:11px!important}
+  .collection-card{display:block!important;min-height:0!important;padding:9px 9px 14px!important;border-radius:18px!important}
+  .collection-kicker{font-size:8px!important;letter-spacing:.08em!important;margin:7px 3px 3px!important}
+  .collection-images{height:132px!important;display:grid!important;grid-template-columns:1.45fr .72fr!important;grid-template-rows:1fr 1fr!important;gap:4px!important}
+  .collection-images img{border-radius:10px!important}
+  .collection-copy{padding:0 3px!important}
+  .collection-card h3{font-size:18px!important;line-height:1.02!important;margin:10px 26px 5px 0!important}
+  .collection-card p{font-size:10px!important;line-height:1.3!important;margin:0 2px 8px 0!important}
+  .collection-count{font-size:9px!important}
+  .collection-card .arrow{right:11px!important;bottom:11px!important;width:28px!important;height:28px!important;font-size:15px!important}
+}
