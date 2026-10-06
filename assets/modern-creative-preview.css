@@ -147,3 +147,72 @@
   .group-tag{font-size:17px!important}
   .scribble{font-size:15px!important}
 }
+
+
+/* v6 — monthly October issue */
+.october-issue{
+  margin:8px auto 46px;
+  padding:28px 30px;
+  border-radius:30px;
+  background:
+    radial-gradient(circle at 88% 12%,rgba(255,79,121,.10),transparent 28%),
+    linear-gradient(120deg,#fff0f3 0%,#fff8ee 54%,#eef6ed 100%);
+  display:grid;
+  grid-template-columns:.9fr 1.35fr;
+  gap:28px;
+  align-items:center;
+  overflow:hidden;
+  position:relative;
+}
+.october-issue:after{
+  content:"October";
+  position:absolute;
+  right:24px;
+  top:-15px;
+  font-family:var(--script);
+  font-size:80px;
+  color:rgba(255,79,121,.08);
+  transform:rotate(-6deg);
+  pointer-events:none;
+}
+.issue-copy{position:relative;z-index:2}
+.issue-copy h2{font:800 43px/.95 Georgia,serif;margin:8px 0 11px;letter-spacing:-.035em}
+.issue-copy p{color:var(--muted);line-height:1.55;max-width:520px}
+.issue-stats{display:flex;gap:9px;align-items:center;color:#7d6d66;font-size:12px;margin:14px 0 17px}
+.issue-stats strong{color:#2f2825}
+.issue-cta{display:inline-flex;background:#fff;border:1px solid rgba(238,228,222,.9);padding:11px 15px;border-radius:999px;font-weight:900;font-size:13px;box-shadow:0 8px 22px rgba(70,45,38,.06)}
+.issue-peeks{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;position:relative;z-index:2}
+.issue-peek{height:185px;border-radius:18px;overflow:hidden;position:relative;box-shadow:0 12px 28px rgba(70,45,38,.12);transform:rotate(-1deg)}
+.issue-peek:nth-child(even){transform:rotate(1.2deg)}
+.issue-peek:after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(transparent,rgba(0,0,0,.6))}
+.issue-peek span{position:absolute;z-index:2;left:10px;right:10px;bottom:10px;color:#fff;font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.04em}
+
+.issue-page-hero{padding:54px 0 30px;background:linear-gradient(125deg,#fff2f5,#fff9ef 55%,#eef6ed);border-bottom:1px solid var(--line)}
+.issue-page-hero .issue-eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:900;color:#d75c6a}
+.issue-page-hero h1{font:800 clamp(58px,8vw,105px)/.85 Georgia,serif;letter-spacing:-.06em;margin:14px 0 18px}
+.issue-page-hero h1 span{font-family:var(--script);color:var(--pink);font-weight:700;display:inline-block;transform:rotate(-2deg)}
+.issue-page-hero p{font-size:18px;line-height:1.55;max-width:720px;color:#655a55}
+.issue-summary{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.issue-summary span{background:#fff;border:1px solid var(--line);padding:8px 11px;border-radius:999px;font-size:11px;font-weight:800}
+.issue-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.issue-card{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 10px 28px rgba(65,45,38,.05)}
+.issue-card[hidden]{display:none}
+.issue-card img{height:230px}
+.issue-card-copy{padding:14px}
+.issue-card-copy small{font-size:10px;color:#d8586a;font-weight:900;text-transform:uppercase}
+.issue-card-copy h2{font:750 19px/1.05 Georgia,serif;margin:7px 0 6px}
+.issue-card-copy p{font-size:12px;color:var(--muted);line-height:1.4;margin:0}
+.issue-page-count{font-size:12px;color:var(--muted);margin:8px 0 20px}
+
+@media(max-width:1020px){
+ .october-issue{grid-template-columns:1fr}.issue-peeks{grid-template-columns:repeat(4,1fr)}
+ .issue-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:680px){
+ .october-issue{padding:23px 18px;margin-bottom:30px}
+ .issue-copy h2{font-size:35px}.issue-peeks{grid-template-columns:repeat(2,1fr)}
+ .issue-peek{height:132px}.issue-page-hero{padding:36px 0 22px}
+ .issue-page-hero h1{font-size:57px}.issue-page-hero p{font-size:15px}
+ .issue-grid{grid-template-columns:repeat(2,1fr);gap:10px}.issue-card img{height:150px}
+ .issue-card-copy h2{font-size:16px}
+}
