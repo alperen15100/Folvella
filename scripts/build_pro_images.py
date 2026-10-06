@@ -1,4 +1,4 @@
-"""Create section-aware WebP visuals for pro-v2 editorial guides."""
+"""Build section-aware, photo-led WebP visuals for pro-v2 guides."""
 import json,hashlib,random,re,math
 from pathlib import Path
 from PIL import Image,ImageDraw,ImageFilter,ImageEnhance
@@ -7,381 +7,340 @@ import numpy as np
 ROOT=Path(__file__).resolve().parents[1]
 POSTS=json.loads((ROOT/'data/posts.json').read_text(encoding='utf-8'))
 DIMS=json.loads((ROOT/'data/image-dimensions.json').read_text(encoding='utf-8'))
-OUT=ROOT/'assets/generated';OUT.mkdir(parents=True,exist_ok=True)
+OUT=ROOT/'assets/generated'; OUT.mkdir(parents=True,exist_ok=True)
 TARGETS={p['slug'] for p in POSTS if p.get('qualityStandard')=='pro-v2'}
 
-BASE_PATTERNS={
-'nails':['brown-french-tip-nail-ideas-*.webp','milky-lilac-nails-*.webp','rhinestone-nail-ideas-*.webp','plaid-nail-designs-autumn-*.webp','deer-print-nail-ideas-*.webp','minimal-halloween-nail-ideas-*.webp','short-fall-nail-colors*.webp','olive-gold-nails.webp','cherry-jam-nails.webp','chocolate-short-nails.webp'],
-'hair':['90s-hair-accessory-looks-*.webp','feminine-pixie-cut-ideas-*.webp','korean-two-block-haircut-guide-*.webp','crochet-parandi-hair-accessory*.webp'],
-'fragrance':['perfume-layering-ideas-*.webp','perfume-discovery-set-guide-*.webp','small-fragrance-wardrobe-guide-*.webp','fragrance-notes-testing-journal-*.webp'],
-'room':['warm-reading-corner.webp','warm-bedroom-lighting.webp','warm-kitchen-nook.webp','cozy-fall-balcony-ideas-small-spaces-*.webp','trinket-shelf-styling-ideas*.webp'],
-'wallpaper':['warm-bedroom-lighting.webp','warm-reading-corner.webp','warm-kitchen-nook.webp','cozy-fall-balcony-ideas-small-spaces-*.webp'],
-'food':['apple-cinnamon-desserts-fall-*.webp','slow-cooker-fall-dinner-ideas-*.webp','burger-bowl-recipes*.webp','ground-beef-stuffed-peppers*.webp','home-cafe-coffee-ideas-*.webp']
-}
+def seed(slug,i,h=''):
+ return int(hashlib.sha256(f'{slug}:{i}:{h}'.encode()).hexdigest()[:16],16)
+def clean(h): return re.sub(r'^\s*\d+\.\s*','',h or '').strip()
+def rgb(h): h=h.lstrip('#'); return tuple(int(h[i:i+2],16) for i in (0,2,4))
+def hsv_of(c): return Image.new('RGB',(1,1),c).convert('HSV').getpixel((0,0))
+def mix(a,b,t): return tuple(int(a[k]*(1-t)+b[k]*t) for k in range(3))
+def files(patterns):
+ out=[]
+ for pat in patterns:
+  for x in sorted(OUT.glob(pat)):
+   if x.suffix.lower()=='.webp' and not any(x.name.startswith(t+'-') for t in TARGETS) and x not in out: out.append(x)
+ return out
+def choose(patterns,slug,i,h):
+ xs=files(patterns)
+ if not xs: xs=[x for x in sorted(OUT.glob('*.webp')) if not any(x.name.startswith(t+'-') for t in TARGETS)]
+ return xs[(seed(slug,i,h)+i)%len(xs)]
+def fit(im,size=(1024,768),focus=.5):
+ im=im.convert('RGB'); W,H=size; sw,sh=im.size
+ sc=max(W/sw,H/sh); nw,nh=max(W,int(sw*sc)),max(H,int(sh*sc))
+ im=im.resize((nw,nh),Image.Resampling.LANCZOS)
+ dx,dy=max(0,nw-W),max(0,nh-H)
+ x=int(dx*.5); y=int(dy*focus)
+ return im.crop((x,y,x+W,y+H))
+def recolor(im,mask,target,strength=.7):
+ hsv=np.array(im.convert('HSV'),dtype=np.uint8); s,v=hsv[...,1],hsv[...,2]
+ th,ts,tv=hsv_of(target); nh=hsv.copy()
+ nh[...,0]=th; nh[...,1]=np.maximum(s,np.uint8(max(65,ts))); nh[...,2]=np.clip(v.astype(np.int16)*.94+5,0,255).astype(np.uint8)
+ rr=np.array(Image.fromarray(nh,'HSV').convert('RGB'),dtype=np.float32)
+ oo=np.array(im,dtype=np.float32)
+ m=Image.fromarray((mask.astype(np.uint8)*255)).filter(ImageFilter.GaussianBlur(1.8))
+ a=np.array(m,dtype=np.float32)/255.0*strength
+ out=oo*(1-a[...,None])+rr*a[...,None]
+ return Image.fromarray(np.clip(out,0,255).astype(np.uint8)),m
 
-def seed(slug,i,heading=''):
-    return int(hashlib.sha256(f'{slug}:{i}:{heading}'.encode()).hexdigest()[:16],16)
-def rgb(h):
-    h=h.lstrip('#');return tuple(int(h[i:i+2],16) for i in (0,2,4))
-def mix(a,b,t):
-    return tuple(int(a[k]*(1-t)+b[k]*t) for k in range(3))
-def hsv_of(c):
-    return Image.new('RGB',(1,1),c).convert('HSV').getpixel((0,0))
-def clean_heading(h):
-    return re.sub(r'^\s*\d+\.\s*','',h or '').strip()
-def source_pool(patterns):
-    out=[]
-    for pat in patterns:
-        for x in sorted(OUT.glob(pat)):
-            if x.suffix.lower()=='.webp' and not any(x.name.startswith(t+'-') for t in TARGETS) and x not in out:
-                out.append(x)
-    return out
+def nail_target(pal,h,i):
+ h=h.lower()
+ table=[
+  (['pumpkin','apricot'],(205,103,40)),(['burnt orange'],(175,70,25)),(['cinnamon'],(154,79,47)),
+  (['copper'],(181,91,49)),(['espresso'],(74,43,32)),(['burgundy'],(100,19,35)),
+  (['black cherry'],(66,12,28)),(['wine'],(105,25,43)),(['garnet'],(121,20,37)),
+  (['cranberry'],(127,29,48)),(['ruby'],(151,25,43)),(['plum'],(87,31,73)),
+  (['cherry mocha','mocha'],(93,37,43)),(['berry'],(112,39,68)),(['cocoa'],(89,55,44)),
+  (['caramel','honey','amber'],(180,119,57)),(['gold'],(188,144,61)),(['chocolate'],(84,51,36))]
+ for keys,c in table:
+  if any(k in h for k in keys): return c
+ return rgb(pal[i%len(pal)])
 
-def patterns_for(style,slug,heading):
-    h=heading.lower()
-    if style=='nails':
-        if 'tortoiseshell' in h or 'tortoiseshell' in slug:
-            return ['brown-french-tip-nail-ideas-*.webp','deer-print-nail-ideas-*.webp','chocolate-short-nails.webp']
-        if 'french' in h or 'half-moon' in h:
-            return ['brown-french-tip-nail-ideas-*.webp','milky-lilac-nails-*.webp']
-        if 'cat-eye' in h or 'magnetic' in h or 'velvet' in h:
-            return ['rhinestone-nail-ideas-*.webp','milky-lilac-nails-*.webp','cherry-jam-nails.webp']
-        if 'short' in h or 'square' in h:
-            return ['short-fall-nail-colors*.webp','chocolate-short-nails.webp','milky-lilac-nails-*.webp']
-        return BASE_PATTERNS['nails']
-    if style=='hair':
-        if any(k in h for k in ['bob','bixie','jaw-length','micro-fringe']):
-            return ['feminine-pixie-cut-ideas-*.webp','korean-two-block-haircut-guide-*.webp','90s-hair-accessory-looks-*.webp']
-        if any(k in h for k in ['long','layers','balayage','ribbons','highlights','underlayer']):
-            return ['90s-hair-accessory-looks-*.webp','crochet-parandi-hair-accessory*.webp']
-        return BASE_PATTERNS['hair']
-    return BASE_PATTERNS.get(style,BASE_PATTERNS['room'])
+def nail_source(heading,slug,i):
+ h=heading.lower()
+ if 'tortoiseshell' in h or 'tortoiseshell' in slug:
+  if any(k in h for k in ['full tortoiseshell','accent nails','event manicure']):
+   pats=['deer-print-nail-ideas-section-*.webp','deer-print-nail-ideas-cover.webp']
+  else:
+   pats=['brown-french-tip-nail-ideas-0*.webp']
+ elif 'french' in h or 'half-moon' in h:
+  pats=['brown-french-tip-nail-ideas-0*.webp']
+ elif 'short' in h or 'square' in h:
+  pats=['short-fall-nail-colors*.webp','chocolate-short-nails.webp','milky-lilac-nails-0*.webp']
+ else:
+  pats=['milky-lilac-nails-*.webp']
+ return choose(pats,slug,i,heading)
 
-def fit(im,size,i):
-    im=im.convert('RGB');W,H=size;sw,sh=im.size
-    scale=max(W/sw,H/sh);nw,nh=max(W,int(sw*scale)),max(H,int(sh*scale))
-    im=im.resize((nw,nh),Image.Resampling.LANCZOS);dx,dy=max(0,nw-W),max(0,nh-H)
-    x=int(dx*((i*37)%101)/100) if dx else 0;y=int(dy*((i*53)%101)/100) if dy else 0
-    if i%4==3:
-        im=im.transpose(Image.Transpose.FLIP_LEFT_RIGHT);x=max(0,dx-x)
-    return im.crop((x,y,x+W,y+H))
+def nail_semantics(im,pal,slug,heading,i,srcname):
+ h=heading.lower(); hsv=np.array(im.convert('HSV'),dtype=np.uint8); Hh,S,V=hsv[...,0],hsv[...,1],hsv[...,2]
+ target=nail_target(pal,h,i)
+ if srcname.startswith('milky-lilac'):
+  mask=(Hh>185)&(Hh<250)&(S>18)&(V>95)
+  out,m=recolor(im,mask,target,.90)
+  ma=np.array(m,dtype=np.uint8)
+  lay=Image.new('RGBA',im.size,(0,0,0,0)); d=ImageDraw.Draw(lay,'RGBA'); W,H=im.size
+  if any(k in h for k in ['cat-eye','magnetic','velvet']):
+   for k in range(5):
+    x=int(W*(.22+k*.14)); d.line((x-18,int(H*.63),x+48,int(H*.24)),fill=(255,230,235,82),width=9)
+  if any(k in h for k in ['chrome','mirror','glass','shimmer','gloss']):
+   for k in range(5):
+    x=int(W*(.24+k*.135)); d.line((x,int(H*.58),x+20,int(H*.29)),fill=(255,255,255,72),width=7)
+  if 'gold' in h or 'foil' in h:
+   rng=random.Random(seed(slug,i,'gold'))
+   for _ in range(45):
+    x=rng.randrange(W); y=rng.randrange(H); r=rng.randrange(1,4)
+    d.ellipse((x-r,y-r,x+r,y+r),fill=(232,190,95,100))
+  aa=np.minimum(np.array(lay)[...,3],ma)
+  la=np.array(lay); la[...,3]=aa
+  out=Image.alpha_composite(out.convert('RGBA'),Image.fromarray(la,'RGBA')).convert('RGB')
+  return ImageEnhance.Sharpness(out).enhance(1.08)
+ if srcname.startswith('brown-french'):
+  # Source already has a clean nude + brown French manicure; keep skin/fabric untouched.
+  mask=(Hh<35)&(S>58)&(V<85)
+  if any(k in h for k in ['pumpkin','orange','gold','caramel']):
+   out,_=recolor(im,mask,target,.82)
+  else: out=im
+  return ImageEnhance.Color(out).enhance(1.03)
+ # Tortoiseshell source is already a warm spotted nail design close to the requested finish.
+ return ImageEnhance.Color(ImageEnhance.Contrast(im).enhance(1.03)).enhance(1.04)
 
-def polish_color(palette,heading,i):
-    h=heading.lower()
-    named=[
-      (('pumpkin','apricot'),(206,105,42)),(('burnt orange',),(181,74,28)),(('cinnamon',),(166,88,55)),
-      (('copper',),(184,94,50)),(('espresso',),(83,46,34)),(('burgundy',),(103,19,35)),
-      (('black cherry',),(73,12,28)),(('wine',),(112,28,45)),(('garnet',),(124,20,37)),
-      (('cranberry',),(129,28,44)),(('ruby',),(155,28,44)),(('plum',),(91,34,75)),
-      (('cherry mocha','mocha'),(98,36,42)),(('berry',),(117,39,69)),(('cocoa',),(94,58,46)),
-      (('chocolate',),(91,57,39)),(('caramel','honey','amber'),(185,123,58)),(('gold',),(190,144,60))
-    ]
-    for keys,c in named:
-        if any(k in h for k in keys):return c
-    return rgb(palette[i%len(palette)])
+def hair_source(heading,slug,i):
+ h=heading.lower()
+ if 'textured-french-bob' in slug:
+  pats=['90s-hair-accessory-looks-0*.webp','feminine-pixie-cut-ideas-0*.webp']
+ elif any(k in h for k in ['long','layers','balayage','ribbons','highlights','underlayer']):
+  pats=['90s-hair-accessory-looks-0*.webp']
+ else:
+  pats=['90s-hair-accessory-looks-0*.webp','feminine-pixie-cut-ideas-0*.webp']
+ return choose(pats,slug,i,heading)
 
-def recolor_mask(im,target,mask,strength=.85):
-    hsv=np.array(im.convert('HSV'),dtype=np.uint8);s,v=hsv[...,1],hsv[...,2]
-    th,ts,tv=hsv_of(target);nh=hsv.copy();nh[...,0]=th;nh[...,1]=np.maximum(s,np.uint8(max(78,ts)));nh[...,2]=np.clip(v.astype(np.int16)*.88+14,0,255).astype(np.uint8)
-    recol=np.array(Image.fromarray(nh,'HSV').convert('RGB'),dtype=np.float32);orig=np.array(im,dtype=np.float32)
-    m=Image.fromarray((mask*255).astype('uint8')).filter(ImageFilter.GaussianBlur(2));ma=np.array(m,dtype=np.float32)/255.0*strength
-    out=orig*(1-ma[...,None])+recol*ma[...,None]
-    return Image.fromarray(np.clip(out,0,255).astype('uint8')),m
+def hair_semantics(im,pal,slug,heading,i):
+ if 'textured-french-bob' in slug:
+  # The chosen source set already contains short bob/pixie editorial portraits.
+  return ImageEnhance.Sharpness(ImageEnhance.Contrast(im).enhance(1.025)).enhance(1.08)
+ h=heading.lower(); arr=np.array(im.convert('HSV'),dtype=np.uint8); Hh,S,V=arr[...,0],arr[...,1],arr[...,2]
+ yy,xx=np.indices(Hh.shape); H,W=Hh.shape
+ mask=(V<150)&(S>22)&(yy<int(H*.83))&(xx>int(W*.08))&(xx<int(W*.92))
+ # protect the central face ellipse from color spill
+ cx,cy=W*.51,H*.46; rx,ry=W*.17,H*.27
+ face=((xx-cx)/rx)**2+((yy-cy)/ry)**2<1
+ mask &= ~face
+ target=(103,24,39)
+ if 'espresso' in h: target=(75,32,31)
+ if 'copper' in h: target=(151,61,43)
+ if 'cool wine' in h: target=(92,28,60)
+ out,m=recolor(im,mask,target,.58)
+ # Natural tonal variation inside hair only, no graphic stripes.
+ if any(k in h for k in ['balayage','ribbons','highlights','face-framing','underlayer']):
+  mod=np.zeros((H,W),dtype=np.float32)
+  if 'balayage' in h: mod=np.clip((yy/H-.42)/.42,0,1)
+  elif 'underlayer' in h: mod=(yy/H>.58).astype(np.float32)
+  elif 'face-framing' in h: mod=np.exp(-((xx/W-.5)/.12)**2)
+  else: mod=(0.5+0.5*np.sin(xx/W*math.pi*9))*.55
+  mod*=mask.astype(np.float32)
+  gold=np.array(Image.new('RGB',im.size,(145,48,59)),dtype=np.float32)
+  base=np.array(out,dtype=np.float32); a=(mod*.16)[...,None]
+  out=Image.fromarray(np.clip(base*(1-a)+gold*a,0,255).astype('uint8'))
+ if 'high-gloss' in h or 'gloss' in h: out=ImageEnhance.Contrast(out).enhance(1.07)
+ return ImageEnhance.Sharpness(out).enhance(1.10)
 
-def nail_semantics(im,palette,slug,heading,i):
-    h=heading.lower(); hsv=np.array(im.convert('HSV'),dtype=np.uint8)
-    hue,sat,val=hsv[...,0],hsv[...,1],hsv[...,2]
-    mask=((sat>18)&(val>65)&(((hue>115)&(hue<245))|((hue<35)&(sat>55))))
-    if mask.mean()<.015:
-        mask=(sat>28)&(val>55)
-    target=polish_color(palette,heading,i)
-    # French looks start with a sheer nude base, then color only the free-edge region.
-    yy=np.indices(mask.shape)[0]
-    ys=np.where(mask)[0]
-    if len(ys):
-        q=np.quantile(ys,.34)
-        tip=(mask & (yy<=q))
-    else: tip=mask
-    if 'french' in h:
-        nude=(225,190,170)
-        im,_=recolor_mask(im,nude,mask,.55)
-        im,m= recolor_mask(im,target,tip,.94)
-    else:
-        im,m=recolor_mask(im,target,mask,.88)
-    arr=np.array(m,dtype=np.uint8)>20
-    lay=Image.new('RGBA',im.size,(0,0,0,0));d=ImageDraw.Draw(lay,'RGBA');W,H=im.size
-    if any(k in h for k in ['cat-eye','magnetic','velvet']):
-        for k in range(6):
-            x=int(W*(.10+k*.17))
-            d.line((x-70,int(H*.80),x+110,int(H*.08)),fill=(255,235,225,130),width=8)
-    if any(k in h for k in ['chrome','mirror','glass','shimmer','gloss']):
-        for k in range(5):
-            x=int(W*(.16+k*.18))
-            d.line((x-25,int(H*.72),x+35,int(H*.18)),fill=(255,255,255,105),width=12)
-    if 'gold' in h:
-        for k in range(5):
-            x=int(W*(.16+k*.17));d.arc((x-45,int(H*.19),x+65,int(H*.67)),190,350,fill=(235,190,82,145),width=4)
-    if 'tortoiseshell' in h:
-        rng=random.Random(seed(slug,i,heading))
-        for k in range(38):
-            x=rng.randrange(W);y=rng.randrange(int(H*.12),int(H*.72));r=rng.randrange(8,25)
-            d.ellipse((x-r,y-r,x+r,y+r),fill=(67,36,24,rng.randrange(35,80)))
-    if 'micro-glitter' in h or 'foil' in h:
-        rng=random.Random(seed(slug,i,'sparkle'))
-        for k in range(85):
-            x=rng.randrange(W);y=rng.randrange(H);r=rng.randrange(1,4);d.ellipse((x-r,y-r,x+r,y+r),fill=(242,207,117,110))
-    alpha=np.array(lay)[...,3]
-    alpha=np.minimum(alpha,np.array(m,dtype=np.uint8))
-    la=np.array(lay);la[...,3]=alpha
-    out=Image.alpha_composite(im.convert('RGBA'),Image.fromarray(la,'RGBA')).convert('RGB')
-    if 'matte' in h:out=ImageEnhance.Contrast(out).enhance(.96)
-    if 'evening' in h or 'holiday' in h:out=ImageEnhance.Contrast(out).enhance(1.10)
-    return out
+def fragrance_source(slug,i,h):
+ return choose(['perfume-layering-ideas-*.webp','perfume-discovery-set-guide-*.webp','small-fragrance-wardrobe-guide-*.webp'],slug,i,h)
 
-def hair_mask(im):
-    hsv=np.array(im.convert('HSV'),dtype=np.uint8);s,v=hsv[...,1],hsv[...,2]
-    # hair tends to be darker/more saturated than skin/background in our source set
-    return (v<175)&(s>20)
+def fragrance_semantics(im,heading,slug,i):
+ h=heading.lower(); W,H=im.size
+ out=im.convert('RGBA'); lay=Image.new('RGBA',im.size,(0,0,0,0)); d=ImageDraw.Draw(lay,'RGBA')
+ rng=random.Random(seed(slug,i,h)); basey=int(H*.86)
+ def coffee():
+  for k in range(8):
+   x=int(W*.12)+k*28+rng.randint(-5,5); y=basey+rng.randint(-10,8)
+   d.ellipse((x-10,y-6,x+10,y+6),fill=(72,42,27,175)); d.line((x-4,y+1,x+4,y-2),fill=(145,95,57,110),width=2)
+ def vanilla():
+  for off in [0,13]:
+   d.line((int(W*.09)+off,int(H*.75),int(W*.25)+off,int(H*.94)),fill=(63,44,31,190),width=6)
+ def amber():
+  for k in range(5):
+   x=int(W*.12)+k*31+rng.randint(-4,4); y=basey+rng.randint(-8,8); r=rng.randint(8,14)
+   d.polygon([(x-r,y),(x,y-r),(x+r,y-3),(x+r//2,y+r),(x-r//2,y+r)],fill=(192,119,44,150))
+ def wood():
+  for k in range(3): d.rounded_rectangle((int(W*.08)+k*16,int(H*.80)-k*6,int(W*.27)+k*8,int(H*.84)-k*6),6,fill=(120,77,44,150))
+ def rose():
+  for k in range(7):
+   x=int(W*.13)+rng.randint(-10,150); y=basey+rng.randint(-18,12)
+   d.ellipse((x-11,y-5,x+11,y+5),fill=(156,50,72,145))
+ def leaf():
+  for k in range(6):
+   x=int(W*.12)+rng.randint(-10,145); y=basey+rng.randint(-18,12)
+   d.ellipse((x-14,y-5,x+14,y+5),fill=(76,101,61,145))
+ if 'coffee' in h: coffee()
+ if 'vanilla' in h: vanilla()
+ if 'amber' in h: amber()
+ if any(k in h for k in ['sandalwood','cedar','woods']): wood()
+ if 'rose' in h: rose()
+ if 'patchouli' in h: leaf()
+ if 'cocoa' in h:
+  for k in range(5):
+   x=int(W*.12)+k*32; y=basey+rng.randint(-8,8); d.rectangle((x-9,y-9,x+9,y+9),fill=(78,45,32,155))
+ if 'cardamom' in h or 'spice' in h:
+  for k in range(6):
+   x=int(W*.12)+k*30; y=basey+rng.randint(-8,8); d.ellipse((x-7,y-12,x+7,y+12),fill=(133,86,47,155))
+ return Image.alpha_composite(out,lay).convert('RGB')
 
-def hair_semantics(im,palette,slug,heading,i):
-    h=heading.lower();mask=hair_mask(im)
-    target=polish_color(palette,heading,i) if 'cherry' in h or 'cola' in h or 'wine' in h else rgb(palette[i%len(palette)])
-    base,_=recolor_mask(im,target,mask,.70)
-    m=Image.fromarray((mask*255).astype('uint8')).filter(ImageFilter.GaussianBlur(3))
-    W,H=im.size;lay=Image.new('RGBA',im.size,(0,0,0,0));d=ImageDraw.Draw(lay,'RGBA')
-    def streak(x0,x1,col=(196,58,78,95),width=16):
-        d.line((x0,int(H*.18),x1,int(H*.83)),fill=col,width=width)
-    if any(k in h for k in ['balayage','ribbons','highlights']):
-        for k in range(7):
-            x=int(W*(.23+k*.085));streak(x,x+(-35 if k%2 else 35),(205,65,80,90),14)
-    if 'face-framing' in h:
-        streak(int(W*.43),int(W*.37),(220,74,92,125),20);streak(int(W*.57),int(W*.63),(220,74,92,125),20)
-    if 'underlayer' in h:
-        d.rectangle((0,int(H*.62),W,H),fill=(152,32,58,45))
-    if 'copper' in h:
-        d.rectangle((0,0,W,H),fill=(195,86,48,28))
-    if 'cool wine' in h:
-        d.rectangle((0,0,W,H),fill=(94,30,72,32))
-    if 'high-gloss' in h or 'gloss' in h:
-        for k in range(5):streak(int(W*(.28+k*.10)),int(W*(.31+k*.10)),(255,235,230,68),9)
-    # fringe-specific light/dark framing makes the silhouette correspond to the heading.
-    if any(k in h for k in ['fringe','bangs']):
-        d.polygon([(int(W*.38),int(H*.12)),(int(W*.62),int(H*.12)),(int(W*.56),int(H*.38)),(int(W*.44),int(H*.38))],fill=target+(85,))
-    alpha=np.minimum(np.array(lay)[...,3],np.array(m,dtype=np.uint8))
-    la=np.array(lay);la[...,3]=alpha
-    out=Image.alpha_composite(base.convert('RGBA'),Image.fromarray(la,'RGBA')).convert('RGB')
-    if 'sleek' in h:out=ImageEnhance.Sharpness(out).enhance(1.25)
-    if 'tousled' in h or 'curly' in h:out=ImageEnhance.Contrast(out).enhance(1.06)
-    return out
+def room_base(slug,i,h):
+ return fit(Image.open(choose(['warm-reading-corner.webp','trinket-shelf-styling-ideas-cover.webp'],slug,i,h)),(1024,768),.5)
 
-def ingredient_props(im,heading,slug,i):
-    h=heading.lower();W,H=im.size
-    im=im.filter(ImageFilter.GaussianBlur(.22)).convert('RGBA');lay=Image.new('RGBA',im.size,(0,0,0,0));d=ImageDraw.Draw(lay,'RGBA')
-    y=int(H*.80);rng=random.Random(seed(slug,i,heading))
-    # neutral tray/shadow to integrate props
-    d.ellipse((int(W*.15),int(H*.73),int(W*.88),int(H*.96)),fill=(70,42,28,22))
-    def beans():
-        for k in range(10):
-            x=int(W*(.24+.045*k))+rng.randint(-9,9);yy=y+rng.randint(-25,20)
-            d.ellipse((x-12,yy-8,x+12,yy+8),fill=(73,41,26,210));d.line((x-5,yy+2,x+6,yy-3),fill=(145,91,54,160),width=2)
-    def vanilla():
-        for off in [-10,10]:d.line((int(W*.28)+off,int(H*.73),int(W*.48)+off,int(H*.91)),fill=(62,43,29,220),width=8)
-    def wood():
-        for k in range(3):d.rounded_rectangle((int(W*.24)+k*32,int(H*.76)-k*8,int(W*.52)+k*18,int(H*.80)+18-k*8),8,fill=(122,78,43,190))
-    def rose():
-        for k in range(9):
-            x=int(W*.28)+rng.randint(-50,150);yy=y+rng.randint(-30,30);d.ellipse((x-14,yy-7,x+14,yy+7),fill=(164,53,72,170))
-    def leaves():
-        for k in range(8):
-            x=int(W*.30)+rng.randint(-60,130);yy=y+rng.randint(-30,30);d.ellipse((x-18,yy-7,x+18,yy+7),fill=(77,106,61,170))
-    def amber():
-        for k in range(7):
-            x=int(W*.28)+rng.randint(-45,140);yy=y+rng.randint(-25,25);r=rng.randint(8,18);d.polygon([(x-r,yy),(x-r//3,yy-r),(x+r,yy-r//4),(x+r//2,yy+r),(x-r//2,yy+r)],fill=(199,120,40,170))
-    def spice():
-        for k in range(6):
-            x=int(W*.30)+rng.randint(-45,130);yy=y+rng.randint(-25,25)
-            d.ellipse((x-9,yy-16,x+9,yy+16),fill=(142,88,45,190));d.line((x,yy-10,x,yy+10),fill=(82,52,32,160),width=2)
-    if 'coffee' in h:beans()
-    if 'vanilla' in h:vanilla()
-    if any(k in h for k in ['sandalwood','cedar','woods']):wood()
-    if 'rose' in h:rose()
-    if 'patchouli' in h:leaves()
-    if 'amber' in h:amber()
-    if any(k in h for k in ['cardamom','spice']):spice()
-    if 'cocoa' in h:
-        for k in range(6):
-            x=int(W*.34)+rng.randint(-70,100);yy=y+rng.randint(-20,25);d.rectangle((x-14,yy-12,x+14,yy+12),fill=(83,48,34,190))
-    if 'tonka' in h:
-        for k in range(8):
-            x=int(W*.33)+rng.randint(-70,100);yy=y+rng.randint(-20,25);d.ellipse((x-16,yy-8,x+16,yy+8),fill=(89,58,41,190))
-    if 'musk' in h:
-        d.ellipse((int(W*.20),int(H*.77),int(W*.48),int(H*.91)),fill=(242,235,224,150))
-    return Image.alpha_composite(im,lay).convert('RGB')
+def room_semantics(im,pal,heading,slug,i):
+ h=heading.lower(); arr=np.array(im.convert('HSV'),dtype=np.uint8); Hh,S,V=arr[...,0],arr[...,1],arr[...,2]
+ yy,xx=np.indices(Hh.shape); H,W=Hh.shape
+ out=im
+ # Recolor the central brown chair/upholstery only when green seating is requested.
+ chair=(xx>int(W*.33))&(xx<int(W*.78))&(yy>int(H*.35))&(yy<int(H*.92))&(Hh<35)&(S>55)&(V<155)
+ if any(k in h for k in ['moss green sofa','green armchairs','moss velvet']):
+  out,_=recolor(out,chair,(83,105,65),.67)
+ elif any(k in h for k in ['chocolate brown sofa','brown leather']):
+  out,_=recolor(out,chair,(82,48,34),.45)
+ # Gentle architectural color cues, kept behind the furniture.
+ lay=Image.new('RGBA',out.size,(0,0,0,0)); d=ImageDraw.Draw(lay,'RGBA')
+ if 'moss accent wall' in h or 'moss built-ins' in h: d.rectangle((0,0,int(W*.34),int(H*.58)),fill=(75,99,60,48))
+ if 'chocolate walls' in h: d.rectangle((0,0,W,int(H*.50)),fill=(72,43,33,42))
+ if 'moss curtains' in h:
+  d.rectangle((0,0,int(W*.10),int(H*.72)),fill=(72,101,62,55)); d.rectangle((int(W*.90),0,W,int(H*.72)),fill=(72,101,62,55))
+ if 'layered lighting' in h:
+  for x in [int(W*.18),int(W*.52),int(W*.82)]: d.ellipse((x-50,int(H*.18),x+50,int(H*.36)),fill=(250,210,145,28))
+ return Image.alpha_composite(out.convert('RGBA'),lay).convert('RGB')
 
-def room_semantics(im,palette,heading,slug,i,wallpaper=False):
-    h=heading.lower();W,H=im.size
-    base=Image.blend(im,Image.new('RGB',im.size,rgb(palette[i%len(palette)])),.055).convert('RGBA')
-    lay=Image.new('RGBA',im.size,(0,0,0,0));d=ImageDraw.Draw(lay,'RGBA')
-    moss=(92,111,70,90);brown=(83,54,39,85);cream=(235,225,208,85);brass=(190,145,73,155)
-    if wallpaper:
-        region=(0,0,W,int(H*.62))
-        if 'half-wall' in h:region=(0,0,W,int(H*.36))
-        if 'panels' in h:
-            panels=[(40,40,int(W*.31),int(H*.56)),(int(W*.35),40,int(W*.65),int(H*.56)),(int(W*.69),40,W-40,int(H*.56))]
-        else:panels=[region]
-        dark='dark' in h or 'moody' in h
-        light='light' in h or 'small rooms' in h
-        bg=(54,71,45,105) if dark else ((238,232,215,86) if light else (140,125,92,70))
-        for bx in panels:
-            d.rectangle(bx,fill=bg)
-            x0,y0,x1,y1=bx
-            step=80 if 'mural' not in h else 130
-            for yy in range(y0+35,y1,step):
-                for xx in range(x0+30,x1,step):
-                    col=(80,106,65,110) if not dark else (155,174,133,105)
-                    d.ellipse((xx-25,yy-9,xx+25,yy+9),fill=col);d.line((xx-28,yy+18,xx+28,yy-18),fill=(75,63,45,75),width=3)
-        if 'framed' in h:
-            for bx in panels:d.rectangle(bx,outline=(96,74,50,165),width=8)
-    else:
-        if 'moss accent wall' in h or 'moss built-ins' in h:d.rectangle((0,0,int(W*.42),int(H*.66)),fill=moss)
-        if 'chocolate walls' in h:d.rectangle((0,0,W,int(H*.62)),fill=brown)
-        if 'moss curtains' in h:
-            d.rectangle((0,0,int(W*.16),int(H*.75)),fill=moss);d.rectangle((int(W*.84),0,W,int(H*.75)),fill=moss)
-        if 'rug' in h:d.ellipse((int(W*.15),int(H*.72),int(W*.82),int(H*.98)),fill=brown)
-        if 'green armchairs' in h:
-            d.rounded_rectangle((int(W*.12),int(H*.47),int(W*.35),int(H*.78)),35,fill=moss);d.rounded_rectangle((int(W*.65),int(H*.47),int(W*.88),int(H*.78)),35,fill=moss)
-        if 'brown leather' in h or 'chocolate brown sofa' in h:
-            d.rounded_rectangle((int(W*.23),int(H*.50),int(W*.77),int(H*.76)),40,fill=brown)
-        elif 'moss green sofa' in h or 'moss velvet' in h:
-            d.rounded_rectangle((int(W*.23),int(H*.50),int(W*.77),int(H*.76)),40,fill=moss)
-        if 'cream seating' in h:d.rounded_rectangle((int(W*.23),int(H*.50),int(W*.77),int(H*.76)),40,fill=cream)
-        if 'brass' in h:
-            d.line((int(W*.82),int(H*.38),int(W*.82),int(H*.78)),fill=brass,width=9);d.ellipse((int(W*.76),int(H*.30),int(W*.88),int(H*.44)),fill=brass)
-        if 'walnut' in h or 'natural wood' in h:
-            d.rectangle((int(W*.12),int(H*.70),int(W*.88),int(H*.76)),fill=(103,67,43,100))
-        if 'layered lighting' in h:
-            for x in [int(W*.22),int(W*.52),int(W*.80)]:d.ellipse((x-55,int(H*.25),x+55,int(H*.40)),fill=(248,214,151,65))
-    return Image.alpha_composite(base,lay).convert('RGB')
+def wallpaper_base(slug,i,h):
+ return fit(Image.open(choose(['warm-bedroom-lighting.webp','warm-reading-corner.webp'],slug,i,h)),(1024,768),.47)
 
-def draw_food_scene(size,heading,slug,i,palette):
-    h=heading.lower();W,H=size;rng=random.Random(seed(slug,i,heading));cloth=mix(rgb(palette[3]),(246,238,225),.72)
-    base=Image.new('RGB',size,cloth).filter(ImageFilter.GaussianBlur(.1)).convert('RGBA')
-    d=ImageDraw.Draw(base,'RGBA')
-    # subtle linen texture
-    for y in range(0,H,18):d.line((0,y,W,y),fill=(120,90,65,9),width=1)
-    for x in range(0,W,22):d.line((x,0,x,H),fill=(120,90,65,7),width=1)
-    cx,cy=W//2,int(H*.52)
-    def plate(fill=(245,239,225,255),rim=(200,180,155,110)):
-        d.ellipse((cx-270,cy-220,cx+270,cy+220),fill=rim);d.ellipse((cx-250,cy-200,cx+250,cy+200),fill=fill)
-    if 'pumpkin bread' in h:
-        d.rounded_rectangle((cx-240,cy-110,cx+240,cy+130),35,fill=(166,91,44,255))
-        for k in range(4):d.line((cx-170+k*110,cy-90,cx-130+k*110,cy+95),fill=(224,150,85,120),width=8)
-        if 'maple-glazed' in h:d.rounded_rectangle((cx-225,cy-120,cx+225,cy-65),28,fill=(236,197,145,210))
-    elif 'crumble bars' in h:
-        d.rounded_rectangle((cx-290,cy-190,cx+290,cy+190),28,fill=(108,74,52,80))
-        for rr in range(2):
-            for cc in range(3):
-                x=cx-240+cc*180;y=cy-120+rr*150
-                d.rounded_rectangle((x,y,x+145,y+115),18,fill=(205,157,93,255))
-                for k in range(10):
-                    xx=x+rng.randint(10,135);yy=y+rng.randint(8,105);r=rng.randint(3,8);d.ellipse((xx-r,yy-r,xx+r,yy+r),fill=(138,81,46,130))
-    elif 'baked cinnamon apples' in h:
-        plate()
-        for k in range(5):
-            x=cx-160+k*80+rng.randint(-12,12);y=cy+rng.randint(-45,55);r=55
-            d.ellipse((x-r,y-r,x+r,y+r),fill=(177,58,42,255));d.line((x,y-r,x+8,y-r-35),fill=(83,55,35,255),width=6)
-            d.ellipse((x-18,y-10,x+18,y+20),fill=(116,65,38,130))
-    elif 'apple oat crisp' in h:
-        d.rounded_rectangle((cx-280,cy-180,cx+280,cy+180),30,fill=(214,174,112,255))
-        for k in range(90):
-            x=rng.randint(cx-250,cx+250);y=rng.randint(cy-150,cy+150);r=rng.randint(3,9);d.ellipse((x-r,y-r,x+r,y+r),fill=(132,91,55,rng.randint(90,170)))
-    elif 'soup' in h:
-        plate((246,242,232,255))
-        bowl=(cx-210,cy-150,cx+210,cy+190);d.ellipse(bowl,fill=(240,236,228,255))
-        soup=(cx-180,cy-125,cx+180,cy+155)
-        col=(206,117,42,255) if 'pumpkin' in h or 'squash' in h else (188,64,48,255)
-        d.ellipse(soup,fill=col)
-        d.ellipse((cx-60,cy-25,cx+70,cy+30),fill=(236,226,194,90))
-        if 'grilled cheese' in h:
-            d.polygon([(cx+235,cy-90),(cx+420,cy-15),(cx+270,cy+90)],fill=(203,149,70,255));d.polygon([(cx+245,cy-78),(cx+390,cy-18),(cx+278,cy+70)],fill=(238,205,101,255))
-    elif 'pasta' in h or 'mac and cheese' in h:
-        plate()
-        col=(222,185,95,255) if 'mac' in h else (219,194,145,255)
-        for k in range(80):
-            a=rng.random()*math.tau;rad=rng.random()*175;x=cx+int(math.cos(a)*rad);y=cy+int(math.sin(a)*rad*.65)
-            d.arc((x-28,y-14,x+28,y+14),0,300,fill=col,width=7)
-        if 'mushroom' in h:
-            for k in range(10):
-                x=cx+rng.randint(-150,150);y=cy+rng.randint(-90,90)
-                d.pieslice((x-30,y-25,x+30,y+25),180,360,fill=(150,119,91,255));d.rectangle((x-5,y,x+5,y+25),fill=(130,102,80,255))
-    elif 'sheet-pan' in h:
-        d.rounded_rectangle((cx-330,cy-210,cx+330,cy+210),24,fill=(95,84,75,255))
-        for k in range(30):
-            x=rng.randint(cx-290,cx+290);y=rng.randint(cy-170,cy+170)
-            if k%2:d.ellipse((x-25,y-12,x+25,y+12),fill=(150,69,48,255))
-            else:d.rectangle((x-20,y-20,x+20,y+20),fill=(206,118,50,255))
-    elif 'chicken and rice' in h:
-        d.rounded_rectangle((cx-300,cy-190,cx+300,cy+190),28,fill=(235,211,160,255))
-        for k in range(160):
-            x=rng.randint(cx-270,cx+270);y=rng.randint(cy-160,cy+160);d.ellipse((x,y,x+4,y+2),fill=(244,232,200,180))
-        for k in range(5):
-            x=cx-190+k*95;y=cy+rng.randint(-60,60);d.ellipse((x-55,y-35,x+55,y+35),fill=(177,111,66,240))
-    elif 'sausage' in h and 'skillet' in h:
-        d.ellipse((cx-300,cy-210,cx+300,cy+210),fill=(58,54,50,255))
-        for k in range(24):
-            x=rng.randint(cx-220,cx+220);y=rng.randint(cy-140,cy+140)
-            if k%2:d.ellipse((x-35,y-20,x+35,y+20),fill=(148,68,49,255))
-            else:d.rectangle((x-22,y-22,x+22,y+22),fill=(94,128,64,230))
-    elif 'muffins' in h:
-        for r0 in range(2):
-            for c0 in range(3):
-                x=cx-220+c0*210;y=cy-110+r0*190
-                d.polygon([(x-55,y-20),(x+55,y-20),(x+42,y+75),(x-42,y+75)],fill=(151,83,47,255));d.ellipse((x-65,y-65,x+65,y+20),fill=(194,113,60,255))
-    elif 'dessert cups' in h:
-        for k in range(4):
-            x=cx-240+k*160;d.rounded_rectangle((x-55,cy-145,x+55,cy+150),22,outline=(220,220,215,190),width=5)
-            for q in range(5):d.rectangle((x-38,cy+80-q*42,x+38,cy+105-q*42),fill=((197,126,58,190) if q%2 else (236,211,166,190)))
-    elif 'dinner board' in h:
-        d.rounded_rectangle((cx-350,cy-225,cx+350,cy+225),35,fill=(124,82,51,255))
-        for k in range(14):
-            x=rng.randint(cx-290,cx+290);y=rng.randint(cy-170,cy+170);r=rng.randint(22,48)
-            d.ellipse((x-r,y-r,x+r,y+r),fill=[(208,128,62,230),(132,77,49,230),(191,165,105,230),(94,125,68,230)][k%4])
-    else:
-        plate();d.ellipse((cx-170,cy-120,cx+170,cy+120),fill=rgb(palette[i%len(palette)])+(230,))
-    # small side props / shadows
-    d.ellipse((70,80,240,250),fill=(160,100,60,28));d.ellipse((W-230,H-230,W-70,H-70),fill=(110,80,55,22))
-    return base.convert('RGB').filter(ImageFilter.GaussianBlur(.25))
+def wallpaper_semantics(im,pal,heading,slug,i):
+ h=heading.lower(); W,H=im.size; out=im.convert('RGBA')
+ lay=Image.new('RGBA',im.size,(0,0,0,0)); d=ImageDraw.Draw(lay,'RGBA')
+ dark='dark' in h or 'moody' in h; light='light' in h or 'small rooms' in h
+ if 'half-wall' in h: regions=[(0,0,W,int(H*.35))]
+ elif 'framed' in h: regions=[(35,35,int(W*.31),int(H*.55)),(int(W*.35),35,int(W*.65),int(H*.55)),(int(W*.69),35,W-35,int(H*.55))]
+ else: regions=[(0,0,W,int(H*.57))]
+ bg=(47,67,43,46) if dark else ((245,238,222,42) if light else (128,116,87,34))
+ for box in regions:
+  d.rectangle(box,fill=bg)
+  x0,y0,x1,y1=box; step=92 if 'mural' not in h else 145
+  for y in range(y0+38,y1,step):
+   for x in range(x0+34,x1,step):
+    col=(78,105,65,68) if not dark else (154,177,130,64)
+    d.ellipse((x-24,y-8,x+24,y+8),fill=col); d.line((x-24,y+17,x+24,y-17),fill=(80,67,48,45),width=2)
+  if 'framed' in h: d.rectangle(box,outline=(101,79,53,100),width=5)
+ return Image.alpha_composite(out,lay).convert('RGB')
 
-def natural_grade(im,palette,style,i):
-    if style in ('nails','hair'):return ImageEnhance.Sharpness(ImageEnhance.Contrast(im).enhance(1.025)).enhance(1.08)
-    target=rgb(palette[i%len(palette)]);wash=Image.new('RGB',im.size,target)
-    alpha=.025 if style=='food' else .055
-    im=Image.blend(im,wash,alpha);im=ImageEnhance.Contrast(im).enhance(1.035);im=ImageEnhance.Color(im).enhance(1.045)
-    return ImageEnhance.Sharpness(im).enhance(1.06)
+def food_photo(slug,i,h):
+ h=h.lower()
+ if any(k in h for k in ['pumpkin bread','apple','muffins','dessert']):
+  pats=['apple-cinnamon-desserts-fall-0*.webp']
+ else:
+  pats=['slow-cooker-fall-dinner-ideas-0*.webp','burger-bowl-recipes-cover.webp','ground-beef-stuffed-peppers-cover.webp']
+ src=choose(pats,slug,i,h)
+ im=fit(Image.open(src),(1024,768),.5).filter(ImageFilter.GaussianBlur(5))
+ im=ImageEnhance.Contrast(im).enhance(.88); im=ImageEnhance.Brightness(im).enhance(.93)
+ return Image.blend(im,Image.new('RGB',im.size,(244,235,219)),.22)
+
+def food_semantics(im,heading,slug,i,pal):
+ h=heading.lower(); W,H=im.size; base=im.convert('RGBA'); d=ImageDraw.Draw(base,'RGBA'); rng=random.Random(seed(slug,i,h)); cx,cy=W//2,int(H*.53)
+ # soft tabletop card and shadow
+ d.ellipse((cx-285,cy-215,cx+285,cy+220),fill=(55,35,20,32))
+ def plate():
+  d.ellipse((cx-260,cy-195,cx+260,cy+195),fill=(246,240,228,245))
+ if 'pumpkin bread' in h:
+  d.rounded_rectangle((cx-235,cy-105,cx+235,cy+125),32,fill=(163,88,44,245))
+  for k in range(4): d.line((cx-165+k*105,cy-82,cx-125+k*105,cy+92),fill=(224,150,86,105),width=7)
+  if 'maple-glazed' in h:d.rounded_rectangle((cx-220,cy-118,cx+220,cy-62),25,fill=(236,198,148,205))
+ elif 'crumble bars' in h:
+  for rr in range(2):
+   for cc in range(3):
+    x=cx-245+cc*175; y=cy-120+rr*150
+    d.rounded_rectangle((x,y,x+140,y+108),16,fill=(205,158,96,245))
+    for _ in range(8):
+     xx=x+rng.randint(8,132); yy=y+rng.randint(7,100); r=rng.randint(3,7); d.ellipse((xx-r,yy-r,xx+r,yy+r),fill=(133,82,48,120))
+ elif 'baked cinnamon apples' in h:
+  plate()
+  for k in range(5):
+   x=cx-160+k*80+rng.randint(-10,10); y=cy+rng.randint(-45,45); r=52
+   d.ellipse((x-r,y-r,x+r,y+r),fill=(177,57,42,245)); d.line((x,y-r,x+7,y-r-30),fill=(80,53,34,230),width=6)
+ elif 'apple oat crisp' in h:
+  d.rounded_rectangle((cx-270,cy-175,cx+270,cy+175),28,fill=(212,171,108,245))
+  for _ in range(85):
+   x=rng.randint(cx-245,cx+245); y=rng.randint(cy-150,cy+150); r=rng.randint(3,8); d.ellipse((x-r,y-r,x+r,y+r),fill=(131,91,55,115))
+ elif 'soup' in h:
+  plate(); col=(205,112,42,245) if 'pumpkin' in h or 'squash' in h else (187,62,48,245)
+  d.ellipse((cx-185,cy-135,cx+185,cy+150),fill=col); d.ellipse((cx-55,cy-18,cx+60,cy+22),fill=(240,226,195,72))
+  if 'grilled cheese' in h:
+   d.polygon([(cx+220,cy-90),(cx+410,cy-10),(cx+270,cy+90)],fill=(205,150,70,245)); d.polygon([(cx+240,cy-75),(cx+385,cy-15),(cx+278,cy+65)],fill=(239,205,100,240))
+ elif 'pasta' in h or 'mac and cheese' in h:
+  plate(); col=(222,184,92,240) if 'mac' in h else (220,194,145,240)
+  for _ in range(90):
+   a=rng.random()*math.tau; rad=rng.random()*170; x=cx+int(math.cos(a)*rad); y=cy+int(math.sin(a)*rad*.62); d.arc((x-24,y-12,x+24,y+12),0,300,fill=col,width=6)
+  if 'mushroom' in h:
+   for _ in range(10):
+    x=cx+rng.randint(-145,145); y=cy+rng.randint(-85,85); d.pieslice((x-28,y-23,x+28,y+23),180,360,fill=(148,117,89,240)); d.rectangle((x-4,y,x+4,y+23),fill=(126,99,77,220))
+ elif 'sheet-pan' in h:
+  d.rounded_rectangle((cx-325,cy-205,cx+325,cy+205),22,fill=(78,72,66,245))
+  for k in range(34):
+   x=rng.randint(cx-285,cx+285); y=rng.randint(cy-165,cy+165)
+   if k%2:d.ellipse((x-24,y-12,x+24,y+12),fill=(147,68,48,245))
+   else:d.rectangle((x-18,y-18,x+18,y+18),fill=(204,116,49,245))
+ elif 'chicken and rice' in h:
+  d.rounded_rectangle((cx-295,cy-185,cx+295,cy+185),26,fill=(233,209,158,245))
+  for _ in range(140):
+   x=rng.randint(cx-265,cx+265); y=rng.randint(cy-155,cy+155); d.ellipse((x,y,x+4,y+2),fill=(246,233,198,160))
+  for k in range(5):
+   x=cx-185+k*92; y=cy+rng.randint(-55,55); d.ellipse((x-52,y-33,x+52,y+33),fill=(176,110,65,235))
+ elif 'sausage' in h and 'skillet' in h:
+  d.ellipse((cx-300,cy-210,cx+300,cy+210),fill=(53,50,47,245))
+  for k in range(26):
+   x=rng.randint(cx-220,cx+220); y=rng.randint(cy-140,cy+140)
+   if k%2:d.ellipse((x-33,y-18,x+33,y+18),fill=(147,67,48,240))
+   else:d.rectangle((x-20,y-20,x+20,y+20),fill=(92,126,63,220))
+ elif 'muffins' in h:
+  for rr in range(2):
+   for cc in range(3):
+    x=cx-220+cc*210; y=cy-105+rr*185
+    d.polygon([(x-52,y-18),(x+52,y-18),(x+40,y+72),(x-40,y+72)],fill=(148,80,46,245)); d.ellipse((x-62,y-62,x+62,y+18),fill=(193,111,59,245))
+ elif 'dessert cups' in h:
+  for k in range(4):
+   x=cx-240+k*160; d.rounded_rectangle((x-52,cy-142,x+52,cy+148),20,outline=(245,245,240,195),width=5)
+   for q in range(5): d.rectangle((x-36,cy+78-q*40,x+36,cy+101-q*40),fill=((196,124,57,190) if q%2 else (235,210,165,190)))
+ elif 'dinner board' in h:
+  d.rounded_rectangle((cx-345,cy-220,cx+345,cy+220),32,fill=(120,79,49,245))
+  cols=[(205,125,60,225),(128,75,47,225),(188,162,102,225),(91,122,65,225)]
+  for k in range(14):
+   x=rng.randint(cx-285,cx+285); y=rng.randint(cy-165,cy+165); r=rng.randint(22,45); d.ellipse((x-r,y-r,x+r,y+r),fill=cols[k%4])
+ else:
+  plate(); d.ellipse((cx-165,cy-115,cx+165,cy+115),fill=rgb(pal[i%len(pal)])+(220,))
+ return base.convert('RGB').filter(ImageFilter.GaussianBlur(.22))
 
 def render(p,i,path,heading):
-    style=p.get('visualStyle','room');pal=p.get('visualPalette') or ['#7C9C82','#0F2B25','#F1E6D8','#A8CBB6','#FDFBF6']
-    if style=='food':
-        im=draw_food_scene((1024,768),heading,p['slug'],i,pal)
-    else:
-        srcs=source_pool(patterns_for(style,p['slug'],heading))
-        if not srcs:srcs=source_pool(BASE_PATTERNS.get(style,BASE_PATTERNS['room']))
-        src=srcs[(seed(p['slug'],i,heading)+i)%len(srcs)]
-        im=fit(Image.open(src),(1024,768),i);im=natural_grade(im,pal,style,i)
-        if style=='nails':im=nail_semantics(im,pal,p['slug'],heading,i)
-        elif style=='hair':im=hair_semantics(im,pal,p['slug'],heading,i)
-        elif style=='fragrance':im=ingredient_props(im,heading,p['slug'],i)
-        elif style=='room':im=room_semantics(im,pal,heading,p['slug'],i,False)
-        elif style=='wallpaper':im=room_semantics(im,pal,heading,p['slug'],i,True)
-    im.save(ROOT/path,'WEBP',quality=90,method=4);DIMS[path]=[1024,768]
+ style=p.get('visualStyle','room'); pal=p.get('visualPalette') or ['#7C9C82','#0F2B25','#F1E6D8','#A8CBB6','#FDFBF6']
+ if style=='nails':
+  src=nail_source(heading,p['slug'],i); im=fit(Image.open(src),(1024,768),.5); im=nail_semantics(im,pal,p['slug'],heading,i,src.name)
+ elif style=='hair':
+  src=hair_source(heading,p['slug'],i); im=fit(Image.open(src),(1024,768),.47); im=hair_semantics(im,pal,p['slug'],heading,i)
+ elif style=='fragrance':
+  src=fragrance_source(p['slug'],i,heading); im=fit(Image.open(src),(1024,768),.5); im=fragrance_semantics(im,heading,p['slug'],i)
+ elif style=='room':
+  im=room_semantics(room_base(p['slug'],i,heading),pal,heading,p['slug'],i)
+ elif style=='wallpaper':
+  im=wallpaper_semantics(wallpaper_base(p['slug'],i,heading),pal,heading,p['slug'],i)
+ elif style=='food':
+  im=food_semantics(food_photo(p['slug'],i,heading),heading,p['slug'],i,pal)
+ else:
+  src=choose(['warm-reading-corner.webp'],p['slug'],i,heading); im=fit(Image.open(src),(1024,768),.5)
+ im=ImageEnhance.Sharpness(ImageEnhance.Contrast(im).enhance(1.02)).enhance(1.06)
+ im.save(ROOT/path,'WEBP',quality=91,method=4); DIMS[path]=[1024,768]
 
 count=0
 for p in POSTS:
-    if p.get('qualityStandard')!='pro-v2':continue
-    cover_heading=p['title']
-    render(p,0,p['cover'],cover_heading);count+=1
-    for i,s in enumerate(p.get('sections',[]),1):
-        if s.get('image'):
-            render(p,i,s['image'],clean_heading(s.get('heading','')));count+=1
+ if p.get('qualityStandard')!='pro-v2': continue
+ render(p,0,p['cover'],p['title']); count+=1
+ for i,s in enumerate(p.get('sections',[]),1):
+  if s.get('image'):
+   render(p,i,s['image'],clean(s.get('heading',''))); count+=1
 (ROOT/'data/image-dimensions.json').write_text(json.dumps(DIMS,indent=2)+'\n',encoding='utf-8')
-print(f'Generated {count} section-aware WebP editorial images.')
+print(f'Generated {count} section-aware photo-led WebP images.')
