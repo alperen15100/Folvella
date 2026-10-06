@@ -4,6 +4,7 @@ from pathlib import Path
 from site_config import ROOT, BASE
 
 posts=[p for p in json.loads((ROOT/'data/posts.json').read_text(encoding='utf-8')) if p.get('status')=='published']
+ordered_posts=sorted(posts,key=lambda p:p.get('datePublished',''),reverse=True)
 cats=list(json.loads((ROOT/'data/category-covers.json').read_text(encoding='utf-8')))
 e=lambda x:html.escape(str(x or ''),quote=True)
 absurl=lambda x:x if str(x).startswith('https://') else BASE+str(x)
@@ -13,13 +14,20 @@ font='<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="prec
 def schema(obj):
     return '<script type="application/ld+json">'+json.dumps(obj,ensure_ascii=False).replace('<','\\u003c')+'</script>'
 
+def replace_between(text,start,end,inner):
+    i=text.find(start)
+    if i<0: raise ValueError('Missing start marker: '+start)
+    j=text.find(end,i+len(start))
+    if j<0: raise ValueError('Missing end marker: '+end)
+    return text[:i+len(start)]+inner+text[j:]
+
 def live_header(home=False):
     home_href=BASE
     social='<div class="social"><span>p</span><span>◎</span><span>▶</span><span>♪</span><a class="sub" href="'+BASE+'blog/">Blog</a><a class="sub" href="'+BASE+'contact.html">✉ Subscribe</a></div>' if home else '<div class="social"><a class="sub" href="'+BASE+'blog/">Blog</a><a class="sub" href="'+BASE+'">← Home</a></div>'
     return '<header class="top"><div class="shell head"><a class="brand-lockup" href="'+home_href+'"><img src="'+BASE+'assets/inspomint-wordmark.svg" alt="InspoMint — Fresh ideas worth saving."><small>by Ecrin Labs</small></a><div class="head-spacer"></div>'+social+'</div></header>'
 
 def live_footer():
-    return '<footer class="full-footer"><div class="shell footer-grid"><div><a class="footer-brand-img" href="'+BASE+'"><img src="'+BASE+'assets/inspomint-wordmark.svg" alt="InspoMint — Fresh ideas worth saving."></a><p>Beautiful ideas to make, wear, try and keep. A lifestyle project by Ecrin Labs.</p></div><div><b>Explore</b><a href="'+BASE+'#trending">Trending Now</a><a href="'+BASE+'#collections">Collections</a><a href="'+BASE+'blog/">Blog</a><a href="'+BASE+'#more">More to Love</a><a href="'+BASE+'october-2026/">October Issue</a><a href="'+BASE+'pinterest/">Pinterest images</a></div><div><b>Trust & Legal</b><a href="'+BASE+'editorial-policy.html">Editorial Policy</a><a href="'+BASE+'about.html">About</a><a href="'+BASE+'privacy.html">Privacy</a><a href="'+BASE+'affiliate-disclosure.html">Affiliate Disclosure</a><a href="'+BASE+'contact.html">Contact</a></div></div><div class="shell footer-bottom"><span>© 2026 Folvella</span><span><strong>Ecrin Labs</strong> · Created with care</span></div></footer>'
+    return '<footer class="full-footer"><div class="shell footer-grid"><div><a class="footer-brand-img" href="'+BASE+'"><img src="'+BASE+'assets/inspomint-wordmark.svg" alt="InspoMint — Fresh ideas worth saving."></a><p>Beautiful ideas to make, wear, try and keep. A lifestyle project by Ecrin Labs.</p></div><div><b>Explore</b><a href="'+BASE+'#trending">Trending Now</a><a href="'+BASE+'#collections">Collections</a><a href="'+BASE+'blog/">Blog</a><a href="'+BASE+'#more">More to Love</a><a href="'+BASE+'october-2026/">October Issue</a><a href="'+BASE+'pinterest/">Pinterest images</a></div><div><b>Trust & Legal</b><a href="'+BASE+'editorial-policy.html">Editorial Policy</a><a href="'+BASE+'about.html">About</a><a href="'+BASE+'privacy.html">Privacy</a><a href="'+BASE+'affiliate-disclosure.html">Affiliate Disclosure</a><a href="'+BASE+'contact.html">Contact</a></div></div><div class="shell footer-bottom"><span>© 2026 InspoMint</span><span><strong>Ecrin Labs</strong> · Created with care</span></div></footer>'
 
 def mobilebar():
     return '<nav class="mobilebar" aria-label="Mobile navigation"><a href="'+BASE+'">⌂<br>Home</a><a href="'+BASE+'blog/">✦<br>Blog</a><a href="'+BASE+'pinterest/">P<br>Pinterest</a><a href="'+BASE+'#collections">◇<br>Collections</a><a href="'+BASE+'#trending">↗<br>Trending</a></nav>'
@@ -50,16 +58,41 @@ def convert_preview(page, path, title, desc, image=None, home=False):
 preview=(ROOT/'theme-preview-modern-creative/index.html').read_text(encoding='utf-8')
 home=convert_preview(preview,'','InspoMint — Fresh Ideas Worth Saving','Beauty, style, home, DIY, food and grooming ideas worth reading, saving and coming back to.','assets/inspomint-og.svg',True)
 
-# Keep the homepage fresh: the six newest published guides always populate Latest Articles.
-latest_cards=''.join('<a class="mini" href="'+BASE+p['slug']+'/"><img src="'+absurl(p['cover'])+'" alt="'+e(p['title'])+'" loading="lazy"><h3>'+e(p['title'])+'</h3></a>' for p in posts[:6])
-home=re.sub(r'(<section class="section"><div class="shell"><div class="section-title"><h2>Latest[\\s\\S]*?<div class="latest">)[\\s\\S]*?(</div></div></section>)',lambda m:m.group(1)+latest_cards+m.group(2),home,count=1)
-home=home.replace('<a href="#more">View All →</a>','<a href="'+BASE+'blog/">View All →</a>',1)
-home=re.sub(r'<strong>\\d+ stories</strong>','<strong>'+str(len(posts))+' stories</strong>',home,count=1)
+# Keep every content surface on the homepage synced with posts.json.
+home_posts=ordered_posts
+pin_svg='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.6 19.3c0-.8.1-1.8.3-2.6l1.3-5.5s-.3-.7-.3-1.6c0-1.5.9-2.6 2-2.6.9 0 1.4.7 1.4 1.5 0 .9-.6 2.3-.9 3.6-.3 1.1.5 2 1.6 2 1.9 0 3.4-2 3.4-5 0-2.6-1.9-4.4-4.5-4.4-3.1 0-4.9 2.3-4.9 4.7 0 .9.4 1.9.8 2.5l-.3 1.2c-1.4-.6-2.2-2.6-2.2-4.2 0-3.4 2.5-6.6 7.2-6.6 3.8 0 6.7 2.7 6.7 6.3 0 3.7-2.4 6.8-5.7 6.8-1.1 0-2.1-.6-2.5-1.2l-.7 2.6c-.2 1-.9 2.1-1.4 2.9A10 10 0 1 0 12 2z"/></svg>'
+
+trend_cards=''
+for p in home_posts[:5]:
+    share='https://www.pinterest.com/pin/create/button/?'+urllib.parse.urlencode({'url':BASE+p['slug']+'/','media':absurl(p['cover']),'description':p.get('pinDescription') or p['excerpt']})
+    trend_cards+='<article class="trend"><a href="'+BASE+p['slug']+'/"><img src="'+absurl(p['cover'])+'" alt="'+e(p['title'])+'"></a><a class="pin" href="'+e(share)+'" target="_blank" rel="noopener noreferrer" aria-label="Save '+e(p['title'])+' to Pinterest">'+pin_svg+'</a><a class="trend-copy" href="'+BASE+p['slug']+'/"><b>'+e(p['category'])+'</b><h3>'+e(p['title'])+'</h3></a></article>'
+home=replace_between(home,'<div class="trend-track" id="trendTrack">','</div></div><div class="trend-nav">',trend_cards)
+
+latest_cards=''.join('<a class="mini" href="'+BASE+p['slug']+'/"><img src="'+absurl(p['cover'])+'" alt="'+e(p['title'])+'" loading="lazy"><h3>'+e(p['title'])+'</h3></a>' for p in home_posts[:6])
+home=replace_between(home,'<div class="latest">','</div></div></section>\\n\\n<section class="shell october-issue">',latest_cards)
+home=home.replace('href="#more">View All →</a>','href="'+BASE+'blog/">View All →</a>')
+
+issue_peeks=''.join('<a class="issue-peek" href="'+BASE+p['slug']+'/"><img src="'+absurl(p['cover'])+'" alt="'+e(p['title'])+'" loading="lazy"><span>'+e(p['category'])+'</span></a>' for p in home_posts[:4])
+issue_home='<section class="shell october-issue"><div class="issue-copy"><span class="kicker2">InspoMint Monthly</span><h2>October <span class="script-word">Issue</span></h2><p>Everything we published this October — beauty, hair, style, home, DIY, food and grooming — collected in one place.</p><div class="issue-stats"><strong>'+str(len(home_posts))+' stories</strong><span>•</span><strong>'+str(len(cats))+' collections</strong></div><a class="issue-cta" href="'+BASE+'october-2026/">Explore the October Issue ↗</a></div><div class="issue-peeks">'+issue_peeks+'</div></section>'
+home=re.sub(r'<section class="shell october-issue">[\\s\\S]*?</section>',issue_home,home,count=1)
+
+more_cards=''.join('<article class="more-card" data-cat="'+e(p['category'])+'"><a href="'+BASE+p['slug']+'/"><img src="'+absurl(p['cover'])+'" alt="'+e(p['title'])+'" loading="lazy"><div class="more-copy"><small>'+e(p['category'])+'</small><h3>'+e(p['title'])+'</h3></div></a></article>' for p in home_posts)
+home=replace_between(home,'<div class="more-grid">','</div><div class="preview"',more_cards)
 (ROOT/'index.html').write_text(home,encoding='utf-8')
 
-# Live October issue.
+# Live October issue, fully synced with posts.json.
 issue_src=(ROOT/'theme-preview-modern-creative/october-2026.html').read_text(encoding='utf-8')
 issue=convert_preview(issue_src,'october-2026/','October 2026 Issue','Everything InspoMint published in October 2026, collected across beauty, hair, style, home, DIY, food, fragrance and grooming.','assets/inspomint-og.svg',False)
+issue_posts=[p for p in ordered_posts if p.get('datePublished','').startswith('2026-10')]
+issue_counts={c:sum(1 for p in issue_posts if p['category']==c) for c in cats}
+issue_summary=''.join('<span>'+e(c)+' · '+str(issue_counts[c])+'</span>' for c in cats if issue_counts[c])
+issue=replace_between(issue,'<div class="issue-summary">','</div>',issue_summary)
+issue=re.sub(r'<h2>\\d+ October <span class="script-word">stories</span></h2>','<h2>'+str(len(issue_posts))+' October <span class="script-word">stories</span></h2>',issue,count=1)
+issue=re.sub(r'<p class="issue-page-count" id="issueCount">.*?</p>','<p class="issue-page-count" id="issueCount">Showing all '+str(len(issue_posts))+' stories.</p>',issue,count=1)
+issue_filters='<button type="button" data-issue-filter="all" class="active">All October ('+str(len(issue_posts))+')</button>'+''.join('<button type="button" data-issue-filter="'+e(c)+'">'+e(c)+' ('+str(issue_counts[c])+')</button>' for c in cats if issue_counts[c])
+issue=replace_between(issue,'<div class="filters">','</div>',issue_filters)
+issue_cards=''.join('<article class="issue-card" data-cat="'+e(p['category'])+'"><a href="'+BASE+p['slug']+'/"><img src="'+absurl(p['cover'])+'" alt="'+e(p['title'])+'" loading="lazy"><div class="issue-card-copy"><small>'+e(p['category'])+'</small><h2>'+e(p['title'])+'</h2><p>'+e(p['excerpt'])+'</p></div></a></article>' for p in issue_posts)
+issue=re.sub(r'<div class="issue-grid" id="issueGrid">[\\s\\S]*?</div>\\s*</div></section>','<div class="issue-grid" id="issueGrid">'+issue_cards+'</div></div></section>',issue,count=1)
 issue_dir=ROOT/'october-2026'; issue_dir.mkdir(exist_ok=True)
 (issue_dir/'index.html').write_text(issue,encoding='utf-8')
 
