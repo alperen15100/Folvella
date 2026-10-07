@@ -350,6 +350,21 @@ PHOTO_ONLY_SOURCES={
   'assets/generated/brown-french-tip-nail-ideas-02.webp',
   'assets/generated/brown-french-tip-nail-ideas-01.webp'
  ],
+ 'cherry-mocha-plum-nail-ideas-fall':[
+  'assets/generated/cherry-jam-nails.webp',
+  'assets/generated/cherry-jam-nails.webp',
+  'assets/generated/chocolate-short-nails.webp',
+  'assets/generated/brown-french-tip-nail-ideas-01.webp',
+  'assets/generated/brown-french-tip-nail-ideas-02.webp',
+  'assets/generated/plaid-nail-designs-autumn-01.webp',
+  'assets/generated/plaid-nail-designs-autumn-02.webp',
+  'assets/generated/deer-print-nail-ideas-section-02.webp',
+  'assets/generated/rhinestone-nail-ideas-08.webp',
+  'assets/generated/milky-lilac-nails-06.webp',
+  'assets/generated/milky-lilac-nails-09.webp',
+  'assets/generated/milky-lilac-nails-03.webp',
+  'assets/generated/rhinestone-nail-ideas-05.webp'
+ ],
  'cozy-october-recipes-pumpkin-apple-comfort-dinners':[
   'assets/generated/slow-cooker-fall-dinner-ideas-cover.webp',
   'assets/generated/apple-cinnamon-desserts-fall-01.webp',
