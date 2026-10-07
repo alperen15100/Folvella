@@ -359,11 +359,11 @@ PHOTO_ONLY_SOURCES={
   'assets/generated/plaid-nail-designs-autumn-01.webp',
   'assets/generated/plaid-nail-designs-autumn-02.webp',
   'assets/generated/deer-print-nail-ideas-section-02.webp',
-  'assets/generated/rhinestone-nail-ideas-08.webp',
+  'assets/generated/dark-red-cat-eye-nail-ideas-fall-2026-idea-03.webp',
   'assets/generated/milky-lilac-nails-06.webp',
   'assets/generated/milky-lilac-nails-09.webp',
   'assets/generated/milky-lilac-nails-03.webp',
-  'assets/generated/rhinestone-nail-ideas-05.webp'
+  'assets/generated/cherry-jam-nails.webp'
  ],
  'cozy-october-recipes-pumpkin-apple-comfort-dinners':[
   'assets/generated/slow-cooker-fall-dinner-ideas-cover.webp',
