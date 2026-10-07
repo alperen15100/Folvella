@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Folvella Article Preview</title>
+<title>InspoMint Article Preview</title>
 <meta name="robots" content="noindex,follow">
 <meta name="theme-color" content="#fffdf9">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
@@ -13,7 +13,7 @@
 <header class="top"><div class="shell head"><a class="brand-lockup" href="./"><img src="../assets/inspomint-wordmark.svg" alt="InspoMint — Fresh ideas worth saving."><small>by Ecrin Labs</small></a><div class="head-spacer"></div><div class="social"><a class="sub" href="./">← Home</a></div></div></header>
 
 <main id="articleRoot">
-  <div class="article-shell article-top"><span class="article-crumb">Loading article…</span><h1>Folvella</h1><p class="article-dek">Preparing the Modern Creative preview.</p></div>
+  <div class="article-shell article-top"><span class="article-crumb">Loading article…</span><h1>InspoMint</h1><p class="article-dek">Preparing the Modern Creative preview.</p></div>
 </main>
 
 <nav class="mobilebar" aria-label="Mobile preview navigation"><a href="./">⌂<br>Home</a><a href="../pinterest/">P<br>Pinterest</a><a href="./#collections">◇<br>Collections</a><a href="./#trending">↗<br>Trending</a><a href="./#more">•••<br>More</a></nav>
@@ -28,10 +28,10 @@
  const post=posts.find(p=>p.slug===slug&&p.status==='published');
  const root=document.getElementById('articleRoot');
  if(!post){
-   root.innerHTML='<div class="article-shell article-top"><span class="article-crumb">404</span><h1>Article not found.</h1><p class="article-dek">Return to the Modern Creative preview.</p><a class="cta" href="./">Back to Folvella →</a></div>';
+   root.innerHTML='<div class="article-shell article-top"><span class="article-crumb">404</span><h1>Article not found.</h1><p class="article-dek">Return to the Modern Creative preview.</p><a class="cta" href="./">Back to InspoMint →</a></div>';
    return;
  }
- document.title=post.title+' — Folvella';
+ document.title=post.title+' — InspoMint';
  const intro=(post.intro||[]).map(p=>'<p>'+esc(p)+'</p>').join('');
  const sections=(post.sections||[]).map(s=>'<section class="article-section"><h2>'+esc(s.heading)+'</h2>'+((s.paragraphs||[]).map(p=>'<p>'+esc(p)+'</p>').join(''))+(s.image?'<figure class="article-figure"><img src="../'+esc(s.image)+'" alt="'+esc(s.alt||s.heading)+'" loading="lazy">'+(s.caption?'<figcaption>'+esc(s.caption)+'</figcaption>':'')+'</figure>':'')+'</section>').join('');
  const faq=(post.faq||[]).length?'<section class="faq"><h2>Frequently Asked Questions</h2>'+post.faq.map(x=>'<details><summary>'+esc(x.q)+'</summary><p>'+esc(x.a)+'</p></details>').join('')+'</section>':'';

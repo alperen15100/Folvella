@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /pinterest-kit-
+Disallow: /theme-preview-modern-creative/
 
-Sitemap: https://alperen15100.github.io/Folvella/sitemap.xml
+Sitemap: https://inspomint.com/sitemap.xml
