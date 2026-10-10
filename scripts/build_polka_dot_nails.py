@@ -12,40 +12,52 @@ DOTS=['#E8C88F','#F5E5CE','#333035','#BDA063','#E8E9ED','#6C3B2E','#F3F1EC','#74
 
 def rgb(v):return np.array(tuple(int(v[i:i+2],16) for i in (1,3,5)),dtype=np.float32)
 
-def mask_nails(im):
-    hsv=np.asarray(im.convert('HSV'))
-    h,s,v=hsv[:,:,0],hsv[:,:,1],hsv[:,:,2]
-    raw=((h>=165)&(h<=242)&(s>=13)&(v>=55)).astype('uint8')*255
-    arr=np.asarray(Image.fromarray(raw,'L').filter(ImageFilter.MedianFilter(5)))>128
-    H,W=arr.shape
-    seen=np.zeros((H,W),dtype=np.uint8)
-    keep=np.zeros((H,W),dtype=np.uint8)
-    # Compact, oval enamel components; ignore large lilac fabrics and flowers.
-    for y in range(0,H,2):
-      for x in range(0,W,2):
-        if not arr[y,x] or seen[y,x]:continue
-        stack=[(y,x)];seen[y,x]=1;pts=[]
-        minx=maxx=x;miny=maxy=y
-        while stack:
-          cy,cx=stack.pop();pts.append((cy,cx))
-          minx=min(minx,cx);maxx=max(maxx,cx)
-          miny=min(miny,cy);maxy=max(maxy,cy)
-          for dy,dx in ((1,0),(-1,0),(0,1),(0,-1)):
-            ny,nx=cy+dy,cx+dx
-            if 0<=ny<H and 0<=nx<W and arr[ny,nx] and not seen[ny,nx]:
-              seen[ny,nx]=1;stack.append((ny,nx))
-        bw=maxx-minx+1;bh=maxy-miny+1;area=len(pts)
-        if 420<=area<125000 and 20<=bw<450 and 26<=bh<530 and area/(bw*bh)>.17:
-          for yy,xx in pts:keep[yy,xx]=255
-    if np.count_nonzero(keep)<2500:keep=np.where(arr,255,0).astype(np.uint8)
-    return np.asarray(Image.fromarray(keep,'L').filter(ImageFilter.MaxFilter(13)).filter(ImageFilter.GaussianBlur(3.4))).astype(np.float32)/255
+NAILS=[
+ [(90,124,26,42,-18),(160,181,28,39,-22),(229,241,27,39,-22),(290,270,23,33,-24)],
+ [(93,142,25,37,-23),(160,209,25,38,-23),(228,257,25,38,-24),(286,280,20,27,-24)],
+ [(91,106,26,43,-20),(164,181,27,43,-20),(235,251,26,39,-24),(293,273,20,30,-21)],
+ [(119,25,15,30,-40),(102,146,26,44,-36),(158,207,26,44,-35),(228,258,25,38,-34),(286,275,19,30,-32)],
+ [(93,52,16,34,-45),(103,146,25,42,-38),(165,199,27,45,-39),(227,249,27,44,-43),(285,271,18,32,-38)],
+ [(104,128,25,47,-24),(166,203,25,47,-27),(239,258,26,46,-29),(291,286,18,31,-29)],
+ [(92,140,25,42,-19),(169,208,25,43,-19),(238,260,25,40,-20),(292,278,20,30,-23)],
+ [(90,151,26,39,-20),(167,210,25,40,-22),(238,257,25,39,-20),(291,279,20,27,-18)],
+ [(95,137,27,41,-25),(162,207,26,43,-23),(235,249,25,38,-25),(297,275,19,28,-25)],
+ [(88,150,25,41,-21),(165,206,26,41,-21),(238,255,24,40,-23),(288,276,20,28,-24)],
+ [(83,130,25,39,-23),(156,194,27,40,-21),(226,251,25,38,-22),(294,275,21,29,-25)],
+ [(109,134,25,46,-26),(175,207,25,42,-29),(243,257,28,40,-28),(290,278,19,29,-29)],
+ [(74,128,29,40,-24),(146,193,30,41,-25),(215,236,28,37,-24),(275,268,22,30,-25)],
+ [(81,147,26,37,-18),(156,202,26,40,-21),(227,246,27,39,-23),(290,277,20,31,-21)],
+ [(104,115,25,39,-12),(171,201,26,43,-14),(242,249,26,41,-18),(300,275,19,30,-19)],
+ [(48,112,26,34,15),(113,185,28,38,-14),(184,237,28,40,-20),(264,263,20,33,-25)],
+ [(238,102,25,38,15),(183,170,27,42,20),(114,234,27,40,22),(51,264,20,31,24)],
+ [(117,117,23,43,-22),(161,186,25,45,-24),(234,248,26,41,-24),(290,273,20,30,-22)],
+ [(255,83,25,36,-56),(220,156,26,38,-58),(163,214,25,40,-53),(101,268,23,35,-48)],
+ [(75,157,25,40,-19),(154,211,26,43,-21),(228,249,24,41,-24),(292,277,20,30,-25)],
+ [(98,92,24,40,-14),(160,169,28,46,-18),(232,230,27,44,-22),(294,256,22,34,-22)]
+]
+def mask_nails(im,index):
+    import math
+    w,h=im.size
+    layer=Image.new('L',(w,h),0)
+    brush=ImageDraw.Draw(layer)
+    for cx,cy,rx,ry,angle in NAILS[index-1]:
+        t=math.radians(angle)
+        pts=[]
+        for j in range(60):
+            a=2*math.pi*j/60
+            u=rx*math.cos(a);v=ry*math.sin(a)
+            x=cx+u*math.cos(t)-v*math.sin(t)
+            y=cy+u*math.sin(t)+v*math.cos(t)
+            pts.append((x*w/300,y*h/300))
+        brush.polygon(pts,fill=255)
+    return np.asarray(layer.filter(ImageFilter.GaussianBlur(5)),dtype=np.float32)/255
 
 def render_idea(i):
     source=OUT/f'milky-lilac-nails-{i:02d}.webp'
     if not source.exists():raise FileNotFoundError(source)
     im=Image.open(source).convert('RGB').resize((900,900),Image.Resampling.LANCZOS)
     base=np.asarray(im,dtype=np.float32)
-    mask=mask_nails(im)
+    mask=mask_nails(im,i)
     target=rgb(COLORS[i-1])
     dot=tuple(int(x) for x in rgb(DOTS[i-1]))
     lum=np.asarray(im.convert('HSV'))[:,:,2].astype(np.float32)/255
