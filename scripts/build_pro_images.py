@@ -75,12 +75,16 @@ def nail_source(heading,slug,i):
 def nail_semantics(im,pal,slug,heading,i,srcname):
  h=heading.lower(); hsv=np.array(im.convert('HSV'),dtype=np.uint8); Hh,S,V=hsv[...,0],hsv[...,1],hsv[...,2]
  target=nail_target(pal,h,i)
+ if slug=='polka-dot-cat-eye-nail-ideas':
+  # A separate salon-style magnetic color for each editorial design.
+  shades=[(112,24,46),(99,55,38),(181,115,137),(102,120,85),(24,48,89),(203,172,126),(38,37,42),(158,27,40),(157,131,194),(24,91,69),(178,92,50),(112,161,190),(198,127,153),(94,36,75),(106,72,61),(159,158,166),(18,95,102),(219,157,121),(222,210,190),(72,70,81),(193,143,93),(120,30,54)]
+  target=shades[i%len(shades)]
  if srcname.startswith('milky-lilac'):
   mask=(Hh>185)&(Hh<250)&(S>18)&(V>95)
   out,m=recolor(im,mask,target,.90)
   ma=np.array(m,dtype=np.uint8)
   lay=Image.new('RGBA',im.size,(0,0,0,0)); d=ImageDraw.Draw(lay,'RGBA'); W,H=im.size
-  if any(k in h for k in ['cat-eye','magnetic','velvet']):
+  if slug=='polka-dot-cat-eye-nail-ideas' or any(k in h for k in ['cat-eye','magnetic','velvet']):
    for k in range(5):
     x=int(W*(.22+k*.14)); d.line((x-18,int(H*.63),x+48,int(H*.24)),fill=(255,230,235,82),width=9)
   if any(k in h for k in ['chrome','mirror','glass','shimmer','gloss']):
@@ -91,6 +95,14 @@ def nail_semantics(im,pal,slug,heading,i,srcname):
    for _ in range(45):
     x=rng.randrange(W); y=rng.randrange(H); r=rng.randrange(1,4)
     d.ellipse((x-r,y-r,x+r,y+r),fill=(232,190,95,100))
+  if slug=='polka-dot-cat-eye-nail-ideas':
+   rng=random.Random(seed(slug,i,'dots'))
+   dots=[(240,216,165),(244,234,214),(72,40,40),(185,137,85),(219,218,221),(87,61,61),(250,247,238),(120,35,53)]
+   dc=dots[i%len(dots)]
+   for _ in range(145):
+    px=rng.randrange(22,W-22); py=rng.randrange(28,H-28)
+    rad=rng.randrange(3,7) if i%3 else rng.randrange(2,5)
+    d.ellipse((px-rad,py-rad,px+rad,py+rad),fill=dc+(225,))
   aa=np.minimum(np.array(lay)[...,3],ma)
   la=np.array(lay); la[...,3]=aa
   out=Image.alpha_composite(out.convert('RGBA'),Image.fromarray(la,'RGBA')).convert('RGB')
