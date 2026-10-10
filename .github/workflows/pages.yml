@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
@@ -27,8 +27,13 @@ jobs:
         run: python3 -m pip install --quiet Pillow numpy
       - name: Build section-aware editorial images
         run: python3 scripts/build_pro_images.py
-      - name: Create matching polka-dot cat-eye nail photographs
-        run: python3 scripts/build_polka_dot_nails.py
+      - name: Install original matching manicure photographs
+        run: |
+          if [ -f assets/inspomint-polka-dot-photos.zip ]; then
+            python3 scripts/import_polka_dot_photos.py
+          else
+            echo "::warning:: Original image archive not uploaded yet; the default artwork remains in place."
+          fi
       - name: Rebuild static site
         run: python3 scripts/build.py
       - name: Build InspoMint 3-photo Pins
@@ -45,15 +50,6 @@ jobs:
         run: python3 scripts/rewrite_brand.py
       - name: Validate publication
         run: python3 scripts/validate.py
-      - name: Save corrected article artwork to repository
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/generated/polka-dot-cat-eye-nail-ideas-*.webp
-          if ! git diff --cached --quiet; then
-            git commit -m "Save corrected polka-dot manicure photos [skip ci]"
-            git push origin HEAD:main
-          fi
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload static site
